@@ -1,0 +1,14 @@
+{
+  "name": "@edit-ac/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Public developer documentation for edit.ac.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "node scripts/check-docs.mjs"
+  }
+}

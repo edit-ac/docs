@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "pages": [
+    "docs/index.md",
+    "docs/guides/getting-started.md",
+    "docs/guides/local-first.md",
+    "docs/guides/extensions.md",
+    "docs/guides/agents.md",
+    "docs/guides/document-formats.md",
+    "docs/guides/cloud-hosting.md",
+    "docs/reference/status.md",
+    "docs/reference/compatibility.md",
+    "docs/reference/glossary.md"
+  ]
+}
