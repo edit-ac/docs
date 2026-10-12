@@ -52,6 +52,10 @@ curl -I https://www.edit.ac
 
 For future DNS or domain changes, propagation and certificate provisioning can take up to 24 hours. In Pages settings, wait for the DNS check and certificate to succeed, then confirm **Enforce HTTPS** is selected. During this setup, **Check again** resumed the certificate request after DNS propagated; GitHub then reported **Certificate Active**, and HTTPS enforcement became available after a page reload. Preserve certificate validation while investigating errors.
 
+## Analytics
+
+Analytics configuration and account maintenance are documented in [Cookieless website analytics](analytics.md).
+
 ## Theme and tool upgrades
 
 1. Read the upstream release and migration notes. Update the theme submodule to a specific release commit and check the theme's minimum Zola version.

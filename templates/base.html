@@ -6,4 +6,12 @@
 
 {% block head_extra %}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='brand/editac-app-icon-180.png') }}">
+{% if config.extra.umami.enabled and (config.base_url == "https://edit.ac" or config.base_url == "https://edit.ac/") %}
+<script defer src="{{ config.extra.umami.script_url }}"
+  data-website-id="{{ config.extra.umami.website_id }}"
+  data-domains="edit.ac"
+  data-do-not-track="true"
+  data-exclude-search="true"
+  data-exclude-hash="true"></script>
+{% endif %}
 {% endblock head_extra %}
