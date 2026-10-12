@@ -6,7 +6,7 @@ const errors = [];
 const files = [];
 function visit(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith('.') || ['node_modules', 'dist'].includes(entry.name)) continue;
+    if (entry.name.startsWith('.') || ['node_modules', 'dist', 'public', 'themes'].includes(entry.name)) continue;
     const file = resolve(dir, entry.name);
     if (entry.isDirectory()) visit(file);
     else if (extname(file) === '.md') files.push(file);
@@ -19,12 +19,15 @@ for (const file of nav.pages) if (!existsSync(resolve(root, file))) errors.push(
 for (const file of files) {
   const name = relative(root, file);
   const text = readFileSync(file, 'utf8');
-  if (!/^# .+/m.test(text)) errors.push(`Missing page title: ${name}`);
-  if (name.startsWith('docs/') && !nav.pages.includes(name)) errors.push(`Unlisted public page: ${name}`);
+  if (name.startsWith('content/')) {
+    if (!/^\+\+\+\ntitle = "[^"]+"/m.test(text)) errors.push(`Missing Zola page title: ${name}`);
+    if (!nav.pages.includes(name)) errors.push(`Unlisted public page: ${name}`);
+  } else if (!/^# .+/m.test(text)) errors.push(`Missing page title: ${name}`);
   for (const [, target] of text.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
     if (/^(https?:|mailto:|#)/.test(target)) continue;
     const path = target.split('#')[0];
-    if (!existsSync(resolve(dirname(file), path))) errors.push(`Broken local link: ${name} -> ${target}`);
+    const destination = path.startsWith('@/') ? resolve(root, 'content', path.slice(2)) : resolve(dirname(file), path);
+    if (!existsSync(destination)) errors.push(`Broken local link: ${name} -> ${target}`);
   }
 }
 console.log(JSON.stringify({ pages: files.length, navigation: nav.pages.length, errors }, null, 2));

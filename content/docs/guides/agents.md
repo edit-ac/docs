@@ -1,6 +1,10 @@
-# Connect agent editing through your app
++++
+title = "Connect agent editing through your app"
+description = "Prepare, inspect and apply agent edits through your application's MCP."
+weight = 5
++++
 
-**Status: planned integration contract.** See [release status](../reference/status.md) before assuming an API or service is available.
+**Status: planned integration contract.** See [release status](@/docs/reference/status.md) before assuming an API or service is available.
 
 The embedding application's existing MCP supplies authentication, tool registration and transport. The planned edit.ac integration supplies a shared editing service. The CLI does not need to become an MCP server, and the editor core does not select or call a model provider.
 

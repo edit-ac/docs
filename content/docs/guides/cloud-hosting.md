@@ -1,6 +1,10 @@
-# Host documents in the cloud
++++
+title = "Host documents in the cloud"
+description = "Plan document authority, access control and durable storage receipts."
+weight = 7
++++
 
-**Status: planned integration contract.** See [release status](../reference/status.md) before assuming an API or service is available.
+**Status: planned integration contract.** See [release status](@/docs/reference/status.md) before assuming an API or service is available.
 
 Reference readiness means implementing the document-store contract and passing its recovery and access-control tests. A production provider claim additionally requires qualification against that configured provider, its deployment and restore behavior; local conformance alone does not establish it. A websocket relay that passes updates between test clients is not a durable document service.
 

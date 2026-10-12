@@ -1,6 +1,10 @@
-# Add an extension
++++
+title = "Add an extension"
+description = "Plan portable extension semantics and platform presenters."
+weight = 4
++++
 
-**Status: planned integration contract.** See [release status](../reference/status.md) before assuming an API or service is available.
+**Status: planned integration contract.** See [release status](@/docs/reference/status.md) before assuming an API or service is available.
 
 An extension combines portable document data and commands with optional host presentation. Register its namespaced type, version, validated content shape and fallback before mounting the document. Document data never contains executable plugin code.
 

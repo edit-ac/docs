@@ -1,19 +1,37 @@
-# edit.ac documentation
+# edit.ac website and documentation
 
-Developer guides for embedding the Rust-first edit.ac editor and building clients, extensions and document services.
+The official website at [edit.ac](https://edit.ac), built with [Zola](https://www.getzola.org/) and [DevLab](https://codeberg.org/RiPetitor/devlab-theme).
 
-**Development status:** the SDK is under development. These guides describe integration contracts; they do not advertise a released editor or a working public demo. Versioned API tutorials and the public playground are delivery milestones.
+The editor SDK is in development. These guides describe integration contracts. Installation tutorials and the public playground will follow a qualified release.
 
-[Start reading](docs/index.md) · [Capability status](docs/reference/status.md) · [Architecture and roadmaps](https://github.com/edit-ac/architecture) · [Core](https://github.com/edit-ac/core) · [CLI](https://github.com/edit-ac/cli)
+[Read the docs](content/docs/_index.md) · [Capability status](content/docs/reference/status.md) · [Core](https://github.com/edit-ac/core) · [Architecture](https://github.com/edit-ac/architecture)
+
+## Work locally
+
+Install the Zola version in `.zola-version` from the [official releases](https://github.com/getzola/zola/releases), and use Node 24 for the documentation check. Clone with the pinned theme:
+
+```sh
+git clone --recurse-submodules git@github.com:edit-ac/docs.git
+cd docs
+npm run check
+zola check --skip-external-links
+zola build
+zola serve
+```
+
+For an existing clone, run `git submodule update --init --recursive`. The preview normally opens at `http://127.0.0.1:1111`. Stop it with Ctrl+C when finished.
 
 ## Repository structure
 
-- `docs/guides/`: task-oriented integration guides.
-- `docs/reference/`: terminology, compatibility and release status.
-- `examples/`: entry point for qualified, executable SDK examples.
-- `navigation.json`: the public reading order, checked in CI.
-- `scripts/`: dependency-free documentation checks.
+- `content/_index.md`: homepage.
+- `content/docs/`: integration guides and reference pages.
+- `zola.toml`: site identity, navigation, search and theme settings.
+- `themes/devlab-theme/`: upstream theme pinned to v0.9.0 as a Git submodule.
+- `navigation.json`: inventory of public content, checked in CI.
+- `examples/`: qualified SDK examples when released.
+- `maintenance/deployment.md`: publishing, domain and upgrade procedures.
+- `AGENTS.md`: local agent instructions for maintaining this site.
 
-Run `npm run check` with Node 24. Site publication, search, generated API references and the public demo are tracked in architecture roadmap 29. This repository owns public learning material; architecture owns design decisions and development tasks.
+GitHub Actions checks pull requests and publishes `main` to GitHub Pages. See [deployment maintenance](maintenance/deployment.md) for DNS and HTTPS. This repository owns public learning material; architecture owns design decisions and development tasks.
 
-Contributions follow [CONTRIBUTING.md](CONTRIBUTING.md). Source and documentation use [Apache-2.0](LICENSE).
+Contributions follow [CONTRIBUTING.md](CONTRIBUTING.md). Site source and documentation use [Apache-2.0](LICENSE); DevLab and its bundled libraries retain their upstream licenses.

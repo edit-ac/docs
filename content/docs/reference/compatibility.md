@@ -1,4 +1,8 @@
-# Versions and capabilities
++++
+title = "Versions and capabilities"
+description = "Track schema, protocol, extension and platform capability versions."
+weight = 9
++++
 
 Compatibility includes more than the SDK package version. Record the document schema, update/sync protocol, extension descriptor versions, native ABI, Markdown dialect and format-converter profile used by a document and client.
 

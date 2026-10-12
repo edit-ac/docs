@@ -1,6 +1,10 @@
-# Local edits, saving and reconnect
++++
+title = "Local edits, saving and reconnect"
+description = "Understand local durability, remote receipts, storage failures and reconnect."
+weight = 3
++++
 
-**Status: planned integration contract.** See [release status](../reference/status.md) before assuming an API or service is available.
+**Status: planned integration contract.** See [release status](@/docs/reference/status.md) before assuming an API or service is available.
 
 An accepted edit, a durable local save and a remote durable receipt are different states. Show them separately in your application. Network delivery alone does not mean a server has persisted an update.
 

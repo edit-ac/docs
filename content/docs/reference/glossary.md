@@ -1,4 +1,8 @@
-# Glossary
++++
+title = "Glossary"
+description = "Definitions for the semantic engine, sessions, durability and capability profiles."
+weight = 10
++++
 
 | Term | Meaning |
 |---|---|

@@ -1,15 +1,18 @@
 {
   "schemaVersion": 1,
   "pages": [
-    "docs/index.md",
-    "docs/guides/getting-started.md",
-    "docs/guides/local-first.md",
-    "docs/guides/extensions.md",
-    "docs/guides/agents.md",
-    "docs/guides/document-formats.md",
-    "docs/guides/cloud-hosting.md",
-    "docs/reference/status.md",
-    "docs/reference/compatibility.md",
-    "docs/reference/glossary.md"
+    "content/_index.md",
+    "content/docs/_index.md",
+    "content/docs/guides/_index.md",
+    "content/docs/guides/getting-started.md",
+    "content/docs/guides/local-first.md",
+    "content/docs/guides/extensions.md",
+    "content/docs/guides/agents.md",
+    "content/docs/guides/document-formats.md",
+    "content/docs/guides/cloud-hosting.md",
+    "content/docs/reference/_index.md",
+    "content/docs/reference/status.md",
+    "content/docs/reference/compatibility.md",
+    "content/docs/reference/glossary.md"
   ]
 }

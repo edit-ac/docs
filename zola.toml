@@ -1,0 +1,61 @@
+base_url = "https://edit.ac"
+title = "edit.ac"
+description = "A Rust-first editor SDK in development, with guides for embedding, local storage and agent editing."
+default_language = "en"
+theme = "devlab-theme"
+compile_sass = true
+build_search_index = true
+generate_feeds = false
+
+[search]
+index_format = "elasticlunr_javascript"
+include_title = true
+include_description = true
+include_content = true
+
+[markdown]
+insert_anchor_links = "right"
+
+[markdown.highlighting]
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+[extra.devlab.brand]
+logo_text = "edit.ac"
+footer_text = "edit.ac"
+show_logo_mark = false
+
+[extra.devlab.navigation]
+links = [
+  { name = "Home", path = "/" },
+  { name = "Docs", collection = "manual" },
+  { name = "Status", path = "@/docs/reference/status.md" },
+  { name = "GitHub", path = "https://github.com/edit-ac" },
+]
+
+[extra.devlab.collections.manual]
+section = "docs/_index.md"
+show_breadcrumbs = true
+show_toc = true
+show_pagination = true
+navigation = [
+  { section = "docs/guides/_index.md" },
+  { section = "docs/reference/_index.md" },
+]
+
+[extra.devlab.docs.page_actions]
+show_copy_link = true
+show_last_updated = true
+edit_url = "https://github.com/edit-ac/docs/edit/main/content/"
+report_url = "https://github.com/edit-ac/docs/issues/new"
+date_format = "%Y-%m-%d"
+
+[extra.devlab.footer]
+show = true
+note = "Open source under Apache-2.0. Built with Zola and DevLab."
+show_link_names = true
+links = [
+  { name = "Source", path = "https://github.com/edit-ac/core", icon = "github" },
+  { name = "Documentation", path = "https://github.com/edit-ac/docs", icon = "github" },
+  { name = "DevLab theme", path = "https://codeberg.org/RiPetitor/devlab-theme", icon = "codeberg" },
+]

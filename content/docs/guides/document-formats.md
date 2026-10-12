@@ -1,6 +1,10 @@
-# Import and export documents
++++
+title = "Import and export documents"
+description = "Check directional format support, conversion fidelity and unsupported content."
+weight = 6
++++
 
-**Status: planned integration contract.** See [release status](../reference/status.md) before assuming an API or service is available.
+**Status: planned integration contract.** See [release status](@/docs/reference/status.md) before assuming an API or service is available.
 
 Format support is directional and versioned. An exporter does not establish an importer, and extracting text does not establish layout-preserving editing.
 

@@ -1,4 +1,8 @@
-# Capability and release status
++++
+title = "Capability and release status"
+description = "Current public promises and the evidence needed for a qualified SDK release."
+weight = 8
++++
 
 Status recorded at documentation bootstrap, 2026-10-11. Live implementation progress belongs to the core project; this page changes when a qualified release is published.
 
