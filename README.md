@@ -1,10 +1,14 @@
 # edit.ac website and documentation
 
+<p align="center"><img src="static/brand/editac-github-avatar.png" alt="edit.ac logo" width="120"></p>
+
 The official website at [edit.ac](https://edit.ac), built with [Zola](https://www.getzola.org/) and [DevLab](https://codeberg.org/RiPetitor/devlab-theme).
 
 The editor SDK is in development. These guides describe integration contracts. Installation tutorials and the public playground will follow a qualified release.
 
 [Read the docs](content/docs/_index.md) · [Capability status](content/docs/reference/status.md) · [Core](https://github.com/edit-ac/core) · [Architecture](https://github.com/edit-ac/architecture)
+
+See [branding maintenance](maintenance/branding.md) for the shared logo, favicons and GitHub artwork.
 
 ## Work locally
 

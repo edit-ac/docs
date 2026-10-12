@@ -1,0 +1,6 @@
+{# Use the canonical SVG as a mask so the mark follows the site's foreground. #}
+<a class="site-logo" href="{{ get_url(path='/') }}">
+  <span class="site-logo-mark editac-logo" aria-hidden="true"
+    style="--editac-logo: url('{{ get_url(path=config.extra.devlab.brand.logo_mark_path) }}')"></span>
+  <span class="site-logo-text">{{ config.extra.devlab.brand.logo_text }}</span>
+</a>

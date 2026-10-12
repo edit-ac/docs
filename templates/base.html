@@ -1,0 +1,9 @@
+{% extends "devlab-theme/templates/base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ get_url(path='brand.css') }}">
+{% endblock extra_styles %}
+
+{% block head_extra %}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='brand/editac-app-icon-180.png') }}">
+{% endblock head_extra %}

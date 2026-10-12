@@ -23,7 +23,8 @@ dark_theme = "github-dark"
 [extra.devlab.brand]
 logo_text = "edit.ac"
 footer_text = "edit.ac"
-show_logo_mark = false
+show_logo_mark = true
+logo_mark_path = "/brand/editac-mark.svg"
 
 [extra.devlab.navigation]
 links = [
