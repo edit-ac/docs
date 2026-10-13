@@ -31,6 +31,7 @@ For an existing clone, run `git submodule update --init --recursive`. The previe
 - `content/docs/`: integration guides and reference pages.
 - `zola.toml`: site identity, navigation, search and theme settings.
 - `themes/devlab-theme/`: upstream theme pinned to v0.9.0 as a Git submodule.
+- `sass/ui.scss`: site-owned shadcn-inspired styling, with neutral light and dark palettes. DevLab supplies search, navigation and accessible controls.
 - `navigation.json`: inventory of public content, checked in CI.
 - `examples/`: qualified SDK examples when released.
 - `maintenance/deployment.md`: publishing, domain and upgrade procedures.
