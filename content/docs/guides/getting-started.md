@@ -17,3 +17,5 @@ weight = 2
 Start with one document, one editor view and a local store. Add collaboration after local save, recovery and disposal work. An editor view and a transport share the same document session; attaching transport does not create or import a second writable document.
 
 Check the exact [capability profile](@/docs/reference/compatibility.md) before choosing extensions. A missing native presenter can preserve content without offering full editing support. Concrete setup commands will be published only when they pass against registry artifacts.
+
+For something to inspect now, the [examples gallery](@/docs/examples/_index.md) links a local rendered web editor with a project brief, bug report and meeting notes. It uses the development source, version 0.0.0, and needs no backend. Release-backed web and React setup examples will follow their qualified packages.

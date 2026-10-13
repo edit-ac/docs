@@ -3,6 +3,8 @@
   "pages": [
     "content/_index.md",
     "content/docs/_index.md",
+    "content/docs/examples/_index.md",
+    "content/docs/examples/web.md",
     "content/docs/guides/_index.md",
     "content/docs/guides/getting-started.md",
     "content/docs/guides/local-first.md",

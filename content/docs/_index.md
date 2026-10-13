@@ -19,5 +19,6 @@ The public API is not yet released. Start with the integration contracts below, 
 4. [Connect agent editing](@/docs/guides/agents.md): Markdown proposals through your application's MCP.
 5. [Import and export documents](@/docs/guides/document-formats.md): format directions, fidelity and conversion reports.
 6. [Host documents in the cloud](@/docs/guides/cloud-hosting.md): identity, access control and durable receipts.
+7. [Browse examples](@/docs/examples/_index.md): editable source previews and the concrete examples planned for each integration.
 
 Use the [glossary](@/docs/reference/glossary.md) and [compatibility guide](@/docs/reference/compatibility.md) when working across platforms.

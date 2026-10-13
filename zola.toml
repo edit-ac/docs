@@ -46,6 +46,7 @@ show_toc = true
 show_pagination = true
 navigation = [
   { section = "docs/guides/_index.md" },
+  { section = "docs/examples/_index.md" },
   { section = "docs/reference/_index.md" },
 ]
 
