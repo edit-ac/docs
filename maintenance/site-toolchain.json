@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18",
+  "zola": {
+    "version": "0.23.6",
+    "release": "https://github.com/getzola/zola/releases/tag/v0.23.6",
+    "publishedAt": "2026-09-12T22:06:53Z",
+    "license": "EUPL-1.2",
+    "licenseSource": "https://github.com/getzola/zola/blob/v0.23.6/LICENSE",
+    "licenseBlob": "4153cd377537ff81e00f8a6453dc278600f4ef2b",
+    "archives": {
+      "zola-v0.23.6-aarch64-apple-darwin.tar.gz": "sha256:cbffbd29b3f59c3f52633507c8cb945a7a02d8b1399b43b235f5932912297aa3",
+      "zola-v0.23.6-x86_64-apple-darwin.tar.gz": "sha256:79a4d0ab51a4d863c068e6e594c6fce36f0aa17429a414ea63066f5910d14460",
+      "zola-v0.23.6-x86_64-unknown-linux-gnu.tar.gz": "sha256:8f5132b3522412d04e395e0b25f6d68613ad272a873e54a2b3ebf664873024a4"
+    }
+  },
+  "theme": {
+    "name": "DevLab",
+    "version": "0.9.0",
+    "commit": "2b638831313058ba92d17095fce15454fda02eba",
+    "commitDate": "2026-10-06",
+    "source": "https://codeberg.org/RiPetitor/devlab-theme",
+    "license": "MIT",
+    "minimumZola": "0.23.6",
+    "licenseSha256": "d57d7e52ea6d2b789176bf7f3c9309c42a74b1e5b9d3034a408ebdd4bd3b4cc4",
+    "thirdPartyNoticesSha256": "a953e7a6ae4ea4cf81aa1a21d4c744219ffc312fcd26573edae11cbd4a1df0a6"
+  },
+  "node": "24.19.0",
+  "npm": "11.17.0",
+  "runtimeServices": {
+    "required": [],
+    "optional": [
+      "Umami analytics only at the explicitly configured production origin; disabled on local and subpath previews"
+    ]
+  },
+  "primaryDocs": [
+    "https://www.getzola.org/documentation/getting-started/installation/",
+    "https://www.getzola.org/documentation/deployment/overview/",
+    "https://www.getzola.org/documentation/getting-started/cli-usage/"
+  ]
+}

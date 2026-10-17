@@ -9,6 +9,9 @@
     "node": ">=24"
   },
   "scripts": {
-    "check": "node scripts/check-docs.mjs"
-  }
+    "check": "node scripts/check-docs.mjs",
+    "build": "node scripts/site-build.mjs",
+    "check:site": "node --test tests/site-build.test.mjs"
+  },
+  "packageManager": "npm@11.17.0"
 }

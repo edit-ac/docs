@@ -23,11 +23,15 @@ Install the Zola version in `.zola-version` from the [official releases](https:/
 ```sh
 git clone --recurse-submodules git@github.com:edit-ac/docs.git
 cd docs
+npm ci --ignore-scripts
 npm run check
 zola check --skip-external-links
-zola build
+npm run build
+npm run check:site
 zola serve
 ```
+
+See the [local toolchain decision and reproducibility checks](maintenance/site-toolchain.md) for exact versions, licenses and base-path checks.
 
 For an existing clone, run `git submodule update --init --recursive`. The preview normally opens at `http://127.0.0.1:1111`. Stop it with Ctrl+C when finished.
 
