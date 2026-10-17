@@ -16,6 +16,31 @@ weight = 2
 
 Start with one document, one editor view and a local store. Add collaboration after local save, recovery and disposal work. An editor view and a transport share the same document session; attaching transport does not create or import a second writable document.
 
-Check the exact [capability profile](@/docs/reference/compatibility.md) before choosing extensions. A missing native presenter can preserve content without offering full editing support. Concrete setup commands will be published only when they pass against registry artifacts.
+Check the exact [capability profile](@/docs/reference/compatibility.md) before choosing extensions. A missing native presenter can preserve content without offering full editing support. Released setup commands require registry qualification; local tarball instructions must name exact unpublished artifacts and their own consumer evidence.
 
 For something to inspect now, the [examples gallery](@/docs/examples/_index.md) links a local rendered web editor with a project brief, bug report and meeting notes. It uses pinned development source, version 0.0.0, and needs no backend. Package setup examples will follow their qualified artifacts; local tarball instructions will be labeled unpublished when available.
+
+## Plan adoption
+
+Read [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for planned source-specific migration and evidence requirements. These entries do not qualify converters or benchmarks.
+
+Browse the [Getting started paths](@/docs/getting-started/_index.md), including [Astro](@/docs/getting-started/astro.md) without React.
+
+
+## Before you start
+
+**Prerequisites:** Choose one host platform and a local document store.
+
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+
+## Example and expected outcome
+
+The [web source preview](@/docs/examples/web.md) is inspectable now; qualified package tutorials will exercise save/reopen and disposal.
+
+## Failure and recovery
+
+If no compatible artifact exists, keep the original source. Do not install a guessed package version.
+
+## Migration and compatibility
+
+Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.

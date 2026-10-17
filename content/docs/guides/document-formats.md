@@ -15,3 +15,26 @@ DOCX contains document parts, relationships and media. Imported external relatio
 Keep heavy conversion, media decoding and fonts outside the minimal editor bundle. The qualified conversion profile is local-only. Remote converters and hosted fallback are outside this delivery scope; a host policy alone does not make them a supported path.
 
 A live support matrix and fixture-backed examples will be published with qualified converter versions. Do not infer a currently available converter from this roadmap.
+
+## Plan adoption
+
+Read [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for planned source-specific migration and evidence requirements. These entries do not qualify converters or benchmarks.
+
+
+## Before you start
+
+**Prerequisites:** Record the input format, source schema and converter profile.
+
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+
+## Example and expected outcome
+
+The direction-specific fixture and loss-report consumers remain pending here. PDF is export-only.
+
+## Failure and recovery
+
+Preview and review before commit. Cancellation or unsupported content must keep the original file and current document.
+
+## Migration and compatibility
+
+Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.

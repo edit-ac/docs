@@ -15,3 +15,22 @@ Authorize every document operation and asset read by tenant and principal. A doc
 Acknowledge only the promised durability level. Coordinate staged object writes with catalog commits; test partial failure and cleanup instead of assuming the object store and metadata database share a transaction. Bound subscriptions, upload sizes and pending queues.
 
 Define retention, backup/restore, deletion and offline-peer recovery before hosting user documents. Encrypted storage and ciphertext relay support require their own qualified security profile. This repository does not provision a cloud provider or offer a hosted edit.ac service.
+
+
+## Before you start
+
+**Prerequisites:** Identify tenancy, authorization and local versus hosted durability.
+
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+
+## Example and expected outcome
+
+Prepared host-service consumers remain planned; this guide provisions no service.
+
+## Failure and recovery
+
+Retain local work on disconnect. Retry only with valid authority and distinguish local commits from remote durable receipts.
+
+## Migration and compatibility
+
+Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.

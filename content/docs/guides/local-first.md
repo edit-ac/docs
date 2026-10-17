@@ -15,3 +15,22 @@ Persist the update journal and outbox under the session's storage contract. When
 On reconnect, recheck authorization and exchange retained updates. Rejected uploads must not erase recoverable local work. Sharing a database between tabs or processes does not itself deliver live updates to each view.
 
 For contract details, see [storage and sync](https://github.com/edit-ac/architecture/blob/main/specs/storage-sync.md) and [shared clients](https://github.com/edit-ac/architecture/blob/main/specs/client-contracts.md).
+
+
+## Before you start
+
+**Prerequisites:** Identify local storage, document authority and transport ownership.
+
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+
+## Example and expected outcome
+
+A save/reopen consumer must prove retained content independently; this guide explains the contract without runnable API code.
+
+## Failure and recovery
+
+On quota or transport failure preserve unsaved work and any backup. A sync event alone cannot establish durable saving.
+
+## Migration and compatibility
+
+Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.

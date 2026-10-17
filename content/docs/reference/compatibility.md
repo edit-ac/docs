@@ -11,3 +11,7 @@ A capability report distinguishes available, enabled, authorized and qualified b
 Use immutable package versions in examples. Test independently packed consumers and the supported previous/current version combinations. Schema migration requires a recovery path; rolling back an application must not silently downgrade a newer document.
 
 Performance claims name the document sizes, enabled features, hardware and OS/browser profile. Stress-fixture success does not automatically expand the supported envelope. Each platform and converter direction needs its own evidence.
+
+## Plan adoption
+
+Read [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for planned source-specific migration and evidence requirements. These entries do not qualify converters or benchmarks.

@@ -45,9 +45,15 @@ show_breadcrumbs = true
 show_toc = true
 show_pagination = true
 navigation = [
+  { section = "docs/getting-started/_index.md" },
+  { section = "docs/concepts/_index.md" },
+  { section = "docs/extensions/_index.md" },
+  { section = "docs/reference/_index.md" },
   { section = "docs/guides/_index.md" },
   { section = "docs/examples/_index.md" },
-  { section = "docs/reference/_index.md" },
+  { section = "docs/migrate/_index.md" },
+  { section = "docs/compare/_index.md" },
+  { section = "docs/troubleshooting/_index.md" },
 ]
 
 [extra.devlab.docs.page_actions]

@@ -15,6 +15,21 @@
     "content/docs/reference/_index.md",
     "content/docs/reference/status.md",
     "content/docs/reference/compatibility.md",
-    "content/docs/reference/glossary.md"
+    "content/docs/reference/glossary.md",
+    "content/docs/getting-started/_index.md",
+    "content/docs/getting-started/web.md",
+    "content/docs/getting-started/react.md",
+    "content/docs/getting-started/astro.md",
+    "content/docs/getting-started/native.md",
+    "content/docs/getting-started/cli.md",
+    "content/docs/concepts/_index.md",
+    "content/docs/extensions/_index.md",
+    "content/docs/extensions/custom.md",
+    "content/docs/reference/commands.md",
+    "content/docs/reference/lifecycle.md",
+    "content/docs/guides/recipes/_index.md",
+    "content/docs/migrate/_index.md",
+    "content/docs/compare/_index.md",
+    "content/docs/troubleshooting/_index.md"
   ]
 }

@@ -1,7 +1,7 @@
 +++
 title = "Examples"
 description = "Concrete editor examples, from a first document to recovery, collaboration and extensions."
-weight = 2
+weight = 6
 sort_by = "weight"
 template = "docs.html"
 page_template = "doc-page.html"
@@ -50,3 +50,5 @@ Each family will become runnable as its corresponding package and capability pro
 - Exact package versions, capability requirements, platform limits, and validation evidence.
 
 Follow [capability status](@/docs/reference/status.md) for released artifacts. A source preview or a planned recipe does not establish release, mobile, native, or IME support.
+
+Continue with [core concepts](@/docs/concepts/_index.md), [API reference](@/docs/reference/_index.md), [task recipes](@/docs/guides/recipes/_index.md) or [troubleshooting](@/docs/troubleshooting/_index.md).
