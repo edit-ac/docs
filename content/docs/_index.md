@@ -9,7 +9,7 @@ page_template = "doc-page.html"
 
 edit.ac is being developed as a portable editor SDK: one Rust semantic engine, with web, native and terminal clients. Local editing remains available when collaboration transport is disconnected.
 
-The public API is not yet released. Start with the integration contracts below, then follow the [status page](@/docs/reference/status.md) for qualified packages and examples.
+The SDK is unreleased. Selected local packed browser checks exist, while registry installation and the public playground remain unqualified. Start with the integration contracts below and read the [status page](@/docs/reference/status.md) before treating a page as runnable setup instructions.
 
 ## Choose a starting point
 

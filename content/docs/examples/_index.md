@@ -11,6 +11,8 @@ Start with a document you recognize: a project brief, a bug report, or meeting n
 
 **Current status: source preview available; public SDK examples are planned.** The [local web preview source](https://github.com/edit-ac/core/tree/main/examples/web) contains three rendered, editable documents built on the current Rust/WASM engine and browser adapter, version **0.0.0**. It runs from a source checkout with a static file server. Changes stay in the browser tab; there is no backend or account. See the source README for build instructions and limits. This preview is not a released package or a browser support claim.
 
+Reviewed local source: `a20a36c15119c661e47ec0ec7051aed8d94e7ed6`, `examples/web/`. This revision is unpublished. The upstream source link follows moving `main`; it is a discovery link, not the immutable evidence pin. Use the named local checkout for this baseline.
+
 ## Start with the web editor
 
 Follow the [rendered web editor walkthrough](@/docs/examples/web.md) for editing tasks, expected results, export and cleanup.

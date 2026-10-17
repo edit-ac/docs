@@ -6,6 +6,8 @@ weight = 1
 
 **Status: local source preview, version 0.0.0.** This example uses the real Rust/WASM engine and the current internal browser adapter. The public SDK is not released. Build instructions and complete source live in the [core example directory](https://github.com/edit-ac/core/tree/main/examples/web).
 
+Reviewed local source: `a20a36c15119c661e47ec0ec7051aed8d94e7ed6`, `examples/web/`. This revision is unpublished. The upstream source link follows moving `main`; it is a discovery link, not the immutable evidence pin. Use the named local checkout for this baseline.
+
 The preview needs a source build and a static file server. It opens one editable document in your browser, with no backend, sign-in, collaboration service or AI provider. Pick a sample from the sidebar:
 
 | Document | Editing task | Expected result |

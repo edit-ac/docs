@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T23:19:49.382205+00:00",
+  "documentationSourceCommit": "27b725f78ccf41970c873e65eb44aa9e492d71de",
+  "repository": {
+    "archived": false,
+    "default_branch": "main",
+    "full_name": "edit-ac/docs",
+    "html_url": "https://github.com/edit-ac/docs",
+    "license": {
+      "key": "apache-2.0",
+      "spdx_id": "Apache-2.0"
+    },
+    "private": false,
+    "visibility": "public",
+    "observedAt": "2026-10-17T23:19:49.382205+00:00"
+  },
+  "sources": [
+    {
+      "repository": "edit-ac/docs",
+      "commit": "27b725f78ccf41970c873e65eb44aa9e492d71de",
+      "path": "README.md",
+      "sha256": "d0577f5c592b42ba953c63ce7ba3b35f375d83be6feca9e470411cf2318193ae"
+    },
+    {
+      "repository": "edit-ac/docs",
+      "commit": "27b725f78ccf41970c873e65eb44aa9e492d71de",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "repository": "edit-ac/docs",
+      "commit": "27b725f78ccf41970c873e65eb44aa9e492d71de",
+      "path": "navigation.json",
+      "sha256": "ba733b0a45889f24064443eb9ce5885121ab89fdb2e814bb8221d727080d2f00"
+    },
+    {
+      "repository": "edit-ac/docs",
+      "commit": "27b725f78ccf41970c873e65eb44aa9e492d71de",
+      "path": "scripts/check-docs.mjs",
+      "sha256": "f61feef691067e79679e8eeb18d4562977f713593242431140f41a9a51274445"
+    },
+    {
+      "repository": "edit-ac/core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "repository": "edit-ac/core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "examples/web/README.md",
+      "sha256": "8b5d03e881bdac0d4d2d04616f4f9188665dac045108abb89202279cfc809f2e"
+    },
+    {
+      "repository": "edit-ac/core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "packages/core/package.json",
+      "sha256": "261360ff2ffbba376b3c60014470af9eb74461dd2482ddc4f775b5c519abe6e9"
+    },
+    {
+      "repository": "edit-ac/core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "packages/web/package.json",
+      "sha256": "c8c2b30ba2c2ad2690959e4a55b34f37f813e016e4f6dd9288a5da9f084d32ac"
+    },
+    {
+      "repository": "edit-ac/architecture",
+      "commit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "path": "specs/public-docs-demo.md",
+      "sha256": "49982382a0e7635724a750e694de89ac0bc29049a34e55f7d065fee74d052397"
+    },
+    {
+      "repository": "edit-ac/architecture",
+      "commit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "path": "specs/extension-dx.md",
+      "sha256": "659730f4458b56e6411295fed7f71ceb77907bed614220a38177bbd654783522"
+    },
+    {
+      "repository": "edit-ac/architecture",
+      "commit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "path": "evidence/integrated-browser/primary-flow-20261018/pin-1.3-receipt.json",
+      "sha256": "4ec8439f234acb12b88b69d76a4893755eaa88e1d7c8b3f3881dc62bf05fea0c"
+    }
+  ],
+  "reusedLocalProfile": {
+    "gate": "PIN-1.3",
+    "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+    "receipt": "evidence/integrated-browser/primary-flow-20261018/pin-1.3-receipt.json",
+    "counts": {
+      "executed": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "newRuntimeExecution": false,
+    "mode": "unpublished local production tarballs; prepared host transports",
+    "qualificationLimits": [
+      "No registry-installation or public-playground qualification",
+      "Desktop and portable-mobile browser automation; no actual mobile OS, IME or assistive-technology claim",
+      "No native, performance, release or live-provider qualification"
+    ]
+  },
+  "readingOrder": [
+    "content/docs/_index.md",
+    "content/docs/guides/getting-started.md",
+    "content/docs/reference/status.md",
+    "content/docs/guides/local-first.md",
+    "content/docs/guides/extensions.md",
+    "content/docs/guides/agents.md",
+    "content/docs/guides/document-formats.md",
+    "content/docs/guides/cloud-hosting.md",
+    "content/docs/examples/_index.md"
+  ],
+  "internalTaskContent": "Canonical roadmaps remain in edit-ac/architecture; no task checklists copied into public content.",
+  "sourceAvailability": {
+    "localOnly": true,
+    "upstreamCorePinLookup": "HTTP 422: no commit found; no publication authorized",
+    "upstreamSourceLinks": "Discovery links to moving main; local immutable pins above remain authoritative"
+  }
+}

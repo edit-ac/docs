@@ -4,11 +4,17 @@
 
 The official website at [edit.ac](https://edit.ac), built with [Zola](https://www.getzola.org/) and [DevLab](https://codeberg.org/RiPetitor/devlab-theme).
 
-The editor SDK is in development. These guides describe integration contracts. Installation tutorials and the public playground will follow a qualified release.
+The editor SDK is in development. These guides describe integration contracts and an unreleased source preview. Selected local packed browser behavior has recorded checks; registry installation and the public playground remain unqualified. Start with [capability status](content/docs/reference/status.md) to distinguish those states.
 
 [Read the docs](content/docs/_index.md) · [Capability status](content/docs/reference/status.md) · [Core](https://github.com/edit-ac/core) · [Architecture](https://github.com/edit-ac/architecture)
 
 See [branding maintenance](maintenance/branding.md) for the shared logo, favicons and GitHub artwork.
+
+## Read in order
+
+Start at [the docs entry](content/docs/_index.md), choose an [integration path](content/docs/guides/getting-started.md), then check [capability status](content/docs/reference/status.md) before following a guide or example. The entry page orders the existing guides by task. [Examples](content/docs/examples/_index.md) distinguish the source preview from planned package consumers.
+
+The [baseline manifest](maintenance/docs-baseline.json) records the reviewed source commits, license metadata and local evidence profile. It is a dated snapshot, not a release or deployment receipt. Public guides live in this repository; implementation roadmaps and acceptance checklists belong to [architecture](https://github.com/edit-ac/architecture).
 
 ## Work locally
 
