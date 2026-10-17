@@ -10,6 +10,9 @@ export function checkDocs(root) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || ['node_modules', 'dist', 'public', 'themes'].includes(entry.name)) continue;
       const file = resolve(dir, entry.name);
+      // Frozen downloadable source is evidence, not authored site Markdown.
+      // Its hashes and public download links are checked by reference-profile tests.
+      if (relative(root, file) === 'static/reference-inputs') continue;
       if (entry.isDirectory()) visit(file);
       else if (extname(file) === '.md') files.push(file);
     }
@@ -39,7 +42,8 @@ export function checkDocs(root) {
     for (const target of targets) {
       if (/^(https?:|mailto:|#)/.test(target)) continue;
       const path = target.split('#')[0];
-      const destination = path.startsWith('@/') ? resolve(root, 'content', path.slice(2)) : resolve(dirname(file), path);
+      const destination = path.startsWith('@/') ? resolve(root, 'content', path.slice(2)) :
+        path.startsWith('/') ? resolve(root, 'static', path.slice(1)) : resolve(dirname(file), path);
       if (!existsSync(destination)) errors.push(`Broken local link: ${name} -> ${target}`);
     }
   }

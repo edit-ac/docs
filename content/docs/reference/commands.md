@@ -25,3 +25,5 @@ Keep the current content on error or cancellation. Save failures require a retai
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+
+The [pinned declaration reference](@/docs/reference/api-commands.md) is available now; this planned walkthrough still needs its own complete scenario proof.

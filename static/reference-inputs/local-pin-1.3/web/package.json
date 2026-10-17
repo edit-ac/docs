@@ -1,0 +1,77 @@
+{
+  "name": "@edit-ac/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Framework-independent editor surface, storage, synchronization and optional modules",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edit-ac/core.git",
+    "directory": "packages/web"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./editor": {
+      "types": "./dist/editor.d.ts",
+      "import": "./dist/editor.js",
+      "default": "./dist/editor.js"
+    },
+    "./host": {
+      "types": "./dist/host/index.d.ts",
+      "import": "./dist/host/index.js",
+      "default": "./dist/host/index.js"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./highlight-worker": {
+      "types": "./dist/modules/code/worker-entry.d.ts",
+      "import": "./dist/modules/code/worker-entry.js",
+      "default": "./dist/modules/code/worker-entry.js"
+    },
+    "./math": {
+      "types": "./dist/modules/math.d.ts",
+      "import": "./dist/modules/math.js",
+      "default": "./dist/modules/math.js"
+    },
+    "./modules": {
+      "types": "./dist/modules/index.d.ts",
+      "import": "./dist/modules/index.js",
+      "default": "./dist/modules/index.js"
+    },
+    "./links": {
+      "types": "./dist/modules/links/index.d.ts",
+      "import": "./dist/modules/links/index.js",
+      "default": "./dist/modules/links/index.js"
+    },
+    "./ai": {
+      "types": "./dist/extensions/ai/actions.d.ts",
+      "import": "./dist/extensions/ai/actions.js",
+      "default": "./dist/extensions/ai/actions.js"
+    },
+    "./ai/completion": {
+      "types": "./dist/extensions/ai/completion.d.ts",
+      "import": "./dist/extensions/ai/completion.js",
+      "default": "./dist/extensions/ai/completion.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json && node ../../scripts/build-math-assets.mjs",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "katex": "0.19.0"
+  },
+  "dependencies": {
+    "@edit-ac/core": "0.0.0"
+  }
+}

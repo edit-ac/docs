@@ -30,3 +30,7 @@ A change event alone is not a durable save. Preserve unsaved work and inspect ac
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+
+## Match concepts to current declarations
+
+Read the [document](@/docs/reference/api-document.md), [selection](@/docs/reference/api-selection.md), [commands](@/docs/reference/api-commands.md), [events](@/docs/reference/api-events.md), [storage](@/docs/reference/api-storage.md) and [sync](@/docs/reference/api-sync.md) references alongside the [qualified local consumer](@/docs/examples/qualified-local.md). These versioned references do not complete the planned Project kickoff concept fixture.

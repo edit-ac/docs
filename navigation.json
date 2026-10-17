@@ -30,6 +30,16 @@
     "content/docs/guides/recipes/_index.md",
     "content/docs/migrate/_index.md",
     "content/docs/compare/_index.md",
-    "content/docs/troubleshooting/_index.md"
+    "content/docs/troubleshooting/_index.md",
+    "content/docs/examples/qualified-local.md",
+    "content/docs/reference/api-lifecycle.md",
+    "content/docs/reference/api-document.md",
+    "content/docs/reference/api-commands.md",
+    "content/docs/reference/api-selection.md",
+    "content/docs/reference/api-events.md",
+    "content/docs/reference/api-storage.md",
+    "content/docs/reference/api-sync.md",
+    "content/docs/reference/api-extensions.md",
+    "content/docs/reference/api-capabilities.md"
   ]
 }

@@ -104,3 +104,22 @@ test('existing guide URL remains readable and browser reports no JS or external-
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
   observe('preserved guide', 'Existing getting-started URL and adoption links readable; no JS errors or attempted external requests');
 });
+test('versioned API entry renders signatures and local source downloads on desktop and mobile width', async () => {
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto(base+'docs/reference/');
+  await page.locator('main a').filter({hasText:/^Document$/}).click();
+  await page.waitForURL(base+'docs/reference/api-document/');
+  assert.match(await page.locator('main').innerText(), /commit\(request: PrepareRequest\): CommitResult;/);
+  assert.match(await page.locator('main').innerText(), /unpublished local packed artifact/);
+  const link = page.locator('main a').filter({hasText:'Complete declaration module'}).first();
+  const response = await page.request.get(new URL(await link.getAttribute('href'), base).href);
+  assert.equal(response.status(), 200); assert.match(await response.text(), /export declare class BrowserEditor/);
+  const manifest = await page.request.get(base+'reference-inputs/local-pin-1.3/manifest.json');
+  assert.equal(manifest.status(),200); assert.equal((await manifest.json()).inputs.length,141);
+  await page.setViewportSize({width:390,height:844});
+  const widths = await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+  assert.ok(widths.scroll <= widths.viewport, JSON.stringify(widths));
+  if (artifacts) await page.screenshot({path:join(artifacts,'reference-mobile.png'),fullPage:true});
+  assert.deepEqual(errors, []); assert.deepEqual(external, []);
+  observe('API reference', 'Desktop navigation opens exact packed declaration; declaration/manifest downloads return200; mobile-width page has no horizontal overflow');
+});

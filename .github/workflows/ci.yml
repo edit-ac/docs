@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '24.19.0'
           package-manager-cache: false
+      - run: npm ci --ignore-scripts
       - run: npm run check
       - run: bash scripts/install-zola.sh
       - run: zola check --skip-external-links

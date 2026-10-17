@@ -15,3 +15,7 @@ Performance claims name the document sizes, enabled features, hardware and OS/br
 ## Plan adoption
 
 Read [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for planned source-specific migration and evidence requirements. These entries do not qualify converters or benchmarks.
+
+## Pinned profile inventory
+
+The [generated capability table](@/docs/reference/api-capabilities.md) preserves the exact historical core profile states and version tuples. It does not promote stale release-producer inputs or pending native records into support claims.

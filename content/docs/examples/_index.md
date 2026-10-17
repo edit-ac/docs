@@ -52,3 +52,7 @@ Each family will become runnable as its corresponding package and capability pro
 Follow [capability status](@/docs/reference/status.md) for released artifacts. A source preview or a planned recipe does not establish release, mobile, native, or IME support.
 
 Continue with [core concepts](@/docs/concepts/_index.md), [API reference](@/docs/reference/_index.md), [task recipes](@/docs/guides/recipes/_index.md) or [troubleshooting](@/docs/troubleshooting/_index.md).
+
+## Qualified local source
+
+[Inspect the PIN-1.3 packed consumer](@/docs/examples/qualified-local.md) for exact source, artifact hashes, independent expected states and teardown. This reused local scope is distinct from the pending docs quickstarts and gallery families.
