@@ -7,6 +7,8 @@ template = "docs.html"
 page_template = "doc-page.html"
 +++
 
+Browse the [examples gallery](@/docs/examples/gallery.md) for complete source downloads, task/platform/feature/status filters and checked snippets.
+
 Start with a document you recognize: a project brief, a bug report, or meeting notes. Each released example will include an editable result, its complete source, sample content, reset controls, and the exact tested SDK version.
 
 **Current status: local source previews and unpublished package consumers are available; registry examples remain pending.** The [local web preview source](https://github.com/edit-ac/core/tree/main/examples/web) contains three rendered, editable documents built on the current Rust/WASM engine and browser adapter, version **0.0.0**. It runs from a source checkout with a static file server. Changes stay in the browser tab; there is no backend or account. See the source README for build instructions and limits. This preview is not a released package or a browser support claim.

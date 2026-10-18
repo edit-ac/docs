@@ -1,0 +1,9 @@
+
+/* The gallery curates checked sources without loading an editor. */
+[data-gallery] form { display:flex;flex-wrap:wrap;gap:1rem;align-items:end; }
+[data-gallery] label { display:grid;gap:.25rem; }
+[data-gallery] select, [data-gallery] button { min-height:44px;max-width:100%; }
+[data-gallery-card] { margin-block:2rem;padding-block:1rem;border-bottom:1px solid currentColor;min-width:0;overflow-wrap:anywhere; }
+[data-gallery-card][hidden] { display:none; }
+[data-gallery] pre { max-width:100%;overflow-x:auto; }
+[data-gallery] :focus-visible { outline:3px solid currentColor;outline-offset:3px; }

@@ -63,6 +63,7 @@
     "content/docs/guides/references.md",
     "content/docs/examples/extensions-resolvers.md",
     "content/docs/examples/playground.md",
-    "content/docs/examples/collaboration.md"
+    "content/docs/examples/collaboration.md",
+    "content/docs/examples/gallery.md"
   ]
 }

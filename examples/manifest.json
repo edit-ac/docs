@@ -229,6 +229,19 @@
       "qualification": "playground/scenarios/collaboration/qualification.json",
       "scope": "local two-view consumer; unpublished; remote durability not configured",
       "runtimeBoundary": "9 actual Chromium cases through real public production tarballs; 11 total canonical checks; no remote service"
+    },
+    {
+      "id": "gallery/1",
+      "parent": "DWF-1.36",
+      "maturity": "curated-local-consumers",
+      "runtimeQualified": false,
+      "source": "examples/gallery/README.md",
+      "manifest": "examples/gallery/manifest.json",
+      "downloadBase": "/reference-inputs/gallery-v1/",
+      "pages": [
+        "content/docs/examples/gallery.md"
+      ],
+      "scope": "Gallery curation; entries individually retain exact local-runtime or unavailable status. No new editor/profile qualification."
     }
   ]
 }

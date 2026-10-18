@@ -40,3 +40,5 @@ npm run check:playground -- --suite local-editor
 The bounded runner builds the same consumer, exercises actual WASM editing/storage/history and prepared storage failures, blocks external requests, and tears down its browser and server. Exact counts, package/source hashes and failed evidence are retained in `evidence/playground-local-20261018/`. Prepared Chromium viewport/keyboard observations do not qualify physical touch or assistive technology.
 
 Restore recovery copy validates and publishes the current or retained SDK checkpoint into a new isolated browser database. The old database remains intact; explicit reset removes the selected configuration’s current and recorded backup databases. This is a separate recovered copy, not a merge with edits in other tabs.
+
+Find the [ticket description](@/docs/examples/gallery.md#ticket) in the examples gallery, with its checked source, downloads, fixture and capability limits.

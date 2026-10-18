@@ -1,0 +1,53 @@
+{
+  "coreCommit": "7ba6a59998ffc9e2cae840e553e43c3f86a3aa5e",
+  "files": [
+    {
+      "path": "examples/task-editor/editor.mjs",
+      "sha256": "fc2f9f69e2bb841560bea58ae100bb113921aa16754e2d9bd9b595f4c5ac4b75"
+    },
+    {
+      "path": "examples/task-editor/document.mjs",
+      "sha256": "c2ae152afc249bb2aa56e59b7f622db003c60de4a4719e1fc97cd97cd1e76b67"
+    },
+    {
+      "path": "examples/task-editor/recovery.mjs",
+      "sha256": "269a6ff0e25e6b501a6513798a3cb54fe646be69a60750ec3080d18c1af2cf5d"
+    },
+    {
+      "path": "examples/task-editor/markdown.mjs",
+      "sha256": "f137278fc14c59f4e63aad35398a118139fd3b00085a818d273e7b6a5cb7ea75"
+    },
+    {
+      "path": "examples/task-editor/react.mjs",
+      "sha256": "38f7e7c6c7534ccb789e78948ec18c73121c8a8d78651680d569f4749d3440be"
+    },
+    {
+      "path": "examples/task-editor/index.html",
+      "sha256": "6ffedd39aacdd8e68e440624a8c31195d097f85890115b2d8f02392a302e2102"
+    },
+    {
+      "path": "examples/task-editor/react.html",
+      "sha256": "f155206a03cdb5e809e1f60075d20569956ce0d1af22d4a74d67862373404293"
+    },
+    {
+      "path": "examples/astro/astro.config.mjs",
+      "sha256": "c9a8039e9d1a4cbb56f6022fb6cf2055ee288a6ed9a2b2b252463acbd2131a31"
+    },
+    {
+      "path": "examples/astro/src/client.js",
+      "sha256": "8a177177387548853b5c9faeaec78810ba91802a6e1f9d9a43537c5b498ea6a7"
+    },
+    {
+      "path": "examples/astro/src/markdown.js",
+      "sha256": "0a31d1ac37478182f5a9dbc0ae791d7ea318f68a8791ad60657e0687a027378d"
+    },
+    {
+      "path": "examples/astro/src/pages/index.astro",
+      "sha256": "b0ea44b6ce07cbf4ca4e349323837f8f5f805c21f6f46cc39069114152e3795c"
+    },
+    {
+      "path": "examples/astro/src/pages/away.astro",
+      "sha256": "3e60578720ce8aa3bb8d1bd9ee9164d5d7a0405ec9769d4e249e2bc466bc8d42"
+    }
+  ]
+}

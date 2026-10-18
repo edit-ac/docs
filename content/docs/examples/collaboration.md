@@ -45,3 +45,5 @@ npm run check:playground -- --suite collaboration
 ```
 
 The canonical harness builds the exact public-tarball consumer and checks real WASM edits, two-way convergence, overlapping offline edits, independent history, read-only peer updates, save/reopen, prepared load/storage failures, lossless recovery exports and teardown. It rejects empty/unknown suites and partial collaboration selection, blocks external requests and closes browser processes, IndexedDB handles and its HTTP listener even on failures. Evidence lives in `evidence/playground-collaboration-20261018/`; the source manifest names exact files and artifact identities. Prepared Chromium keyboard/mobile-viewport observations do not qualify native input, physical touch or assistive technology.
+
+Find the [collaborative note](@/docs/examples/gallery.md#collaborative-note) in the examples gallery, with its checked source, downloads, fixture and capability limits.

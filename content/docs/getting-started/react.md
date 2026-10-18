@@ -66,3 +66,5 @@ Use matching JS/WASM from one candidate. The browser/React engine asset is `/cor
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md). These local proofs do not qualify native input, IME/AT, performance/budgets, cloud hosts, registry/release or newer configured-extension combinations.
+
+Find the [React basic editor](@/docs/examples/gallery.md#react) in the examples gallery, with its checked source, downloads, fixture and capability limits.

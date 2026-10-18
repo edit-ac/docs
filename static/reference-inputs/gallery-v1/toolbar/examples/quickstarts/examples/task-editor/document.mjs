@@ -1,0 +1,21 @@
+import {createKickoff} from './kickoff.mjs';
+import { init } from '@edit-ac/core';
+import { CheckpointStorage, taskPreset } from '@edit-ac/web';
+// Creation intent survives a failed initial save; opening never seeds over it.
+export async function localOptions(name, assetUrl='/core/wasm/editac_wasm_bg.wasm') {
+  const databaseName=`example-${name}`, key=`editac-example-${name}`;
+  let identity;
+  await navigator.locks.request(`${databaseName}-creation`,async()=>{
+    identity=JSON.parse(localStorage.getItem(key)??'null');
+    if(identity) return;
+    const runtime=await init(assetUrl);
+    const engine=createKickoff(runtime,{documentId:crypto.randomUUID(),epoch:crypto.randomUUID()});
+    let storage;
+    try {
+      identity=engine.read().identity;localStorage.setItem(key,JSON.stringify(identity));
+      storage=await CheckpointStorage.open(indexedDB,databaseName);
+      await storage.publish(engine.checkpoint(),[]);
+    } finally {storage?.close();engine.dispose();}
+  });
+  return {identity,databaseName,assetUrl,indexedDB,locks:navigator.locks,...taskPreset()};
+}
