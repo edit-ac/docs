@@ -1,0 +1,19 @@
+{
+  "parent": "DWF-1.11",
+  "candidate": "sdk-framework-v1",
+  "sourceCommit": "aa5b7d21064bd6d694ba243ffe528f58288b8a92",
+  "version": "0.0.0",
+  "profile": "v5",
+  "scope": "unpublished local two-view production consumer; no remote durability",
+  "fixture": "project-kickoff/1",
+  "license": "Apache-2.0",
+  "files": {
+    "playground/scenarios/collaboration/index.html": "0422cfb966641bccb2f55e37238cac5e80993f3e484dd209ead36412b4d80d99",
+    "playground/scenarios/collaboration/app.mjs": "7f4601f9a29c483dc28be6e08a0bde4069f273d8868351512ee1387f215a4245",
+    "playground/scenarios/collaboration/channel.mjs": "56be8aee3b91c28143451a197df04fa2a9ff20951ac82a8484bb459c7994c2f2",
+    "playground/scenarios/collaboration/README.md": "4201e89c97fe3b08e4f565e306115ed003694dee540df0b19d0ea2760d1dfb31",
+    "scripts/build-playground-collaboration.mjs": "f3c3f2f953d8875747c832231adb2dc7472fa545de5e12d1d321ae7021d67e3c",
+    "playground/kickoff.mjs": "e1c9aa4b55e45dfecbfd552a917ab31caf1961f02909817da776277e162bcf01"
+  },
+  "prerequisite": "evidence/playground-collaboration-20261018/prerequisite-receipt.json"
+}

@@ -4,6 +4,7 @@ import {resolve,join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {sourceBundle} from './prepare-playground-formats.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const pins={core:'5ab37e06a8438a150227dd7d1eeb40d27b889d9d5cea979ad067c6236b4437fe',web:'5141c7b8b7b09c77d127b655f21b21a0431b57d8de61d21145649d116d16b003',formats:'f123c85f410fdb294a0ef880cccbe722f142e63fbb75622c07f4f8424adde0ec'};
@@ -14,7 +15,7 @@ export async function buildFormatsPlayground(destination){
  assert.equal(receipt.coreCommit,'c15ac91d47f2ddf51bf20056686bc912f5c76a36');
  assert.equal(spawnSync('git',['merge-base','--is-ancestor',receipt.coreCommit,'HEAD'],{cwd:resolve(root,'../core')}).status,0,'Qualified return must be adopted first');
  const temp=await mkdtemp(join(root,'.formats-build-'));
- const facts={parent:'DPG-1.5',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
+ const facts={parent:'DPG-1.6',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
  try{
   await mkdir(destination,{recursive:true});
   for(const [name,hash] of Object.entries(pins)){
@@ -27,7 +28,7 @@ export async function buildFormatsPlayground(destination){
    await inventory(join(dir,'package'));facts.packages.push({name:pkg.name,version:pkg.version,sha256:hash,bytes:bytes.length});
   }
   for(const name of ['kickoff.mjs','recovery.mjs']){const b=await readFile(join(root,'playground',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
-  for(const name of ['index.html','formats.mjs','README.md','app.mjs','document.mjs']){const b=await readFile(join(root,'playground/scenarios/extensions-formats',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
+  for(const name of ['index.html','formats.mjs','reader.mjs','README.md','app.mjs','document.mjs']){const b=await readFile(join(root,'playground/scenarios/extensions-formats',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
   const fixtureManifest=JSON.parse(await readFile(join(producer,'canonical2/docx-import-fixtures/manifest.json')));
   await mkdir(join(destination,'fixtures'),{recursive:true});facts.fixtures={};
   for(const name of ['media','media-loss','corrupt']){const bytes=await readFile(join(producer,'canonical2/docx-import-fixtures',name+'.docx'));assert.equal(sha(bytes),fixtureManifest[name].sha256);assert.equal(bytes.length,fixtureManifest[name].bytes);await writeFile(join(destination,'fixtures',name+'.docx'),bytes);facts.fixtures[name]={sha256:sha(bytes),bytes:bytes.length};}
@@ -59,14 +60,29 @@ export async function buildFormatsPlayground(destination){
    await mkdir(join(destination,'fixtures/tsv'),{recursive:true});await writeFile(join(destination,'fixtures/tsv/media.tsv'),bytes);
    const fixtures={media:{sha256:sha(bytes),bytes:bytes.length}};await writeFile(join(destination,'fixtures/tsv.json'),JSON.stringify({fixtures}));facts.tableFixtures.tsv=fixtures;}
   {const bytes=Buffer.from('%PDF-1.7\nPrepared export-only rejection fixture.\n');await mkdir(join(destination,'fixtures/pdf'),{recursive:true});await writeFile(join(destination,'fixtures/pdf/media.pdf'),bytes);const fixtures={media:{sha256:sha(bytes),bytes:bytes.length}};await writeFile(join(destination,'fixtures/pdf.json'),JSON.stringify({fixtures}));facts.tableFixtures.pdf=fixtures;}
+  facts.rtfFixtures={};await mkdir(join(destination,'fixtures/rtf'),{recursive:true});
+  for(const [name,hash] of Object.entries({media:'39636cd063f6cd74a40bbb12368975c975cc4f49b3b0c86087fea7a9d8e15b04','media-loss':'89d20412f06fcbbc115d52a97bade73454d756e58fe09fb0cc7eb0b328429135'})){
+   const bytes=await readFile(join(root,'playground/scenarios/extensions-formats/fixtures/rtf',name+'.rtf'));assert.equal(sha(bytes),hash);await writeFile(join(destination,'fixtures/rtf',name+'.rtf'),bytes);facts.rtfFixtures[name]={sha256:hash,bytes:bytes.length};
+  }
+  {const bytes=await readFile(join(root,'playground/scenarios/extensions-formats/fixtures/rtf/corrupt.rtf'));await writeFile(join(destination,'fixtures/rtf/corrupt.rtf'),bytes);facts.rtfFixtures.corrupt={sha256:sha(bytes),bytes:bytes.length};}
+  await writeFile(join(destination,'fixtures/rtf.json'),JSON.stringify({fixtures:facts.rtfFixtures}));
+  const review=await readFile(join(root,'playground/scenarios/extensions-formats/fixtures/review.json'));
+  const originalReview=await readFile(resolve(root,'../core/fixtures/browser-review/model.json'));
+  assert.equal(sha(originalReview),'69c0d440a5100a6ecb09c00dfee265184ec0601dc845244fffed036a13b12c20');
+  const models=JSON.parse(originalReview),subset=JSON.parse(review);
+  assert.deepEqual(subset,Object.fromEntries(['source','format','semantic'].map(k=>[k,models[k]])));
+  await writeFile(join(destination,'fixtures/review.json'),review);facts.sources['fixtures/review.json']=sha(review);
+  facts.review={producer:'editac-diff/tests/web_review_fixture.rs::generate_canonical_browser_review_inputs',inputSha256:sha(originalReview),subsetSha256:sha(review),readonly:true};
+  for(const [name,bytes] of sourceBundle()){const path=join(destination,'source',name);await mkdir(resolve(path,'..'),{recursive:true});await writeFile(path,bytes);}
+  facts.sourceManifestSha256=sha(await readFile(join(destination,'source/manifest.json')));
   await writeFile(join(destination,'profile.json'),JSON.stringify(facts,null,2)+'\n');return facts;
  }finally{await rm(temp,{recursive:true,force:true});}
 }
 
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- const {buildPlayground}=await import('./build-playground.mjs');
+ const {buildCollaboration}=await import('./build-playground-collaboration.mjs');
  const destination=process.argv[2]?resolve(process.argv[2]):join(root,'dist/playground');
- await buildPlayground(destination);
+ await buildCollaboration(destination);
  const facts=await buildFormatsPlayground(join(destination,'scenarios/extensions-formats'));
  console.log(JSON.stringify({parent:facts.parent,candidate:facts.candidate,packages:facts.packages,destination}));
 }

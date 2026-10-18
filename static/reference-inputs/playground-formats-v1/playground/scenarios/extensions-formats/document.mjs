@@ -9,7 +9,7 @@ export function createEditor(root,options){
   surface=mountEditorSurface(root,owner.engine,{storageOwner:owner,preset:options.preset,label:options.label});
   await surface.ready;for(const listener of listeners)listener(state());
  })().catch(async e=>{error=e;await surface?.dispose();await owner?.destroy({policy:'report',assetPolicy:'suspend'});for(const listener of listeners)listener(state());throw e;});
- return {ready,root,databaseName:options.databaseName,get owner(){return owner;},get state(){return state();},
+ return {ready,root,databaseName:options.databaseName,get owner(){return owner;},get extensions(){return {preset:options.preset,configured:surface?.extensionStatus};},settle:()=>surface.settle(),get state(){return state();},
   read:()=>owner.engine.read(),recoveryExport:()=>owner.recoveryExport(),flush:o=>owner.flush(o),
   subscribe(kind,fn){if(typeof kind==='function'){listeners.add(kind);return ()=>listeners.delete(kind);}const sub=owner.engine.subscribe(kind,fn);return ()=>sub.dispose();},
   captureHistory:()=>surface.captureHistory(),setReadOnly(value){readOnly=value;surface?.setReadOnly(value);},

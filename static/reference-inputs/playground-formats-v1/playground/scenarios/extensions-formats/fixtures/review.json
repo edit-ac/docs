@@ -1,0 +1,218 @@
+{
+  "source": {
+    "representation": "exact-source",
+    "wire": "# editac-exact-patch-v1 {\"representation\":\"exact-source-utf8-v1\",\"line_algorithm\":\"lcs-lines-delete-first-v1\",\"word_algorithm\":\"unicode-whitespace-runs-lcs-delete-first-v1\",\"context_lines\":3,\"before_hash\":\"4854aaef74503959fd26363306e2ef967a9d50bdda90d033a3a4acacbbd57547\",\"after_hash\":\"c48a1ab5203de83740051c7c774f9678707caf87be2f76e8e21637d17a2fe9db\",\"before_bytes\":11,\"after_bytes\":13,\"before_final_newline\":false,\"after_final_newline\":false,\"limits\":{\"max_source_bytes\":5242880,\"max_output_bytes\":5242880,\"max_wire_bytes\":16777216,\"max_lines\":100000,\"max_hunks\":4096,\"max_comparison_cells\":4000000}}\n--- before\n+++ after\n@@ -1,2 +1,2 @@\n-alpha\r\n-beta\n\\ No newline at end of file\n+alpha \r\n+gamma\n\\ No newline at end of file\n"
+  },
+  "format": {
+    "model": {
+      "after_hash": "89166f6d8b1e90c53e1adb44f9c370928195438706546f63980bebf86703d121",
+      "attribution": "unknown",
+      "before_hash": "f40a2ad79551b2831efe7c71c255ab1a19ebec84d16263a76f04ca2460a31ffa",
+      "changes": [
+        {
+          "after": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "a",
+            "kind": "block",
+            "opaque": null,
+            "order": 0,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {
+                  "bold": true
+                },
+                "text": "alpha"
+              }
+            ],
+            "spans": [
+              {
+                "end": 5,
+                "identity": "integrated-a",
+                "source": "text-a",
+                "start": 0
+              }
+            ]
+          },
+          "before": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "a",
+            "kind": "block",
+            "opaque": null,
+            "order": 0,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {},
+                "text": "alpha"
+              }
+            ],
+            "spans": [
+              {
+                "end": 5,
+                "identity": "integrated-a",
+                "source": "text-a",
+                "start": 0
+              }
+            ]
+          },
+          "facets": [
+            "Formatting"
+          ],
+          "id": "a"
+        }
+      ],
+      "retained_structure": null,
+      "version": "editac-semantic-diff-v1"
+    },
+    "representation": "semantic"
+  },
+  "semantic": {
+    "model": {
+      "after_hash": "a1686f5d4f891ae599bdb00ebb84465b0b31b95807062360abd1c2099a30badf",
+      "attribution": "unknown",
+      "before_hash": "f40a2ad79551b2831efe7c71c255ab1a19ebec84d16263a76f04ca2460a31ffa",
+      "changes": [
+        {
+          "after": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "a",
+            "kind": "block",
+            "opaque": null,
+            "order": 1,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {},
+                "text": "alpha"
+              }
+            ],
+            "spans": [
+              {
+                "end": 5,
+                "identity": "integrated-a",
+                "source": "text-a",
+                "start": 0
+              }
+            ]
+          },
+          "before": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "a",
+            "kind": "block",
+            "opaque": null,
+            "order": 0,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {},
+                "text": "alpha"
+              }
+            ],
+            "spans": [
+              {
+                "end": 5,
+                "identity": "integrated-a",
+                "source": "text-a",
+                "start": 0
+              }
+            ]
+          },
+          "facets": [
+            "Placement"
+          ],
+          "id": "a"
+        },
+        {
+          "after": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "b",
+            "kind": "block",
+            "opaque": [
+              "unknown-widget",
+              {
+                "html": "<img src=x onerror=alert(1)>",
+                "revision": 2
+              }
+            ],
+            "order": 0,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {
+                  "bold": true,
+                  "link": "https://example.test/new"
+                },
+                "text": "changed beta"
+              }
+            ],
+            "spans": [
+              {
+                "end": 4,
+                "identity": "integrated-b",
+                "source": "text-b",
+                "start": 0
+              }
+            ]
+          },
+          "before": {
+            "attributes": [
+              "paragraph"
+            ],
+            "editor": null,
+            "id": "b",
+            "kind": "block",
+            "opaque": null,
+            "order": 1,
+            "parent": "@root",
+            "runs": [
+              {
+                "marks": {},
+                "text": "beta"
+              }
+            ],
+            "spans": [
+              {
+                "end": 4,
+                "identity": "integrated-b",
+                "source": "text-b",
+                "start": 0
+              }
+            ]
+          },
+          "facets": [
+            "Placement",
+            "Text",
+            "Formatting",
+            "References",
+            "UnknownModule"
+          ],
+          "id": "b"
+        }
+      ],
+      "retained_structure": [
+        null,
+        {
+          "future": "changed"
+        }
+      ],
+      "version": "editac-semantic-diff-v1"
+    },
+    "representation": "semantic"
+  }
+}

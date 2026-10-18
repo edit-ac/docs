@@ -1,0 +1,26 @@
+{
+  "name": "@edit-ac/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Public developer documentation for edit.ac.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "python3 scripts/prepare-custom-runtime.py --check && python3 scripts/prepare-troubleshooting.py --check && python3 scripts/prepare-recipes.py --check && python3 scripts/prepare-gallery.py --check && node scripts/prepare-playground-collaboration.mjs --check && node scripts/prepare-playground.mjs --check && node scripts/prepare-extensions-resolvers.mjs --check && node scripts/prepare-quickstarts.mjs --check && node scripts/prepare-custom-extensions.mjs --check && node scripts/prepare-extension-catalog.mjs --check && node scripts/prepare-lifecycle.mjs --check && node scripts/prepare-commands.mjs --check && node scripts/prepare-host-services.mjs --check && node scripts/prepare-formats.mjs --check && node scripts/prepare-concepts.mjs --check && node scripts/generate-reference.mjs --check && node scripts/check-docs.mjs",
+    "build": "node scripts/site-build.mjs",
+    "check:site": "node --test tests/site-build.test.mjs",
+    "check:reference": "node scripts/generate-reference.mjs --check && node --test tests/reference-profile.test.mjs",
+    "check:examples": "node scripts/check-examples.mjs",
+    "check:local-admission": "python3 -B scripts/admit-local-docs.py",
+    "build:playground": "node scripts/build-playground.mjs",
+    "check:playground": "node scripts/check-playground.mjs",
+    "build:collaboration": "node scripts/build-playground-collaboration.mjs"
+  },
+  "packageManager": "npm@11.17.0",
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

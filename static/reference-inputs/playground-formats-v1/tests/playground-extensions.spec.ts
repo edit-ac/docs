@@ -1,17 +1,18 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {test,before,after} from 'node:test';
 import {readFile,writeFile,mkdtemp,rm} from 'node:fs/promises';
 import {createServer} from 'node:http';
 import {resolve,join,sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {buildPlayground} from '../scripts/build-playground.mjs';
+import {buildCollaboration} from '../scripts/build-playground-collaboration.mjs';
 import {buildFormatsPlayground} from '../scripts/build-playground-formats.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.DOCS_PLAYWRIGHT_MODULE||'../core/node_modules/playwright/index.mjs')));
 const output=resolve(process.env.DOCS_PLAYGROUND_OUTPUT),facts={cases:[],processes:[],teardown:[]};
 let temp,server,url,profile;
 before(async()=>{
- temp=await mkdtemp(resolve('.playground-test-'));await buildPlayground(temp);profile=await buildFormatsPlayground(join(temp,'scenarios/extensions-formats'));await writeFile(join(output,'profile.json'),JSON.stringify(profile,null,2));
+ temp=await mkdtemp(resolve('.playground-test-'));await buildCollaboration(temp);profile=await buildFormatsPlayground(join(temp,'scenarios/extensions-formats'));await writeFile(join(output,'profile.json'),JSON.stringify(profile,null,2));
  server=createServer(async(req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://local').pathname);if(p.endsWith('/'))p+='index.html';const path=resolve(temp,'.'+p);assert.ok(path.startsWith(temp+sep));res.setHeader('Content-Type',p.endsWith('.wasm')?'application/wasm':p.endsWith('.html')?'text/html':p.endsWith('.json')?'application/json':'text/javascript');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'");res.end(await readFile(path));}catch{res.writeHead(404).end();}});
  await new Promise(yes=>server.listen(0,'127.0.0.1',yes));url=`http://127.0.0.1:${server.address().port}`;facts.processes.push({pid:process.pid,port:server.address().port,purpose:'task-owned packaged static playground',workspace:temp});
 });
@@ -34,7 +35,7 @@ async function text(page){return page.evaluate(()=>window.playground.editor.read
 async function edit(page,suffix){await page.locator('[contenteditable="true"]').getByText('Owner: Alex',{exact:true}).click();await page.keyboard.press('End');await page.keyboard.type(suffix);}
 async function click(page,id){await page.click('#'+id);await page.waitForFunction(()=>!window.playground.busy);}
 test('immutable optional package family, fixture and public API provenance',async()=>{
- assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,10);
+ assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,12);
  const manifest=JSON.parse(await readFile(join(temp,'scenarios/extensions-formats/formats/capabilities.json')));
  assert.equal(manifest.directions.filter(d=>d.target==='browser-worker-wasm32').length,13);
  for(const p of profile.packages)assert.equal(p.version,'0.0.0');
@@ -321,3 +322,92 @@ test('format recovery denied save failed write and rejected share retain exact o
  await retainedDownload(page,'download','delivery-after.docx');await retainedDownload(page,'recovery','delivery-recovery.json');assert.deepEqual(JSON.parse(await readFile(join(output,'delivery-recovery.json'))),JSON.parse(captured));assert.deepEqual(await readFile(join(output,'delivery-before.docx')),await readFile(join(output,'delivery-after.docx')));assert.equal(await projection(page),sibling);assert.deepEqual(await history(page),sh);
  await page.selectOption('#preset','document');await ready(page);assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);
 }));
+
+test('complete immutable source downloads and installed package members match served production bytes',async()=>{
+ const root=join(temp,'scenarios/extensions-formats');
+ const manifestBytes=await readFile(join(root,'source/manifest.json'));
+ assert.equal(createHash('sha256').update(manifestBytes).digest('hex'),profile.sourceManifestSha256);
+ const manifest=JSON.parse(manifestBytes);assert.equal(manifest.parent,'DPG-1.6');
+ for(const [name,hash] of Object.entries(manifest.files)){
+  const bytes=await readFile(join(root,'source',name));assert.deepEqual(bytes,await readFile(name),name);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),hash,name);
+ }
+ for(const [name,fact] of Object.entries(profile.members)){
+  if(!name.includes('/dist/')&&!name.endsWith('/capabilities.json'))continue;
+  const bytes=await readFile(join(root,name.replace('/dist/','/')));
+  assert.equal(bytes.length,fact.bytes,name);assert.equal(createHash('sha256').update(bytes).digest('hex'),fact.sha256,name);
+ }
+ const models=JSON.parse(await readFile('../core/fixtures/browser-review/model.json'));
+ const subset=JSON.parse(await readFile(join(root,'fixtures/review.json')));
+ assert.deepEqual(subset,Object.fromEntries(['source','format','semantic'].map(k=>[k,models[k]])));
+ await writeFile(join(output,'source-integrity.json'),JSON.stringify({files:Object.keys(manifest.files).length,packageMembers:Object.keys(profile.members).filter(k=>k.includes('/dist/')||k.endsWith('/capabilities.json')).length,manifestSha256:profile.sourceManifestSha256,review:profile.review}));
+});
+
+test('reader code and admitted fixture reference share atomic history durable reopen and sibling isolation',()=>browserCase('reader-extensions',async page=>{
+ await visit(page);const before=JSON.parse(await projection(page)),h=await history(page);
+ await page.click('#reader-code');await page.waitForFunction(()=>document.getElementById('reader-status').textContent.startsWith('Applied'));
+ const code=JSON.parse(await projection(page));assert.ok(code.visible.some(n=>n.blockAttributes?.[0]==='code'&&n.runs.some(r=>r.text==='const kickoff = "Friday";')));assert.equal((await history(page)).undoGroups,h.undoGroups+1);
+ await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,before.visible);await click(page,'redo');
+ await page.click('#reader-reference');await page.waitForFunction(()=>document.getElementById('reader-status').textContent.startsWith('Applied'));
+ const admitted=JSON.parse(await projection(page));assert.ok(admitted.visible.some(n=>n.blockAttributes?.[0]==='module:editac.reference'&&n.blockAttributes[2].label==='ASD-123'));
+ assert.equal((await history(page)).undoGroups,h.undoGroups+2);await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,code.visible);await click(page,'redo');
+ assert.match(await page.locator('#reader-extensions').textContent(),/task/);
+ await click(page,'save');await click(page,'close');await click(page,'retry');await ready(page);assert.deepEqual(JSON.parse(await projection(page)).visible,admitted.visible);
+ await page.selectOption('#preset','document');await ready(page);assert.ok(!JSON.parse(await projection(page)).visible.some(n=>n.blockAttributes?.[0]==='code'||n.blockAttributes?.[0]==='module:editac.reference'));
+ await page.selectOption('#preset','task');await ready(page);assert.deepEqual(JSON.parse(await projection(page)).visible,admitted.visible);
+ await page.reload();await ready(page);assert.deepEqual(JSON.parse(await projection(page)).visible,admitted.visible);
+}));
+
+test('reader shared source semantic and formatting reviews preserve provenance without modifying live content',()=>browserCase('reader-review',async page=>{
+ await visit(page);const before=await projection(page),h=await history(page);
+ await page.click('#reader-review');await page.waitForSelector('#reader-review-output table');
+ assert.match(await page.locator('#reader-review-output').innerText(),/Exact source changes/);
+ await page.locator('#reader-review-output').getByRole('button',{name:'Show whitespace',exact:true}).click();assert.match(await page.locator('#reader-review-output').innerText(),/␍␊/);
+ await page.selectOption('#review-kind','format');await page.waitForFunction(()=>document.querySelector('#reader-review-output [data-kind="Formatting"]'));
+ assert.equal(await page.locator('#reader-review-output [data-kind="Text"]').count(),0);assert.match(await page.locator('#reader-review-output').innerText(),/bold/);
+ await page.selectOption('#review-kind','semantic');await page.waitForFunction(()=>document.querySelector('#reader-review-output [data-kind="Placement"]'));
+ for(const expected of [/Move \/ placement/,/Link targets \/ references/,/Opaque \/ unknown module/,/Unknown \/ unverified/])assert.match(await page.locator('#reader-review-output').innerText(),expected);
+ assert.equal(await page.locator('#reader-review-output img').count(),0);assert.equal(await page.locator('#reader-review-output input[type="checkbox"]').count(),0);
+ assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);
+ await click(page,'close');assert.equal(await page.locator('#reader-review-output section').count(),0);
+}));
+
+test('reader keyboard narrow viewport source downloads and failed review retry remain usable',()=>browserCase('reader-downloads',async page=>{
+ await visit(page);await page.locator('#reader-code').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>document.getElementById('reader-status').textContent.startsWith('Applied'));
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ const before=JSON.parse(await projection(page)),h=await history(page);await page.route('**/fixtures/review.json',r=>r.fulfill({status:503,body:'Prepared unavailable'}));
+ await page.click('#reader-review');await page.waitForFunction(()=>document.getElementById('reader-status').textContent.includes('unavailable'));
+ const after=JSON.parse(await projection(page));for(const key of ['identity','revision','visible','retainedStructure','recovery'])assert.deepEqual(after[key],before[key],key);assert.deepEqual(await history(page),h);await page.unroute('**/fixtures/review.json');await page.click('#reader-review');await page.waitForSelector('#reader-review-output table');
+ const manifest=await page.evaluate(async()=>await (await fetch(document.querySelector('a[href="./source/manifest.json"]').href)).json());
+ for(const [name,hash] of Object.entries(manifest.files)){
+  const response=await page.request.get(url+'/scenarios/extensions-formats/source/'+name);assert.equal(response.status(),200,name);assert.equal(createHash('sha256').update(await response.body()).digest('hex'),hash,name);
+ }
+ await page.screenshot({path:join(output,'reader-mobile.png'),fullPage:true});
+},{width:390,height:844}));
+
+test('RTF advertised directions retain originals atomic history diagnostics and recoverable export',()=>browserCase('rtf-roundtrip',async page=>{
+ await visit(page);await enable(page);await page.selectOption('#package-format','rtf');
+ const before=JSON.parse(await projection(page)),h=await history(page);
+ await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);
+ assert.deepEqual(JSON.parse(await projection(page)).visible,before.visible);await retainedDownload(page,'original','rtf-original.rtf');
+ await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/imported: committed/);
+ const imported=JSON.parse(await projection(page));const rendered=JSON.stringify(imported.visible);
+ for(const expected of ['Hello ','both','€','é','🙂','{literal}','=1+1','Tail'])assert.ok(rendered.includes(expected),expected);
+ assert.ok(imported.visible.some(n=>n.blockAttributes?.[0]==='module:editac.table'));assert.ok(imported.visible.some(n=>n.runs?.some(r=>r.text.includes('both')&&r.attributes.bold&&r.attributes.italic)));assert.equal((await history(page)).undoGroups,h.undoGroups+1);
+ await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,before.visible);await click(page,'redo');assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+ await retainedDownload(page,'download','playground.rtf');await retainedDownload(page,'recovery','rtf-recovery.json');
+ await click(page,'save');await page.reload();await ready(page);assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);await enable(page);await page.selectOption('#package-format','rtf');assert.equal(await page.locator('#docx-stored').isDisabled(),true);
+ await page.uncheck('#docx-loss');const stable=JSON.parse(await projection(page)),sh=await history(page);
+ for(const fixture of ['media-loss','corrupt']){
+  await page.selectOption('#docx-fixture',fixture);await docxAction(page,'prepare');if(fixture==='media-loss'){assert.match(await page.locator('#docx-report').innerText(),/UNSUPPORTED_DESTINATION/);await docxAction(page,'confirm');}assert.match(await page.locator('#docx-status').innerText(),/rejected/);
+  assert.equal(await page.locator('#docx-confirm').isDisabled(),true);assert.deepEqual(JSON.parse(await projection(page)).visible,stable.visible);assert.equal(JSON.parse(await projection(page)).revision,stable.revision);assert.deepEqual(await history(page),sh);
+ }
+ await page.selectOption('#docx-fixture','media-loss');await page.check('#docx-loss');await docxAction(page,'prepare');await docxAction(page,'confirm');assert.match(await text(page),/before.*after/);assert.equal((await history(page)).undoGroups,sh.undoGroups+1);await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,stable.visible);await page.uncheck('#docx-loss');
+ await page.selectOption('#docx-fixture','media');await docxAction(page,'prepare');await page.click('#docx-cancel');assert.equal(await page.locator('#docx-confirm').isDisabled(),true);assert.deepEqual(JSON.parse(await projection(page)).visible,stable.visible);
+ await writeFile(join(output,'rtf-observations.json'),JSON.stringify({visible:imported.visible,historyGroups:1}));
+}));
+
+test('RTF independent macOS reader confirms Unicode text tables and exact retained input',()=>{
+ const r=spawnSync('python3',['tests/inspect-playground-rtf.py',output,resolve('playground/scenarios/extensions-formats/fixtures/rtf')],{encoding:'utf8'});assert.equal(r.status,0,r.stderr||r.stdout);
+});

@@ -30,6 +30,7 @@ async function identityFor(preset){
 async function dispose(){
  // Cancel and drain public-format cleanup before releasing its storage owner.
  await window.playgroundFormats?.cancelAndWait();
+ window.playgroundReader?.dispose();
  unsubscribe?.();unsubscribe=undefined;if(!editor)return;
  const old=editor;if(old.state.ready)old.setReadOnly(true);
  try{await old.destroy({policy:'flush'});}catch(error){const result=await old.destroy({policy:'report'});retainRecovery({...result,preset:selected});$('reports').textContent=JSON.stringify(recoveryReports,(_k,v)=>v instanceof Uint8Array?Array.from(v):v,2);throw error;}finally{editor=undefined;$('readonly').setAttribute('aria-pressed','false');}

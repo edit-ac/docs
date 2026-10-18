@@ -38,18 +38,20 @@ let pending,working=false,actionGeneration=0,actionAbort,output,retainedInput,re
 const format=()=>$('package-format').value;
 const sourceGrant=kind=>({identity:{host:'local-recovery',key:`complete-${kind}-package`},actions:['ingest','read','cancel','release-reference']});
 const tableKind=kind=>kind==='csv'||kind==='tsv';
+const textKind=kind=>tableKind(kind)||kind==='rtf';
 const dialect=()=>({newline:$('table-newline').value,header:$('table-header').checked});
-const mime={csv:'text/csv;charset=utf-8',tsv:'text/tab-separated-values;charset=utf-8',pdf:'application/pdf',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',epub:'application/epub+zip'};
+const mime={rtf:'application/rtf',csv:'text/csv;charset=utf-8',tsv:'text/tab-separated-values;charset=utf-8',pdf:'application/pdf',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',epub:'application/epub+zip'};
 function updateFormat(){
  const kind=format(),label=kind.toUpperCase();
  for(const [id,prefix] of [['prepare','Preview'],['confirm','Confirm'],['cancel','Cancel'],['export','Prepare'],['stored','Retrieve stored']])$('docx-'+id).textContent=`${prefix} ${label} ${id==='export'?'export':id==='cancel'?'preparation':'import'}`;
  $('docx-heading').textContent=label+' fixture workflow';
  $('table-controls').hidden=!tableKind(kind);
  if(tableKind(kind))$('table-newline').value=kind==='tsv'?'crlf':'lf';
- for(const option of $('docx-fixture').options)option.disabled=(tableKind(kind)||kind==='pdf')&&option.value!=='media';
+ const labels=kind==='rtf'?['Text, marks, table and Unicode','Unsupported inert object group','Malformed RTF']:tableKind(kind)?['Approved UTF-8 table text','Unavailable','Unavailable']:kind==='pdf'?['Prepared PDF input (export-only rejection)','Unavailable','Unavailable']:['Text, lists, table and PNG','Same fixture with unsupported formatting','Malformed package'];
+ for(const [index,option] of [...$('docx-fixture').options].entries()){option.disabled=(tableKind(kind)||kind==='pdf')&&option.value!=='media';option.textContent=labels[index];}
  if($('docx-fixture').selectedOptions[0].disabled)$('docx-fixture').value='media';
- $('docx-stored').disabled=tableKind(kind)||kind==='pdf';
- $('format-rule').textContent=kind==='pdf'?'PDF input is export-only: preview demonstrates the installed rejection and retains the input. Export captures the whole document.':tableKind(kind)?'Import replaces the first text block with one shared table as one history group. Original input remains downloadable in this tab. Select one table explicitly before export.':'Package import replaces the first text block; original package and admitted media remain in the local asset journal.';
+ $('docx-stored').disabled=textKind(kind)||kind==='pdf';
+ $('format-rule').textContent=kind==='pdf'?'PDF input is export-only: preview demonstrates the installed rejection and retains the input. Export captures the whole document.':tableKind(kind)?'Import replaces the first text block with one shared table as one history group. Original input remains downloadable in this tab. Select one table explicitly before export.':kind==='rtf'?'RTF replaces the first text block with bounded text, marks and tables. Exact input remains downloadable in this tab; reload preserves the document, not uncommitted input bytes.':'Package import replaces the first text block; original package and admitted media remain in the local asset journal.';
  refreshTables();
  $('direction-profile').textContent=directions.filter(d=>d.format===kind).map(d=>`${d.direction}: ${d.profile} / ${d.fidelity}`).join('; ');
 }
@@ -108,8 +110,8 @@ const fixtureHost={authorize:async r=>({identity:r.identity,actions:['ingest','r
 async function confirmDocx(){
  const p=pending;if(!p)throw Error('Prepare an import first');pending=undefined;$('docx-confirm').disabled=true;
  try{current(p.ticket,p.editor,p.revision,true);
- const result=tableKind(p.kind)?p.prepared.commit():await p.prepared.commitAssets(p.editor.owner,p.kind+'_'+crypto.randomUUID(),fixtureHost,sourceGrant(p.kind));
- await p.editor.flush({target:'local'});refreshTables();message(`${p.kind.toUpperCase()} imported: ${tableKind(p.kind)?'committed':result.localCommit.state}. One history group; ${tableKind(p.kind)?'original input remains downloadable in this tab':'package and PNG retained locally'}.`);
+ const result=textKind(p.kind)?p.prepared.commit():await p.prepared.commitAssets(p.editor.owner,p.kind+'_'+crypto.randomUUID(),fixtureHost,sourceGrant(p.kind));
+ await p.editor.flush({target:'local'});refreshTables();message(`${p.kind.toUpperCase()} imported: ${textKind(p.kind)?'committed':result.localCommit.state}. One history group; ${textKind(p.kind)?'original input remains downloadable in this tab':'input and any admitted media retained locally'}.`);
  }finally{p.release();}
 }
 async function exportDocx(ticket){
