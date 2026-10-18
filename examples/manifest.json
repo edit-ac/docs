@@ -242,6 +242,26 @@
         "content/docs/examples/gallery.md"
       ],
       "scope": "Gallery curation; entries individually retain exact local-runtime or unavailable status. No new editor/profile qualification."
+    },
+    {
+      "id": "recipes/1",
+      "parent": "DWF-1.37",
+      "maturity": "local-runtime",
+      "runtimeQualified": true,
+      "testedSdkVersion": "0.0.0 (unpublished; separate pinned families)",
+      "source": "examples/recipes/README.md",
+      "manifest": "examples/recipes/manifest.json",
+      "profile": "examples/recipes/shared-profile.json",
+      "qualification": "examples/recipes/qualification.json",
+      "pages": [
+        "content/docs/guides/recipes/_index.md",
+        "content/docs/guides/recipes/toolbar.md",
+        "content/docs/guides/recipes/markdown-paste.md",
+        "content/docs/guides/recipes/save-recovery.md",
+        "content/docs/guides/recipes/reconnect.md",
+        "content/docs/guides/recipes/two-editors.md",
+        "content/docs/guides/recipes/site-routes.md"
+      ]
     }
   ]
 }

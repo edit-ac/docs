@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "parent": "DWF-1.37",
+  "candidate": "sdk-framework-v1",
+  "scope": "unpublished local resource prerequisites only",
+  "sourceCommit": "aa5b7d21064bd6d694ba243ffe528f58288b8a92",
+  "runtimeCommit": "40548bd289951092a18aaa8bd69821cebf74819b",
+  "architectureCommit": "970b8c5a56d996f469881facf1d5fdf0b66daa57",
+  "receiptRoot": "../architecture/evidence/extension-dx/owner-return-20261017/sdk/consolidated",
+  "ownerReceipt": "../architecture/evidence/extension-dx/owner-return-20261017/sdk-resources-receipt.json",
+  "ownerReceiptSha256": "69cabe850aac11b070c657e14bb1e66861e100a2473626fa8832a477f483faf5",
+  "files": {
+    "examples/recipes/upstream/index.html": "94d8919f7d5a9cdf38fff6369b92cd3e6d7e212075943eb112c3df384dc073a0",
+    "examples/recipes/upstream/session.mjs": "f02e56b10e1d55ee6d238125d2c78407364800f9a2caea14807b551b815a114e",
+    "examples/recipes/upstream/site.mjs": "19e83b15ed47a192d6e1cf1328840edf146ccffc4db2b7a2bb921acdaf23f736",
+    "examples/recipes/upstream/production.mjs": "3c73dd39c4a0896a1a526d4c740b140549b4680fa78bdb021a2f896b48a63682",
+    "examples/recipes/upstream/shared-receipt.json": "e55ccb9d1b3d7938403ce92ae6f4a7a4d8ddb17bc2368e83210ee562ef024296",
+    "examples/recipes/upstream/sdk-resources-receipt.json": "69cabe850aac11b070c657e14bb1e66861e100a2473626fa8832a477f483faf5"
+  },
+  "requirements": [
+    "SHR-01",
+    "SHR-02",
+    "SHR-03",
+    "SHR-04",
+    "SHR-05",
+    "SHR-06",
+    "SHR-07",
+    "SHR-08"
+  ],
+  "published": false,
+  "releaseQualified": false,
+  "budgetQualified": false
+}

@@ -64,6 +64,12 @@
     "content/docs/examples/extensions-resolvers.md",
     "content/docs/examples/playground.md",
     "content/docs/examples/collaboration.md",
-    "content/docs/examples/gallery.md"
+    "content/docs/examples/gallery.md",
+    "content/docs/guides/recipes/toolbar.md",
+    "content/docs/guides/recipes/markdown-paste.md",
+    "content/docs/guides/recipes/save-recovery.md",
+    "content/docs/guides/recipes/reconnect.md",
+    "content/docs/guides/recipes/two-editors.md",
+    "content/docs/guides/recipes/site-routes.md"
   ]
 }

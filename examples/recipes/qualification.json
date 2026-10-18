@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "parent": "DWF-1.37",
+  "state": "qualified-local-consumers",
+  "published": false,
+  "releaseQualified": false,
+  "counts": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "actualBrowserCases": 7,
+  "caseProofs": [
+    {
+      "name": "recipe sources, generated ranges, fixture, profile and source download are exact",
+      "caseSourceSha256": "363d15f991d3af94564628cc96e786941b0928110813386f6a9e61e1e84f0766",
+      "log": "evidence/recipes-20261018/integrity-qualified.log",
+      "passed": true
+    },
+    {
+      "name": "SHR-01\u201308 admission authenticates all retained cells, bodies, graphs and immutable source pins",
+      "caseSourceSha256": "0e499e5077986b54fbd6136745c7a7ce4282cb62d098f225472115c59a325323",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "same-page description/comment isolate edits, undo, read-only, save and reopen",
+      "caseSourceSha256": "eb5da508d91388e9472f00420a324dbfd1314edf78748f759cd0f22a5147c232",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "shared core loading failure settles both waiters and retry creates independent editors",
+      "caseSourceSha256": "71fa41b9b201aa90cf121a526a75bc39f61ca63acb9022032fe10925be3a647d",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "disposing a loading waiter cancels its view without retiring the shared survivor",
+      "caseSourceSha256": "9a7dade6080183042ca1d472fd4e9eb8c2990808e93809c955d580a04bec3d67",
+      "log": "evidence/recipes-20261018/cancel-final.log",
+      "passed": true
+    },
+    {
+      "name": "quota failure retains recovery while independent sibling save survives",
+      "caseSourceSha256": "aebf0e02be1d40c48e8deaddb50c8e9aae35bdab7081fe8bd122b678e601898c",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "Markdown plain-text paste uses the qualified semantic parser and survives reopen",
+      "caseSourceSha256": "d4aa84facc5c9171a4a7f19d5e60882fe682363fcf392ea44a654c0ebf82cdbb",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "route consumers share stable assets, isolate documents and dispose before client/full navigation",
+      "caseSourceSha256": "2e766d09a99080b6b431dc9b25a5ff9912479378f0bc3825f1611797023d32d5",
+      "log": "evidence/recipes-20261018/recipes-run-1.log",
+      "passed": true
+    },
+    {
+      "name": "native toolbar buttons support keyboard bold, heading, undo, read-only and disposal",
+      "caseSourceSha256": "6423e4fc6a034804b0aab50ea2efcc9a1508ba943bf81e4d7359724447399dbc",
+      "log": "evidence/recipes-20261018/recipes-repair-5.log",
+      "passed": true
+    }
+  ],
+  "sourceFiles": {
+    "examples/commands/manifest.json": "ab0e1d0b183aa85761c40254581107cb148f60a72053f97ebc4df8d7eeb15c34",
+    "examples/concepts/kickoff-v1.md": "58967b5a999def076718ad96f38ff2d0ac3e55ab78b86dd82357a2caaa8ea704",
+    "examples/quickstarts/examples/task-editor/markdown.mjs": "f137278fc14c59f4e63aad35398a118139fd3b00085a818d273e7b6a5cb7ea75",
+    "examples/quickstarts/manifest.json": "e28040c9b1bace4404f73f0da2abd724c360282d502df6d87eb6a1e459754467",
+    "examples/recipes/markdown-paste.txt": "4e479d943aadb843f983f8fe1a2755290a0dd9fe591e95f7c53b4351a1938b7e",
+    "examples/recipes/shared-harness.mjs": "9e0ec9c680160b19b74240d3ebb92812fb5eb96281b5ac6e344008dfdedb9531",
+    "examples/recipes/shared-input.json": "211791538d445a2e8c997a5c650161ccacd8ba23425ec4c9d27bfaf6db1bd2fb",
+    "examples/recipes/shared-profile.json": "93ef7c4b818a26352c49d1567c650b92c83df4f686adbaac4b1461e87123fdc5",
+    "examples/recipes/toolbar.mjs": "40cc51566060b238a9a2af821dccba38313e5a968aedebb79a6810f13dad2304",
+    "examples/recipes/upstream/session.mjs": "f02e56b10e1d55ee6d238125d2c78407364800f9a2caea14807b551b815a114e",
+    "examples/recipes/upstream/site.mjs": "19e83b15ed47a192d6e1cf1328840edf146ccffc4db2b7a2bb921acdaf23f736",
+    "playground/app.mjs": "be23068c71d2410a0b0332db9f4c7e6e6451ddf1546ff4c6862d71b0bebc24dd",
+    "playground/manifest.json": "ebff65fb1787d585c1045b423824f0df95c25e85103c5524380912dad09c56b6",
+    "playground/scenarios/collaboration/channel.mjs": "56be8aee3b91c28143451a197df04fa2a9ff20951ac82a8484bb459c7994c2f2",
+    "playground/scenarios/collaboration/manifest.json": "498f9dff921bcfd36cea581c1a66ff7e5b6315f95509037553b165716ed86cc8",
+    "tests/docs-recipes-reader.test.mjs": "550f11e449fdc55d6c40cbf53df83db187f720b7719962d6bfe6752be2b04a08",
+    "tests/docs-recipes.test.mjs": "f7007736f2f9be1ce1023dfaff0d2de1327812cf4c3fc77131ff6abbd05cb278"
+  },
+  "reconciliation": "The original complete 8-case run passed six unchanged cases and failed source ordering/toolbar. Repair5 passed the toolbar including Tab/stale/recovery; cancel-final added the required cancellation case. Final integrity-only run verifies strengthened ZIP/member/syntax/profile pins. Case source hashes prove reuse of the five original browser cases and admission without unchanged reruns; no failed attempt is summed as an additional pass. Node24 filtered runs execute only selected cases with zero omitted-as-skipped counts; the map enumerates every required current case.",
+  "retainedAdmission": {
+    "cells": 78,
+    "browsers": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "artifactBodies": 203,
+    "sourceBlobs": 280,
+    "newRuntimeCases": 0,
+    "scope": "SHR-01\u2013SHR-08 packed-resource prerequisites only"
+  },
+  "canonical": {
+    "local-editor": "evidence/recipes-20261018/local-editor/summary.json",
+    "collaboration": "evidence/recipes-20261018/collaboration/summary.json"
+  },
+  "reader": "evidence/recipes-20261018/reader-final/reader.json",
+  "deferred": [
+    "EQL1.9/roadmap10 registry/release",
+    "native/device/OS/IME/AT",
+    "cloud durable host",
+    "aggregate SDK/performance/budgets"
+  ],
+  "retainedFailures": [
+    "evidence/recipes-20261018/recipes-run-1.log",
+    "evidence/recipes-20261018/recipes-repair-2.log",
+    "evidence/recipes-20261018/recipes-repair-3.log",
+    "evidence/recipes-20261018/recipes-repair-4.log",
+    "evidence/recipes-20261018/npm-check-1.log",
+    "evidence/recipes-20261018/reader-1.log",
+    "evidence/recipes-20261018/reader-2.log",
+    "evidence/recipes-20261018/reader-3.log"
+  ]
+}
