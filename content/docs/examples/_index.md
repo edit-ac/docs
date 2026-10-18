@@ -9,7 +9,7 @@ page_template = "doc-page.html"
 
 Start with a document you recognize: a project brief, a bug report, or meeting notes. Each released example will include an editable result, its complete source, sample content, reset controls, and the exact tested SDK version.
 
-**Current status: source preview available; public SDK examples are planned.** The [local web preview source](https://github.com/edit-ac/core/tree/main/examples/web) contains three rendered, editable documents built on the current Rust/WASM engine and browser adapter, version **0.0.0**. It runs from a source checkout with a static file server. Changes stay in the browser tab; there is no backend or account. See the source README for build instructions and limits. This preview is not a released package or a browser support claim.
+**Current status: local source previews and unpublished package consumers are available; registry examples remain pending.** The [local web preview source](https://github.com/edit-ac/core/tree/main/examples/web) contains three rendered, editable documents built on the current Rust/WASM engine and browser adapter, version **0.0.0**. It runs from a source checkout with a static file server. Changes stay in the browser tab; there is no backend or account. See the source README for build instructions and limits. This preview is not a released package or a browser support claim.
 
 Reviewed local source: `a20a36c15119c661e47ec0ec7051aed8d94e7ed6`, `examples/web/`. This revision is unpublished. The upstream source link follows moving `main`; it is a discovery link, not the immutable evidence pin. Use the named local checkout for this baseline.
 
@@ -33,7 +33,7 @@ The [concept walkthrough](@/docs/concepts/_index.md) follows original fixture `p
 
 | Example family | Concrete result | Related guide |
 |---|---|---|
-| Minimal web and React editors | Create, mount, edit, read content, toggle read-only, and dispose a document view. | [Choose an integration path](@/docs/guides/getting-started.md) |
+| Web, React and Astro kickoff | Create, mount, edit, format, save/reopen, toggle read-only and dispose. Local-only unpublished package consumers are checked; registry installation remains pending. | [Project kickoff quickstarts](#project-kickoff-local-package-consumers) |
 | Accessible formatting toolbar | Apply a mark or heading to a selection; inspect before and after states, undo, and rejected actions. | [Extension contracts](@/docs/guides/extensions.md) |
 | Local save and recovery | Save a note, reopen it, and recover from a prepared storage failure without replacing existing work. | [Local edits and saving](@/docs/guides/local-first.md) |
 | Two-view collaborative note | Edit the same note in two local views, disconnect, reconnect, and inspect which changes are durable. | [Cloud host contracts](@/docs/guides/cloud-hosting.md) |
@@ -66,3 +66,7 @@ Continue with [core concepts](@/docs/concepts/_index.md), [API reference](@/docs
 [Project kickoff saving consumer](@/docs/examples/lifecycle.md) pairs complete unpublished local packed source with actual local receipts, prepared save failure recovery, cancellation and cleanup. Remote save remains not configured; React/SSR sources explain existing boundaries only.
 
 [Custom-authoring source study](@/docs/examples/custom-extensions.md) explains the callout/highlight/command design with immutable recipe links and independent conceptual states. Runtime cases: 0; candidate admission and the complete executable tutorial remain pending.
+
+## Project kickoff local package consumers
+
+The complete [browser](@/docs/getting-started/web.md), [React](@/docs/getting-started/react.md) and [Astro](@/docs/getting-started/astro.md) quickstarts use pinned unpublished 0.0.0 tarballs. They cover the heading, bold Friday, unchecked agenda and reference corpus, actual edits, Bold owner, local save/reopen, read-only, recovery export and cleanup. React has a separate SSR/client boundary; Astro has static/SSR builds and ClientRouter disposal. [Full source and reproduction instructions](/reference-inputs/quickstarts-v1/README.md) and the [immutable source/asset manifest](/reference-inputs/quickstarts-v1/manifest.json) retain their exact local scope. Public hosting, registry installation and broader platform qualification remain pending.

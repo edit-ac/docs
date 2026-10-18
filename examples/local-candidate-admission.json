@@ -200,8 +200,48 @@
   "reviewedCompatibility": {
     "package.json": {
       "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
-      "afterSha256": "17fb176f42ab715fc1b7fb2fc9f40c5d4391aad7b47ef8ab47e57c7799127c29",
-      "reason": "Add deterministic local admission command; existing docs scripts, versions and dependencies are unchanged."
+      "afterSha256": "7b01f66113681f2f6c7adae4d954ac1b0d5c7845f6b2b84b625905f1ada8d428",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "content/docs/examples/_index.md": {
+      "beforeSha256": "49c2d01be067914dc41f67309e70f8e0ed659905b24422c846457277acdffaa5",
+      "afterSha256": "48b1fc0077282d39574ec5fd27b068ca9fb3ff4b87d643e92d6baa432b0ae651",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "content/docs/getting-started/_index.md": {
+      "beforeSha256": "647bb60a5c616bccd9eba4abd21985dcd0338bff6feeefee4cc34acb78e92527",
+      "afterSha256": "bab51430b3f5ba6b3a80fa557bf404ff7ddecd0891cf6e6de0f1361ac9d1c628",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "content/docs/getting-started/astro.md": {
+      "beforeSha256": "7433211ce00c8da494cd807d6cba4a6eee3bfc404fdb58ef39ca941c3bb9a863",
+      "afterSha256": "37314c79f440ab2d69c1d3a53cecca830910a1791087c0d528866e7ae2d8ee12",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "content/docs/getting-started/react.md": {
+      "beforeSha256": "38559ddd2032e107a95b4d604ad5f4f536c80780a0fa3359eed7ec0c2e081d18",
+      "afterSha256": "59662aa01094533bee5106825347ea310782bb111673b1f7947307ee9be1da3a",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "content/docs/getting-started/web.md": {
+      "beforeSha256": "1c1ebf5ac17a5eb259952229933c92a47be4c84aa91ab48d3ddb91c035251212",
+      "afterSha256": "67dc65486a0f36b0acc5b8996e994eb94139d1ff9906f0a9a26735a4127c911a",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "examples/manifest.json": {
+      "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
+      "afterSha256": "de02014e1decf8785cfa55e9a4159ef58992bf3e4af4e32ee056a8cfbd2d799e",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "scripts/check-examples.mjs": {
+      "beforeSha256": "b9213846202ea03b53935c7836dcf02add2b1ef8f631e5e34a63891da3a7fa39",
+      "afterSha256": "d23acf2bb2f462f256309f22964fc73ad6773dfeb8bf54824bd4bf870d7ed5cb",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
+    },
+    "static/concepts/project-kickoff-v1/manifest.json": {
+      "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
+      "afterSha256": "de02014e1decf8785cfa55e9a4159ef58992bf3e4af4e32ee056a8cfbd2d799e",
+      "reason": "DWF-1.5 local quickstarts: add executable sdk-framework-v1 consumers, source-derived snippets and discovery/download metadata; preserve previous prerequisite semantics and all deferred registry/native/cloud gates."
     }
   }
 }

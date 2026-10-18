@@ -11,9 +11,9 @@ The framework-independent SDK keeps document semantics in one shared engine. Web
 
 | Path | What you can inspect now | Tutorial status |
 |---|---|---|
-| [Web](@/docs/getting-started/web.md) | Named local source preview and selected unpublished packed evidence | Package quickstart planned |
-| [React](@/docs/getting-started/react.md) | Integration responsibilities | Client/SSR quickstart planned here |
-| [Astro](@/docs/getting-started/astro.md) | Framework-independent integration responsibilities | Static/SSR and ClientRouter tutorial planned here |
+| [Web](@/docs/getting-started/web.md) | Project kickoff with pinned local tarballs | Local-only browser quickstart |
+| [React](@/docs/getting-started/react.md) | The same SDK with React lifecycle ownership | Local-only client/SSR quickstart |
+| [Astro](@/docs/getting-started/astro.md) | The same SDK without React | Local-only static/SSR and ClientRouter quickstart |
 | [Native](@/docs/getting-started/native.md) | Platform and presenter requirements | Platform-specific consumers pending here |
 | [CLI and terminal](@/docs/getting-started/cli.md) | File/host authority contract | Install-ready CLI tutorial pending here |
 
@@ -23,11 +23,11 @@ The existing [integration path guide](@/docs/guides/getting-started.md) remains 
 
 **Prerequisites:** Choose your host and read its status below.
 
-**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. The linked quickstarts carry their own exact local consumer evidence; see [capability and release status](@/docs/reference/status.md).
 
 ## Example and expected outcome
 
-Follow the [web source walkthrough](@/docs/examples/web.md) for a bounded editing task; complete package consumers will include create/mount, edit/readback, formatting, save/reopen, read-only and disposal.
+Follow the [Project kickoff package consumers](@/docs/examples/_index.md#project-kickoff-local-package-consumers) for create/mount, actual edit/readback, formatting, local save/reopen, read-only and disposal. The earlier [web source walkthrough](@/docs/examples/web.md) retains its separate source-preview scope.
 
 ## Failure and recovery
 
@@ -36,3 +36,7 @@ Do not substitute a workspace alias or an unqualified package when a tutorial is
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+
+## Run a local package consumer
+
+Choose [Web](@/docs/getting-started/web.md), [React](@/docs/getting-started/react.md), or [Astro](@/docs/getting-started/astro.md) for the same Project kickoff task. Both first-party bindings reuse the framework-independent SDK. These are local-only unpublished 0.0.0 consumers; use their exact candidate manifest and lifecycle instructions.

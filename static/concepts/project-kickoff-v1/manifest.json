@@ -145,6 +145,47 @@
         "content/docs/extensions/custom.md",
         "content/docs/examples/custom-extensions.md"
       ]
+    },
+    {
+      "id": "quickstarts/1",
+      "parent": "DWF-1.5",
+      "maturity": "local-packed",
+      "runtimeQualified": true,
+      "published": false,
+      "releaseQualified": false,
+      "testedSdkVersion": "0.0.0",
+      "profile": "v5",
+      "candidate": "sdk-framework-v1",
+      "source": "examples/quickstarts/README.md",
+      "manifest": "examples/quickstarts/manifest.json",
+      "qualification": "examples/quickstarts/qualification.json",
+      "snippets": {
+        "web": {
+          "file": "examples/task-editor/editor.mjs",
+          "start": 1,
+          "end": 58,
+          "sha256": "a3187c26114898b1d6e2241eb8b0c5c8d0390d2de7f8b499c9b180f600a26f3b"
+        },
+        "react": {
+          "file": "examples/task-editor/react.mjs",
+          "start": 1,
+          "end": 24,
+          "sha256": "7d390203d01e51763730c74f0f25d474b636543027d0feb1858f3ee3362c5814"
+        },
+        "astro": {
+          "file": "examples/astro/src/client.js",
+          "start": 1,
+          "end": 53,
+          "sha256": "580a50e12385459331041644549f519c5bcdeb0a8af9dd6b093dfd708876f158"
+        }
+      },
+      "fixture": "project-kickoff/1",
+      "downloadBase": "/reference-inputs/quickstarts-v1/",
+      "pages": [
+        "content/docs/getting-started/web.md",
+        "content/docs/getting-started/react.md",
+        "content/docs/getting-started/astro.md"
+      ]
     }
   ]
 }

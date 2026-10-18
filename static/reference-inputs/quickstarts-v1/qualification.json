@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "scope": "local-only",
+  "published": false,
+  "releaseQualified": false,
+  "candidate": "sdk-framework-v1",
+  "sourceFiles": {
+    "README.md": "d278d5abd42d0c7217a37784dc13555fc01690bf26229b8e139dd42ede73dfca",
+    "harness.test.mjs": "1256135bc2bba060f11a9c7a2daf84e9b8b2829b3d57b35dcd0011bf486a92de",
+    "upstream.json": "97850a9e5500d5ae72c19a2517d81e6e681172c4e8e9dfc9d34e027570d12712",
+    "examples/task-editor/kickoff.mjs": "e1c9aa4b55e45dfecbfd552a917ab31caf1961f02909817da776277e162bcf01",
+    "examples/task-editor/index.html": "590f1cd0f93f181e67633c76f0a52cd105a452760fbf5d200ce70c455c5a8290",
+    "examples/task-editor/react.mjs": "7d390203d01e51763730c74f0f25d474b636543027d0feb1858f3ee3362c5814",
+    "examples/task-editor/controls.mjs": "fbaee31c858dc9a1d0a9c242e1021753caddeeaaa9fa6010601288c70cde2d1f",
+    "examples/task-editor/react.html": "04f54b27492c5071f9ef67359bec3cf059610214de930f58b7731d525e8bca19",
+    "examples/task-editor/markdown.mjs": "f137278fc14c59f4e63aad35398a118139fd3b00085a818d273e7b6a5cb7ea75",
+    "examples/task-editor/document.mjs": "3d332593075c643657c48f078bfdc721df62e7b954263ab60b72c9cb35f4b388",
+    "examples/task-editor/recovery.mjs": "269a6ff0e25e6b501a6513798a3cb54fe646be69a60750ec3080d18c1af2cf5d",
+    "examples/task-editor/editor.mjs": "a3187c26114898b1d6e2241eb8b0c5c8d0390d2de7f8b499c9b180f600a26f3b",
+    "examples/astro/astro.config.mjs": "c9a8039e9d1a4cbb56f6022fb6cf2055ee288a6ed9a2b2b252463acbd2131a31",
+    "examples/astro/src/client.js": "580a50e12385459331041644549f519c5bcdeb0a8af9dd6b093dfd708876f158",
+    "examples/astro/src/markdown.js": "0a31d1ac37478182f5a9dbc0ae791d7ea318f68a8791ad60657e0687a027378d",
+    "examples/astro/src/pages/away.astro": "3e60578720ce8aa3bb8d1bd9ee9164d5d7a0405ec9769d4e249e2bc466bc8d42",
+    "examples/astro/src/pages/index.astro": "9295d881f9a77a2157c0d56225ae258727c736cc094c37d6398c3290836d70e3"
+  },
+  "suites": {
+    "web-react": {
+      "evidenceDirectory": "evidence/quickstarts-20261018/web-react-complete",
+      "summary": {
+        "suite": "web-react",
+        "exit": 0,
+        "counts": {
+          "tests": 11,
+          "pass": 11,
+          "fail": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      "cases": [
+        {
+          "name": "chromium-docs-plain-save-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-react-save-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-plain-load-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-react-load-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-plain-asset-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-react-asset-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-plain",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-react",
+          "browser": "156.0.8078.4",
+          "passed": true
+        }
+      ],
+      "teardown": [
+        {
+          "pid": 35118,
+          "exited": true
+        },
+        {
+          "port": 50176,
+          "closed": true
+        },
+        {
+          "pid": 35124,
+          "exited": true
+        },
+        {
+          "port": 50185,
+          "closed": true
+        },
+        {
+          "pid": 35132,
+          "exited": true
+        },
+        {
+          "port": 50195,
+          "closed": true
+        },
+        {
+          "pid": 35145,
+          "exited": true
+        },
+        {
+          "port": 50216,
+          "closed": true
+        },
+        {
+          "pid": 35149,
+          "exited": true
+        },
+        {
+          "port": 50220,
+          "closed": true
+        },
+        {
+          "pid": 35156,
+          "exited": true
+        },
+        {
+          "port": 50235,
+          "closed": true
+        },
+        {
+          "pid": 35163,
+          "exited": true
+        },
+        {
+          "port": 50244,
+          "closed": true
+        },
+        {
+          "pid": 35187,
+          "exited": true
+        },
+        {
+          "port": 50253,
+          "closed": true
+        }
+      ],
+      "commands": [
+        {
+          "label": "install-react",
+          "exit": 0
+        },
+        {
+          "label": "install-astro",
+          "exit": 0
+        },
+        {
+          "label": "docs-react-build",
+          "exit": 0
+        },
+        {
+          "label": "docs-astro-static",
+          "exit": 0
+        },
+        {
+          "label": "docs-astro-ssr",
+          "exit": 0
+        },
+        {
+          "label": "types-react",
+          "exit": 0
+        },
+        {
+          "label": "types-astro",
+          "exit": 0
+        },
+        {
+          "label": "ssr-import-react",
+          "exit": 0
+        },
+        {
+          "label": "ssr-import-astro",
+          "exit": 0
+        },
+        {
+          "label": "archive-consumers",
+          "exit": 0
+        }
+      ],
+      "artifacts": {
+        "tests.log": "66161f2e8d119bff904b3364b39b17e94a5879187885c69e91a891a7e128cddc",
+        "harness.json": "b2e5760d05cb08a0d224ec520a04faff4916ed1ce1f02bb89c0f24526d6f3a0d",
+        "compiled-consumers.tgz": "3bd48daff00e4b5e3ebb475d06a8e67599b73d8a578b45eddd0effff0082ee17"
+      }
+    },
+    "astro": {
+      "evidenceDirectory": "evidence/quickstarts-20261018/astro-complete",
+      "summary": {
+        "suite": "astro",
+        "exit": 0,
+        "counts": {
+          "tests": 8,
+          "pass": 8,
+          "fail": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      "cases": [
+        {
+          "name": "chromium-docs-astro-save-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-astro-load-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-astro-asset-failure",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-astro-static",
+          "browser": "156.0.8078.4",
+          "passed": true
+        },
+        {
+          "name": "chromium-docs-astro-ssr",
+          "browser": "156.0.8078.4",
+          "passed": true
+        }
+      ],
+      "teardown": [
+        {
+          "pid": 35108,
+          "exited": true
+        },
+        {
+          "port": 50170,
+          "closed": true
+        },
+        {
+          "pid": 35128,
+          "exited": true
+        },
+        {
+          "port": 50189,
+          "closed": true
+        },
+        {
+          "pid": 35133,
+          "exited": true
+        },
+        {
+          "port": 50196,
+          "closed": true
+        },
+        {
+          "pid": 35141,
+          "exited": true
+        },
+        {
+          "port": 50210,
+          "closed": true
+        },
+        {
+          "port": 50229,
+          "closed": true
+        },
+        {
+          "pid": 35155,
+          "exited": true
+        },
+        {
+          "pid": 35154,
+          "exited": true
+        }
+      ],
+      "commands": [
+        {
+          "label": "install-react",
+          "exit": 0
+        },
+        {
+          "label": "install-astro",
+          "exit": 0
+        },
+        {
+          "label": "docs-react-build",
+          "exit": 0
+        },
+        {
+          "label": "docs-astro-static",
+          "exit": 0
+        },
+        {
+          "label": "docs-astro-ssr",
+          "exit": 0
+        },
+        {
+          "label": "types-react",
+          "exit": 0
+        },
+        {
+          "label": "types-astro",
+          "exit": 0
+        },
+        {
+          "label": "ssr-import-react",
+          "exit": 0
+        },
+        {
+          "label": "ssr-import-astro",
+          "exit": 0
+        },
+        {
+          "label": "archive-consumers",
+          "exit": 0
+        }
+      ],
+      "artifacts": {
+        "tests.log": "8de97bb3f77009c17319ea6080a51753eb2894aaa807337b37b03c1f4540d9ec",
+        "harness.json": "e324a98eede70b56f19f99e2ea96840a41d5266ade699a2ea7cb3c070490113b",
+        "compiled-consumers.tgz": "a6ef532fed5d343d0a8e4d1c648724ebd385421e6b358fa81a1ef61e1ade09d3"
+      }
+    }
+  }
+}
