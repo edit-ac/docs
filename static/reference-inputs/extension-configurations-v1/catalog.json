@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "parent": "DWF-1.34",
+  "sdkVersion": "0.0.0",
+  "facadeApiVersion": 1,
+  "descriptorVersion": 1,
+  "schema": "editac.registry.editor.v5",
+  "published": false,
+  "entries": [
+    {
+      "id": "formatting",
+      "title": "Headings, lists and inline formatting",
+      "kind": "semantic blocks and marks",
+      "factory": null,
+      "options": "Core formatting.marks policies: commands, shortcuts and controls independently. No Heading/List facade factory is promised.",
+      "dependencies": "Existing v5 engine, prepared command/selection and history owners.",
+      "conflicts": "Disabling commands requires shortcuts:false and controls:false; hiding controls does not change admission or permissions.",
+      "cost": "Baseline engine/input/formatting; no dictionary, parser or resolver selected.",
+      "input": "Project kickoff, Due Friday and two plain agenda paragraphs.",
+      "action": "Select Friday and invoke the qualified bold command; apply heading/list through the pinned command consumer linked below.",
+      "output": "Only Friday gains bold; undo restores the original marks and text. Heading/list snapshots remain the qualified historical command examples.",
+      "serialization": "Existing marks and unknown bounded attributes survive hidden controls. Heading/list changes use the existing engine block attributes, not DOM tags as data.",
+      "accessibility": "Keep a keyboard focus target and accessible host command labels. Core input/selection owns IME boundaries.",
+      "cancel": "Captured commands become invalid after target changes; dispose captures. Read-only rejects edits.",
+      "example": "extensions: [], formatting: { marks: { bold: { shortcuts: false, controls: false } } }",
+      "page": "content/docs/extensions/formatting.md"
+    },
+    {
+      "id": "navigation",
+      "title": "Search and block reorder",
+      "kind": "optional behaviors",
+      "factory": [
+        "DocumentSearch",
+        "BlockReorder"
+      ],
+      "options": "Both configure() accept no options. Search/reorder state belongs to each attached editor.",
+      "dependencies": "editac.search@1 and editac.reorder@1; v5 schema. No declared feature prerequisites or conflicts.",
+      "conflicts": "Duplicate identities reject before root reservation. Custom authored bindings still pass command conflict admission.",
+      "cost": "Required-input local presenters; no remote resolver or parser. Disabled modules can still contribute to this package eager graph; no zero-byte claim.",
+      "input": "Project kickoff followed by Due Friday.",
+      "action": "Select DocumentSearch and BlockReorder individually; search for Friday using the local search presenter.",
+      "output": "Both tools attach to the selected editor; a sibling with extensions:[] gets neither. Existing text/history is unchanged by configuration.",
+      "serialization": "Search results and drag UI are transient, not document data. Reorder commits through the shared command/history owner.",
+      "accessibility": "Use keyboard search navigation and the existing accessible block move controls; drag handles do not own text selection.",
+      "cancel": "Dispose cancels pending requests/controls. Do not move a block captured before a document revision change.",
+      "example": "extensions: [DocumentSearch.configure(), BlockReorder.configure()]",
+      "page": "content/docs/extensions/navigation.md"
+    },
+    {
+      "id": "content",
+      "title": "Tables, images and source preservation",
+      "kind": "semantic content nodes with optional browser presenters",
+      "factory": [
+        "Images",
+        "Tables"
+      ],
+      "options": "Images.configure() and Tables.configure() accept no options. Host asset authority remains outside configuration.",
+      "dependencies": "editac.images@1 and editac.tables@1; source-fallback capability, v5 admitted module tuples.",
+      "conflicts": "No declared feature prerequisites/conflicts; duplicates and unknown options reject. Select Markdown separately for Markdown import.",
+      "cost": "Required-input presenters; selecting an image presenter grants no network service or upload implementation.",
+      "input": "A table with header head and cell Friday; image source ![Kickoff](https://assets.example.test/kickoff.png).",
+      "action": "Select Tables and Images, edit the cell to Thursday, then undo.",
+      "output": "Cell becomes Thursday, then Friday; image data/source stays intact when its asset is unavailable. Missing image is visibly reported.",
+      "serialization": "The existing table/image module tuples retain original source for unsupported hosts. Imports require a separately selected qualified codec; PDF remains export-only in conversion guides.",
+      "accessibility": "Cell textareas and image alt text use the existing presenters; image failure retains its source/alt fallback.",
+      "cancel": "Host uploads/resolution require explicit host permission and cancellation. destroy/report preserves unsaved edits; no data clearing.",
+      "example": "extensions: [Images.configure(), Tables.configure()]",
+      "page": "content/docs/extensions/content.md"
+    },
+    {
+      "id": "actions",
+      "title": "References and slash menus",
+      "kind": "optional behavior and reference content",
+      "factory": [
+        "References",
+        "SlashCommands"
+      ],
+      "options": "References.configure({host, triggers?}) requires the existing resolver or version1 permission/catalog/resolve/subscribe host. SlashCommands.configure({commands, literal?}) captures unique command IDs, labels and prepared callbacks.",
+      "dependencies": "editac.references@1 (commands, host-resolver); editac.slash@1 (commands); both v5.",
+      "conflicts": "No declared feature conflicts. Prepared intents, permission and stale-range checks remain authoritative. Preserve original configured objects; serialization/spreading loses host bindings.",
+      "cost": "Required-input menu adapters; resolver/preparation is idle until explicit interaction. No socket/provider is supplied.",
+      "input": "Due Friday in one editor and an unchanged sibling.",
+      "action": "Open a local reference menu or Insert kickoff slash action with deterministic host callbacks.",
+      "output": "Reference selection inserts the returned doc-42/Verified reference tuple; slash inserts bold Kickoff once. Undo restores Due Friday; sibling is unchanged.",
+      "serialization": "Persist reference identity/label through the existing reference tuple, never callback closures or menu state. Unsafe URL insertion requires the separate validated URL recipe.",
+      "accessibility": "Use existing keyboard menu navigation, labels and focus restoration. Trigger activation respects composition ownership.",
+      "cancel": "Closing/disposal or stale target aborts pending work; permission denial does not become document data. No document-open metadata fetch is implied.",
+      "example": "extensions: [References.configure({ host: localResolver }), SlashCommands.configure({ commands: localCommands })]",
+      "page": "content/docs/extensions/actions.md"
+    },
+    {
+      "id": "loading",
+      "title": "Markdown, math and highlighting assets",
+      "kind": "optional parser, data mark and presentation behavior",
+      "factory": [
+        "Markdown",
+        "MathNotation"
+      ],
+      "options": "Markdown.configure({input?: boolean}) defaults input:true; input:false defers exporter loading. MathNotation.configure() takes no options. assets is one host baseURL or manifest.",
+      "dependencies": "Markdown additionally installs @edit-ac/markdown@0.0.0; MathNotation uses the existing math definition and deferred renderer.",
+      "conflicts": "Facade configuration cannot mix legacy assembly keys. Code/Pairs descriptors remain contract fixtures, with no qualified Code.configure() example. Advanced managedCodeHighlighting is a separate legacy port.",
+      "cost": "Markdown required input gates ready; command-lazy export waits for its first call. Math renderer/KaTeX starts at first presentation. Highlight worker/backend starts on code. Baseline/core WASM remains required.",
+      "input": "Literal **Friday** for command-lazy Markdown; existing LaTeX x^2 source for math.",
+      "action": "Open Markdown with input:false, edit ordinary text, explicitly export; choose MathNotation for a math-marked document.",
+      "output": "Ordinary input remains literal before export; exporter returns its existing diagnostics/recovery blocks. A missing parser rejects required readiness and preserves the original document.",
+      "serialization": "Markdown returns codec output without editing its input blocks. Math keeps canonical LaTeX when rendering fails. Code source stays data even when highlighting is absent.",
+      "accessibility": "Source fallback stays readable; a colorized code view is not a replacement for text or semantic marks.",
+      "cancel": "loadExtension retry is bounded to three attempts. Disposed generations cannot attach late; after a failed ESM import repair the versioned URL and remount if needed.",
+      "example": "extensions: [Markdown.configure({ input: false }), MathNotation.configure()]",
+      "page": "content/docs/extensions/loading.md"
+    },
+    {
+      "id": "presets",
+      "title": "Compose features and inspect presets",
+      "kind": "optional convenience configurations",
+      "factory": null,
+      "options": "defaultPreset() selects no extensions; documentPreset() selects Search+Reorder. Both accept extensions, remove feature IDs and overrides for already selected members.",
+      "dependencies": "The same v5 engine and individually selected factories. Presets create no independent document/history owner.",
+      "conflicts": "Duplicate selection fails; overriding an absent feature fails missing-override. Legacy taskPreset and low-level profile names retain their historical contracts.",
+      "cost": "Cost is the union of actually selected features, baseline engine and host delivery graph. A preset name does not grant hidden assets or services.",
+      "input": "A local Task/comment/document with Project kickoff text.",
+      "action": "Choose documentPreset({remove:[\"editac.reorder\"]}) or configure Search alone without a preset.",
+      "output": "Both attach Search only; formatting and local data/history are preserved, with no collaboration or presence. A Task can select any qualified factory.",
+      "serialization": "Presets are host configuration, not a schema conversion or content migration. Never strip existing marks/unknown data because a control is hidden.",
+      "accessibility": "Keep baseline editing and host labels available regardless of selected optional tools.",
+      "cancel": "Await editor.ready, then await destroy({policy:\"flush\"}) and inspect failure; borrowed surfaces use dispose() while their engine owner persists.",
+      "example": "...documentPreset({ remove: ['editac.reorder'] })",
+      "page": "content/docs/extensions/presets.md"
+    }
+  ],
+  "factories": [
+    {
+      "name": "DocumentSearch",
+      "id": "editac.search",
+      "version": 1,
+      "options": {},
+      "loading": "required-input"
+    },
+    {
+      "name": "BlockReorder",
+      "id": "editac.reorder",
+      "version": 1,
+      "options": {},
+      "loading": "required-input"
+    },
+    {
+      "name": "Images",
+      "id": "editac.images",
+      "version": 1,
+      "options": {},
+      "loading": "required-input"
+    },
+    {
+      "name": "Tables",
+      "id": "editac.tables",
+      "version": 1,
+      "options": {},
+      "loading": "required-input"
+    },
+    {
+      "name": "MathNotation",
+      "id": "editac.math",
+      "version": 1,
+      "options": {},
+      "loading": "required-input"
+    },
+    {
+      "name": "Markdown",
+      "id": "editac.markdown",
+      "version": 1,
+      "options": {
+        "input": true
+      },
+      "loading": "required-input"
+    }
+  ]
+}

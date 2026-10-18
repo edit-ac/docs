@@ -51,6 +51,13 @@
     "content/docs/reference/selection.md",
     "content/docs/examples/commands.md",
     "content/docs/reference/events.md",
-    "content/docs/examples/lifecycle.md"
+    "content/docs/examples/lifecycle.md",
+    "content/docs/extensions/formatting.md",
+    "content/docs/extensions/navigation.md",
+    "content/docs/extensions/content.md",
+    "content/docs/extensions/actions.md",
+    "content/docs/extensions/loading.md",
+    "content/docs/extensions/presets.md",
+    "content/docs/examples/extension-configurations.md"
   ]
 }

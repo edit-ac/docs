@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "task": "EXT-1.20",
+  "children": [
+    "EXT-1.20-I1",
+    "EXT-1.20-V1"
+  ],
+  "state": "implemented-and-verified-not-published",
+  "at": "2026-10-18T00:33:47.957955+00:00",
+  "sourceRoadmapRevision": "e3a0c0ed38b17f625f6513a2ea4f2b4293cc74dceaf368d7d897abf29c675eaf",
+  "loadedPrompt": "2e18a98412c7",
+  "implementationCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+  "prerequisiteCommit": "677e9f023c5fb66d476042bcc86e408f6b974581",
+  "command": "node scripts/test-extension-dx.mjs --group documentation",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "counts": {
+    "executed": 39,
+    "passed": 39,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "browserCases": 25,
+  "preparedManifestImportCases": 14,
+  "compiledDocumentedRanges": 9,
+  "installedInvalidOptionsRejected": 4,
+  "existingInstalledPublicTypeRejections": 8,
+  "installedSSR": true,
+  "sourcePins": [
+    {
+      "path": "README.md",
+      "sha256": "47bbd0d8d1458a47b4832d2239d9ece5fa017a444be72d11f635ef97a2c6d006"
+    },
+    {
+      "path": "crates/editac-core/src/commands/editor.rs",
+      "sha256": "9ca15824e2983ece90d22cbecec49abd2fb5ade5172cdcdb8413d66cafeb433d"
+    },
+    {
+      "path": "crates/editac-core/src/modules/content.rs",
+      "sha256": "b73a7dfbe2d7dab92f15a6abde66887a09f84f97236153b3c9a001d6065e6ba1"
+    },
+    {
+      "path": "crates/editac-markdown/src/extensions.rs",
+      "sha256": "a9ffcf28eaa050615f20105ca121cdfc4fc0770a8414c672ad77ec30b3dfd68e"
+    },
+    {
+      "path": "crates/editac-markdown/src/optional.rs",
+      "sha256": "3a8ea7a1e9d3ffbf38b29c66197fbda624f8759b1992c63c3ad24a102413ccc0"
+    },
+    {
+      "path": "crates/editac-wasm/src/bridge.rs",
+      "sha256": "10c4c9c7768deead93b21bcca1e5d8b390b8ad60e26a51a78ee44a670b593746"
+    },
+    {
+      "path": "docs/extensions/api-v1.md",
+      "sha256": "dd35080079e4e5810f9bdbcc79f8c3cf3265d9475ec518e37169d67b6e67b41a"
+    },
+    {
+      "path": "docs/extensions/authoring.md",
+      "sha256": "69d68508d38df7a5393d779cf5c06e2baf33e4f8717c60c3dc603cfe16029319"
+    },
+    {
+      "path": "docs/extensions/configuration-v1.md",
+      "sha256": "d1d906e1b6349db24add2dc18332818efddf0c92135c5f9c61d0c817e4f9cb2b"
+    },
+    {
+      "path": "docs/extensions/getting-started-v1.md",
+      "sha256": "6a0a3ce4db41f00853567072f7b72875cfc416ac3c871f76d859225f7184588a"
+    },
+    {
+      "path": "docs/extensions/hosting-v1.md",
+      "sha256": "61c09d237ba56d29d02f003d229df88694f4db5a5ed9cafd31ffe962d1ed22ba"
+    },
+    {
+      "path": "docs/extensions/migration-v1.md",
+      "sha256": "6c638ba943e63019a1efd367bc40d6ca733db07affbac7c9d6c1c5a3286cd3cf"
+    },
+    {
+      "path": "docs/extensions/packaging-v1.md",
+      "sha256": "b5727c8b7523e7770d3c48407fda661f08a0a5e760b3ea7eb50ea0fe54c3d1bf"
+    },
+    {
+      "path": "docs/extensions/recipe-manifest.json",
+      "sha256": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88"
+    },
+    {
+      "path": "docs/extensions/recipes-v1.md",
+      "sha256": "0631a852edb22a74e41baad41fb40c7c0472ba552b07f1b744ede949c94265a2"
+    },
+    {
+      "path": "examples/extensions/documentation/behavior.ts",
+      "sha256": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae"
+    },
+    {
+      "path": "examples/extensions/documentation/data.ts",
+      "sha256": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077"
+    },
+    {
+      "path": "examples/extensions/documentation/getting-started.ts",
+      "sha256": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f"
+    },
+    {
+      "path": "examples/extensions/documentation/lifecycle.ts",
+      "sha256": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c"
+    },
+    {
+      "path": "examples/extensions/parsing/parsing.ts",
+      "sha256": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978"
+    },
+    {
+      "path": "examples/extensions/spellcheck/spellcheck.ts",
+      "sha256": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7"
+    },
+    {
+      "path": "examples/extensions/task-links/catalog.ts",
+      "sha256": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f"
+    },
+    {
+      "path": "examples/extensions/task-links/task-links.ts",
+      "sha256": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55"
+    },
+    {
+      "path": "examples/extensions/url-insert/url-insert.ts",
+      "sha256": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "5273ea685692bdb01a99dd8b300d64904abf533c59da6fb325fc820b0d9f19fd"
+    },
+    {
+      "path": "packages/core/src/engine.ts",
+      "sha256": "fbd50385f9fa5b3c904fd11d1fec5dc253fb7f22cb43002ce6df58f9cc5b3211"
+    },
+    {
+      "path": "packages/markdown/src/shortcuts.ts",
+      "sha256": "9cd048ebd8eb7a6d8950e017573bd9c23236ad2812bcad30250521743b6c26e9"
+    },
+    {
+      "path": "packages/markdown/src/web.ts",
+      "sha256": "7f94e020c0d7ff5cd1258c862a66bc52845e78f65e56fb801083213517cfc42a"
+    },
+    {
+      "path": "packages/web/src/clipboard/fragment.ts",
+      "sha256": "df6cafd8ed8f8cf951a9a88ba12033978352ca8a10e9f01eac18f234a332abfb"
+    },
+    {
+      "path": "packages/web/src/clipboard/html.ts",
+      "sha256": "d6812bb5d0398145f247d202fc693dac18e2c1d9ce0fcc7b514e13efd50a93d2"
+    },
+    {
+      "path": "packages/web/src/clipboard/pending.ts",
+      "sha256": "526fbc44baa1bd6703ab404ad030aff447bb98687e1a95f0ccc137a56417ff5e"
+    },
+    {
+      "path": "packages/web/src/input/shortcuts.ts",
+      "sha256": "b2e4e17e46fc3dc21c7b70de892340b2a1d88fcf04c3dc7bd69b7a374722a118"
+    },
+    {
+      "path": "packages/web/src/input/text.ts",
+      "sha256": "83a0ef9e6642e635b60538ff5e36cc901c1867374d281249ff7bc9b2c3ba0f4f"
+    },
+    {
+      "path": "scripts/extension-documentation-manifest.mjs",
+      "sha256": "38ab78bef0acd9a558d9932e4829f4a9f50b14695a63c448c3fbd12e93445c7b"
+    },
+    {
+      "path": "scripts/test-browser.mjs",
+      "sha256": "12a64ff71a3cf32184c984c4def4866ee827590a180494688ee3dfa8c903ded4"
+    },
+    {
+      "path": "scripts/test-extension-dx.mjs",
+      "sha256": "fabd65e56635cc8c3b90c755355b9377375f1109e4d144a99f0c10f80f280cda"
+    },
+    {
+      "path": "tests/browser/browser-harness.ts",
+      "sha256": "03ee81d04e0d2b25046ca85cfc17c1156b782ef437bd1d890ac36d8b4dcc8695"
+    },
+    {
+      "path": "tests/browser/format-helpers.ts",
+      "sha256": "0a097c4a7638f1ba746a9490486331c4e4fd1e97f0fa0f8daead584f6735a504"
+    },
+    {
+      "path": "tests/extension-dx/documentation-consumer.mjs",
+      "sha256": "8afdf0f2d5fdfd447af39a6633c7fdbd9c5f7fc926cf6104b1bfe7d5a9b3e05c"
+    },
+    {
+      "path": "tests/extension-dx/documentation-consumer/index.html",
+      "sha256": "0dbd19b21fc3f73351656580bc4e57c37e48bfa559bed2db0b39e00726b6fdb6"
+    },
+    {
+      "path": "tests/extension-dx/documentation-consumer/session.mjs",
+      "sha256": "f0eae3ba134dffa99b38a0d495a62a74feab99412f8b70f57a79f79530081674"
+    },
+    {
+      "path": "tests/extension-dx/documentation.test.mjs",
+      "sha256": "fdb242beeee3926f82d688fe15cc0fa888c7b756e8a8ae493e11f73a07852cdc"
+    }
+  ],
+  "sourceVerification": {
+    "count": 42,
+    "allMatchImplementationCommit": true,
+    "allMatchCurrentBytes": true
+  },
+  "testedPackages": [
+    {
+      "name": "core",
+      "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+      "sha256": "8dd850aef6ecd31a3eb79bbeb0f84581b34a41815d0054c84448e95656bcd843",
+      "version": "0.0.0",
+      "postInstallMutation": false
+    },
+    {
+      "name": "web",
+      "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+      "sha256": "0ab4e7e3e424a9f7a62e1a0019a1f05757d939c5f3d090fafce0ed3e21b2585e",
+      "version": "0.0.0",
+      "postInstallMutation": false
+    }
+  ],
+  "authenticatedUnchangedRuntime": [
+    {
+      "member": "package/dist/wasm/editac_wasm.js",
+      "sha256": "c5705415e888cd5451d2dc3b3963684bb756a21eb47006423ca52e6cf91920e1",
+      "unchanged": true,
+      "assembledBeforeInstallation": true
+    },
+    {
+      "member": "package/dist/wasm/editac_wasm_bg.wasm",
+      "sha256": "90c4438bf8f8f761d269c08f6119bdace96398b49b369ce5c5c93412f171401b",
+      "unchanged": true,
+      "assembledBeforeInstallation": true
+    }
+  ],
+  "documentationManifest": {
+    "path": "core/docs/extensions/recipe-manifest.json",
+    "sha256": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+    "guides": 6,
+    "ranges": 9,
+    "downstreamOwners": [
+      "DOC-1.34",
+      "DOC-1.35"
+    ]
+  },
+  "criterionMap": {
+    "DXC-22": [
+      "getting-started-v1.md",
+      "api-v1.md",
+      "recipes-v1.md",
+      "migration-v1.md",
+      "hosting-v1.md",
+      "packaging-v1.md",
+      "recipe-manifest.json"
+    ],
+    "I1": "Typed exact public consumers, lifecycle/input/command/codec/decoration and migration/packaging guides; data/Rust and host/platform boundaries explicit.",
+    "V1": "Canonical installed-tarball compilation/execution plus private/stale/version/options rejection and independent failure/disposal outcomes."
+  },
+  "retainedFailures": [
+    {
+      "path": "checks/documentation-attempt-1/dispatch-receipt.json",
+      "counts": {
+        "executed": 38,
+        "passed": 0,
+        "failed": 38,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      }
+    },
+    {
+      "path": "checks/documentation-attempt-2/dispatch-receipt.json",
+      "counts": {
+        "executed": 38,
+        "passed": 0,
+        "failed": 38,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      }
+    },
+    {
+      "path": "checks/documentation-attempt-3/dispatch-receipt.json",
+      "counts": {
+        "executed": 38,
+        "passed": 0,
+        "failed": 38,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      }
+    },
+    {
+      "path": "checks/documentation-attempt-4/dispatch-receipt.json",
+      "counts": {
+        "executed": 39,
+        "passed": 25,
+        "failed": 14,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      }
+    },
+    {
+      "path": "checks/documentation-attempt-5/dispatch-receipt.json",
+      "counts": {
+        "executed": 39,
+        "passed": 37,
+        "failed": 2,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      }
+    }
+  ],
+  "artifacts": {
+    "path": "artifact-manifest.json",
+    "sha256": "3d7595a758725ff26330dc6fde25f5f5c0b2ed006ba6a20471768a7cbe9b3261",
+    "count": 145
+  },
+  "cleanup": {
+    "processes": [
+      {
+        "run": "documentation-attempt-4",
+        "pid": 74004,
+        "exited": true,
+        "currentCommand": ""
+      },
+      {
+        "run": "documentation-attempt-5",
+        "pid": 75386,
+        "exited": true,
+        "currentCommand": ""
+      },
+      {
+        "run": "documentation-final",
+        "pid": 77630,
+        "exited": true,
+        "currentCommand": ""
+      }
+    ],
+    "ports": [
+      {
+        "port": 50822,
+        "listenerGone": true,
+        "current": ""
+      },
+      {
+        "port": 50994,
+        "listenerGone": true,
+        "current": ""
+      },
+      {
+        "port": 51171,
+        "listenerGone": true,
+        "current": ""
+      }
+    ],
+    "stoppedThisFinalCheck": [],
+    "temporaryConsumersRemovedByHarness": true,
+    "removedPaths": [],
+    "reclaimedBytes": 0,
+    "dataVolumeFreeBytes": 49423220736,
+    "dataVolumeFreeGiB": 46.03,
+    "evidencePreserved": true,
+    "note": "All task browser/server teardown is recorded by harness. Evidence is retained, no several-GiB outputs created; existing unrelated artifacts preserved. No broader cleanup authorized."
+  },
+  "checkpoint": {
+    "core": {
+      "head": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "main": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "mainUnchangedSinceEntry": true
+    },
+    "architecture": {
+      "head": "5d1c5279eb2e7009abae6fd52dcc7bbdee028f02",
+      "main": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "mainUnchangedSinceEntry": true
+    },
+    "decision": "No compatible changed input. Preserve recorded editor.ts/index.ts PRIMARY composition conflict; do not repeat unchanged merge-tree/probe. Outgoing EXT-1.20 request follows pending configuration/loading/authoring/matching/task-links/spelling/parsing. PRIMARY checkout and local main untouched.",
+    "coreConflictingPaths": [
+      "packages/web/src/editor.ts",
+      "packages/web/src/index.ts"
+    ],
+    "owner": "PRIMARY safe landing checkpoint",
+    "resume": "Changed compatible qualified paired return or owner-composed main; no active checkout mutation",
+    "pairedBaseline": {
+      "core": "096102ccfc",
+      "architecture": "51781a9b18"
+    },
+    "roadmapBoundary": true,
+    "twoParentCheckpointDue": true
+  },
+  "qualificationLimits": [
+    "No main/PRIMARY landing",
+    "Conditional CNV runtime cells remain unavailable/unexecuted",
+    "No public-site implementation/publication/deployment",
+    "No native/device/IME/AT/OS/performance/budget/release qualification",
+    "No provider calls, secrets or paid tests"
+  ],
+  "noPaidCallsSecretsPushPublicationDeployment": true
+}

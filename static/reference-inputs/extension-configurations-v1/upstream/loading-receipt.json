@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "gate": "SDK-1.12",
+  "children": [
+    "SDK-1.12-I1",
+    "SDK-1.12-V1"
+  ],
+  "state": "implemented-and-verified optional browser loading; not deployed",
+  "at": "2026-10-17T22:51:05.171903+00:00",
+  "sourceRevision": "e3a0c0ed38b17f625f6513a2ea4f2b4293cc74dceaf368d7d897abf29c675eaf",
+  "loadedPromptRevision": "2e18a98412c7",
+  "coreImplementationCommit": "f3d7d38c83391fc88d4bffeb5ace82add3b0b593",
+  "coreIntegratedHead": "943f0f5533f4e6a5b3e9316d6a89b30be28cebcc",
+  "prerequisite": {
+    "gate": "SDK-1.11",
+    "core": "e0d3af45e5cf6b1fc5276794225566654b459187",
+    "architecture": "535b9f64738971769ff178bfc08a5022fb5c75e6"
+  },
+  "checks": {
+    "build": {
+      "command": "npm run build",
+      "exit": 0,
+      "workspaces": 5,
+      "log": "checks/attempt-2/build.log"
+    },
+    "loading": {
+      "command": "node scripts/test-extension-dx.mjs --group loading",
+      "exit": 0,
+      "counts": {
+        "executed": 144,
+        "passed": 144,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "browserCases": 138,
+      "graphChecks": 6,
+      "dispatch": "checks/attempt-3/loading/dispatch-receipt.json",
+      "variants": [
+        {
+          "browser": "chromium",
+          "version": "156.0.8078.4",
+          "host": "bundler",
+          "receipt": "checks/attempt-3/loading/chromium/bundler/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/bundler/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/bundler/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/bundler/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        },
+        {
+          "browser": "chromium",
+          "version": "156.0.8078.4",
+          "host": "direct-browser",
+          "receipt": "checks/attempt-3/loading/chromium/direct/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/direct/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/direct/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/direct/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        },
+        {
+          "browser": "firefox",
+          "version": "157.0",
+          "host": "bundler",
+          "receipt": "checks/attempt-3/loading/firefox/bundler/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/bundler/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/bundler/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/bundler/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        },
+        {
+          "browser": "firefox",
+          "version": "157.0",
+          "host": "direct-browser",
+          "receipt": "checks/attempt-3/loading/firefox/direct/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/direct/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/direct/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/firefox/direct/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        },
+        {
+          "browser": "webkit",
+          "version": "27.2",
+          "host": "bundler",
+          "receipt": "checks/attempt-3/loading/webkit/bundler/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/bundler/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/bundler/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/bundler/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        },
+        {
+          "browser": "webkit",
+          "version": "27.2",
+          "host": "direct-browser",
+          "receipt": "checks/attempt-3/loading/webkit/direct/browser/receipt.json",
+          "browserCases": 23,
+          "browserPassed": 23,
+          "graphChecks": 1,
+          "installedPackages": [
+            {
+              "name": "core",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/direct/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+              "sha256": "fe6a0cd32814ab2149891860d5e59777e8d3a66115d4253bc410e7bd6d38d5be",
+              "bytes": 1094917,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "web",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/direct/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+              "sha256": "21a5cdb34f2fc639df191c41ccf12d09a3580027c7be7489948fd867510c6378",
+              "bytes": 1846128,
+              "installed": true,
+              "postInstallMutation": false
+            },
+            {
+              "name": "markdown",
+              "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/webkit/direct/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+              "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+              "bytes": 292169,
+              "installed": false,
+              "postInstallMutation": false
+            }
+          ],
+          "sourcePinsUnchanged": true,
+          "cleanup": {
+            "browserExited": true,
+            "serverClosed": true,
+            "consumerRemoved": true
+          }
+        }
+      ]
+    },
+    "configurationRegression": {
+      "command": "node scripts/test-extension-dx.mjs --group configuration",
+      "exit": 0,
+      "counts": {
+        "executed": 45,
+        "passed": 45,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "receipt": "checks/configuration-repaired/browser/receipt.json",
+      "repair": "Four fixtures now await explicit host connector-start events; lazy local readiness never promises a connector has started. Existing cancellation/out-of-order/preservation assertions retained."
+    },
+    "packageExports": {
+      "command": "node scripts/check-package-exports.mjs",
+      "exit": 0,
+      "imports": 7,
+      "log": "checks/package-exports.log"
+    }
+  },
+  "acceptance": {
+    "DXC-04/05": "Native and emitted bundler eager graphs exclude sync orchestration/session/presence, math/KaTeX, highlighting and Markdown implementation inputs. Clean facade bundle omits the optional Markdown installation; real forced-eager bundle rejected. Exact optional chunk/asset manifests retained.",
+    "DXC-06": "Installed native and bundled hosting use compatible versioned paths and one host manifest; MIME/CSP/CORS module failures retain source and fail required readiness.",
+    "DXC-07": "Compatible engine/Markdown initialization is shared; concurrent parser disposal is isolated; incompatible engine URL rejected; real duplicate-engine request control rejected.",
+    "DXC-24": "Required parsers gate input; command-lazy exporter permits editing; source survives failure; explicit retries bounded at3; stale completions/teardown covered.",
+    "DXC-26": "Disabled sync/presence creates no provider/worker assets. A collaborative sibling leaves local field subscription/listener counts unchanged; measured sync stack timer observations are empty. Baseline Yrs/update/local storage retained and separately identified.",
+    "DXC-28": "Lazy configured/attachment import disposal races cause zero stale sends/attachments; legacy and borrowed same-owner attachSync preserve replica/history; denied and retried connector preserves recoverable local edits."
+  },
+  "converterApplicability": "converter-applicability.json; PDF import permanently unsupported by profile; PDF export and DOCX import/export browser entries remain unavailable without qualified CNV browser artifacts. No converter runtime cell was executed or counted as passing. This conditional parent does not close CNV or downstream browser/native qualification.",
+  "sourcePins": "source-pins.json",
+  "ownedPaths": "owned-paths.json",
+  "retainedFailures": [
+    {
+      "artifact": "checks/attempt-1/loading",
+      "counts": {
+        "executed": 23,
+        "passed": 12,
+        "failed": 11,
+        "skipped": 0
+      },
+      "repair": "Prepared fixture commits/anchors, selection ownership, failed-editor reads and explicit counters; no failures discarded."
+    },
+    {
+      "artifact": "checks/attempt-2/loading",
+      "completedVariants": 3,
+      "failedCell": "firefox/direct required Markdown paste",
+      "repair": "Explicit prepared clipboardData in Firefox; authenticated artifacts are packed before install rather than patched after install."
+    },
+    {
+      "artifact": "checks/configuration-regression",
+      "counts": {
+        "executed": 45,
+        "passed": 42,
+        "failed": 3,
+        "skipped": 0
+      },
+      "repair": "Await explicit connector-start events after deferred imports; retained assertions."
+    }
+  ],
+  "hostingGuide": "core/docs/extensions/loading-v1.md",
+  "cleanup": "cleanup.json",
+  "integration": "integration-checkpoint.json",
+  "limitations": [
+    "Prepared host transports and clipboard events are not provider, OS clipboard or platform spelling observations.",
+    "Code/Pairs facade admission remains unqualified; highlighting uses the existing advanced legacy view port.",
+    "No publication, deployment, release, native/device/IME/AT, performance/budget, conversion or cloud claim."
+  ],
+  "noPaidProviderCallsSecretsPublicationDeployment": true
+}

@@ -1,0 +1,248 @@
+{
+  "parent": "DWF-1.34",
+  "coreCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+  "pins": [
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/recipe-manifest.json",
+      "file": "upstream/docs/extensions/recipe-manifest.json.txt",
+      "sha256": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/documentation/getting-started.ts",
+      "file": "upstream/examples/extensions/documentation/getting-started.ts.txt",
+      "sha256": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/documentation/behavior.ts",
+      "file": "upstream/examples/extensions/documentation/behavior.ts.txt",
+      "sha256": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/documentation/data.ts",
+      "file": "upstream/examples/extensions/documentation/data.ts.txt",
+      "sha256": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/documentation/lifecycle.ts",
+      "file": "upstream/examples/extensions/documentation/lifecycle.ts.txt",
+      "sha256": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/task-links/task-links.ts",
+      "file": "upstream/examples/extensions/task-links/task-links.ts.txt",
+      "sha256": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/task-links/catalog.ts",
+      "file": "upstream/examples/extensions/task-links/catalog.ts.txt",
+      "sha256": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/spellcheck/spellcheck.ts",
+      "file": "upstream/examples/extensions/spellcheck/spellcheck.ts.txt",
+      "sha256": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/parsing/parsing.ts",
+      "file": "upstream/examples/extensions/parsing/parsing.ts.txt",
+      "sha256": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "examples/extensions/url-insert/url-insert.ts",
+      "file": "upstream/examples/extensions/url-insert/url-insert.ts.txt",
+      "sha256": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/getting-started-v1.md",
+      "file": "upstream/docs/extensions/getting-started-v1.md.txt",
+      "sha256": "6a0a3ce4db41f00853567072f7b72875cfc416ac3c871f76d859225f7184588a"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/api-v1.md",
+      "file": "upstream/docs/extensions/api-v1.md.txt",
+      "sha256": "dd35080079e4e5810f9bdbcc79f8c3cf3265d9475ec518e37169d67b6e67b41a"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/recipes-v1.md",
+      "file": "upstream/docs/extensions/recipes-v1.md.txt",
+      "sha256": "0631a852edb22a74e41baad41fb40c7c0472ba552b07f1b744ede949c94265a2"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/migration-v1.md",
+      "file": "upstream/docs/extensions/migration-v1.md.txt",
+      "sha256": "6c638ba943e63019a1efd367bc40d6ca733db07affbac7c9d6c1c5a3286cd3cf"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/hosting-v1.md",
+      "file": "upstream/docs/extensions/hosting-v1.md.txt",
+      "sha256": "61c09d237ba56d29d02f003d229df88694f4db5a5ed9cafd31ffe962d1ed22ba"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/packaging-v1.md",
+      "file": "upstream/docs/extensions/packaging-v1.md.txt",
+      "sha256": "b5727c8b7523e7770d3c48407fda661f08a0a5e760b3ea7eb50ea0fe54c3d1bf"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/configuration-v1.md",
+      "file": "upstream/docs/extensions/configuration-v1.md.txt",
+      "sha256": "d1d906e1b6349db24add2dc18332818efddf0c92135c5f9c61d0c817e4f9cb2b"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "docs/extensions/loading-v1.md",
+      "file": "upstream/docs/extensions/loading-v1.md.txt",
+      "sha256": "51be4a57c61c88dce206129e73b14738ff92e4664c4fc37a5627cd21900d0a4d"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/web/src/extensions/configuration.ts",
+      "file": "upstream/packages/web/src/extensions/configuration.ts.txt",
+      "sha256": "a113f5cbbf89eb8aa5a8b07e546c0cdb5d9dd7b3d5c50c997453e7b1683bfaf1"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/web/src/extensions/contract.ts",
+      "file": "upstream/packages/web/src/extensions/contract.ts.txt",
+      "sha256": "b282b43a41da9bae99af631f00566caa8c33ff1eb2cf80d3759c3d0f6e87c9e1"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/web/src/extensions/spelling.ts",
+      "file": "upstream/packages/web/src/extensions/spelling.ts.txt",
+      "sha256": "90ca003ff62847491215ae130c99b0ffb6992d4481803aeb44e4232cea4a0d38"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/core/src/extensions/profiles.ts",
+      "file": "upstream/packages/core/src/extensions/profiles.ts.txt",
+      "sha256": "365dceadef6e6aba9536c7b5beb5d8fb650eebf68d2107c16868194a489f02e8"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/web/src/modules/reorder.ts",
+      "file": "upstream/packages/web/src/modules/reorder.ts.txt",
+      "sha256": "dc4e25666ca98d8379834cc1a841a1e5d6eb4530e5819bcc145cf9fbafd33264"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "packages/web/src/modules/search.ts",
+      "file": "upstream/packages/web/src/modules/search.ts.txt",
+      "sha256": "5a5f420ac5b6266d0a09b008e5dcb376c6dfa51b7b56812fb997628e4f698c19"
+    },
+    {
+      "repository": "core",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "path": "tests/extension-dx/documentation-consumer/session.mjs",
+      "file": "upstream/tests/extension-dx/documentation-consumer/session.mjs.txt",
+      "sha256": "f0eae3ba134dffa99b38a0d495a62a74feab99412f8b70f57a79f79530081674"
+    }
+  ],
+  "receipts": [
+    {
+      "gate": "SDK-1.11",
+      "file": "upstream/configuration-receipt.json",
+      "sha256": "a85403a1f6dfadebfd3669e87c8e098d8c96f194a415ae20224906d45513bf9d",
+      "original": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/configuration-continuation-20261018/receipt.json"
+    },
+    {
+      "gate": "SDK-1.12",
+      "file": "upstream/loading-receipt.json",
+      "sha256": "b993a30f7bec6204698bbf352521dfeaafa274e01768f1a79a7e7daad5281f6d",
+      "original": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/receipt.json"
+    },
+    {
+      "gate": "EXT-1.20",
+      "file": "upstream/documentation-receipt.json",
+      "sha256": "f2cab41d7a56c1a86e2e2c9d2d6ab45d1048e52f9963a406cd38f520574aae9a",
+      "original": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/receipt.json"
+    }
+  ],
+  "packages": [
+    {
+      "name": "@edit-ac/core",
+      "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+      "sha256": "8dd850aef6ecd31a3eb79bbeb0f84581b34a41815d0054c84448e95656bcd843",
+      "version": "0.0.0",
+      "bytes": 1094920
+    },
+    {
+      "name": "@edit-ac/web",
+      "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+      "sha256": "0ab4e7e3e424a9f7a62e1a0019a1f05757d939c5f3d090fafce0ed3e21b2585e",
+      "version": "0.0.0",
+      "bytes": 1861552
+    },
+    {
+      "name": "@edit-ac/markdown",
+      "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/bundler/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+      "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+      "version": "0.0.0",
+      "bytes": 292169
+    }
+  ],
+  "runtime": [
+    {
+      "member": "package/dist/wasm/editac_wasm.js",
+      "sha256": "c5705415e888cd5451d2dc3b3963684bb756a21eb47006423ca52e6cf91920e1",
+      "unchanged": true,
+      "assembledBeforeInstallation": true
+    },
+    {
+      "member": "package/dist/wasm/editac_wasm_bg.wasm",
+      "sha256": "90c4438bf8f8f761d269c08f6119bdace96398b49b369ce5c5c93412f171401b",
+      "unchanged": true,
+      "assembledBeforeInstallation": true
+    }
+  ],
+  "qualifiedOwnerCounts": {
+    "executed": 39,
+    "passed": 39,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "sharedCoreIntegration": "not consumed or modified; exact unpublished packed return only",
+  "published": false
+}

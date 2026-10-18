@@ -83,13 +83,15 @@
     },
     "DWF-1.33": {
       "page": "content/docs/reference/lifecycle.md",
-      "status": "planned",
-      "runtimeQualified": false
+      "status": "local-packed",
+      "runtimeQualified": true,
+      "example": "examples/lifecycle/manifest.json"
     },
     "DWF-1.34": {
       "page": "content/docs/extensions/_index.md",
-      "status": "planned",
-      "runtimeQualified": false
+      "status": "local-packed",
+      "runtimeQualified": true,
+      "example": "examples/extension-configurations/admission.json"
     },
     "DWF-1.35": {
       "page": "content/docs/extensions/custom.md",

@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "gate": "SDK-1.11",
+  "state": "implemented-and-verified",
+  "deployed": false,
+  "at": "2026-10-17T22:22:53.229444+00:00",
+  "reportedSourceRevision": "e3a0c0ed38b17f625f6513a2ea4f2b4293cc74dceaf368d7d897abf29c675eaf",
+  "snapshotSha256": "e3a0c0ed38b17f625f6513a2ea4f2b4293cc74dceaf368d7d897abf29c675eaf",
+  "loadedPrompt": "2e18a98412c7",
+  "coreCommit": "e0d3af45e5cf6b1fc5276794225566654b459187",
+  "prerequisites": {
+    "ADX-1.1": "architecture 3656ad4299c83e42dfcf4eb80dd7d7806818d329; reuse current audited admission",
+    "EXT-1.14": "core 440a12e1894c6961e5361917c275bcee5637fba3; contract remains unchanged"
+  },
+  "criteria": {
+    "DXC-01/02/03": "All seven qualified first-party catalog families plus Markdown; both mounts, captured isolated host/options, invalid admission before DOM/recovery and legacy conflicts.",
+    "DXC-06": "Installed offline public-import declarations/SSR smoke; admitted assets; composed Markdown explicit manifest override. Hosting/omitted-installation campaigns remain SDK-1.12.",
+    "DXC-24": "Required parser gates both mounts; command-lazy export leaves typing ready; actual parser failure retains source; explicit retry resumes same replicas; late disposal cancels owned resources.",
+    "DXC-25": "Six independent formatting policies plus six existing marks and opaque vendor data; borrowed history and managed undo/persistence/reopen retain data.",
+    "DXC-27/28": "Mixed independent editors; both mounts share existing durable outbox/sync/presence; peer convergence, denied/delayed connectors, remount/reconnect, unsent edits and peer-preserving undo.",
+    "ENV-01/03": "Default platform/host/inherited settings and explicit spelling/autocorrection cross-product remain independent; unsupported custom configuration rejects without fallback; observed capability remains unknown."
+  },
+  "qualifiedCatalogCoverage": [
+    {
+      "id": "editac.slash",
+      "qualification": "qualified",
+      "factory": "SlashCommands"
+    },
+    {
+      "id": "editac.references",
+      "qualification": "qualified",
+      "factory": "References"
+    },
+    {
+      "id": "editac.reorder",
+      "qualification": "qualified",
+      "factory": "BlockReorder"
+    },
+    {
+      "id": "editac.images",
+      "qualification": "qualified",
+      "factory": "Images"
+    },
+    {
+      "id": "editac.tables",
+      "qualification": "qualified",
+      "factory": "Tables"
+    },
+    {
+      "id": "editac.math",
+      "qualification": "qualified",
+      "factory": "MathNotation"
+    },
+    {
+      "id": "editac.search",
+      "qualification": "qualified",
+      "factory": "DocumentSearch"
+    }
+  ],
+  "unqualifiedCatalogNotAdvertised": [
+    {
+      "id": "editac.code",
+      "qualification": "contract-fixture"
+    },
+    {
+      "id": "editac.pairs",
+      "qualification": "contract-fixture"
+    }
+  ],
+  "additionalCodec": "Markdown: qualified existing import/export/typing/paste implementations; no new parser/semantics",
+  "configuration": {
+    "command": "node scripts/test-extension-dx.mjs --group configuration",
+    "counts": {
+      "executed": 45,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "browser": {
+      "version": "156.0.8078.4",
+      "engine": "chromium",
+      "playwright": "1.64.0",
+      "node": "v24.19.0"
+    },
+    "receipt": "checks/final/browser/receipt.json",
+    "dispatcher": "checks/final/dispatch-receipt.json",
+    "minimumTests": 45,
+    "publicSmokeTypeRejections": 5,
+    "sourcePinsVerified": 39,
+    "sourcePinsUnchangedDuringRun": true,
+    "privateImports": false
+  },
+  "workspaceChecks": [
+    {
+      "command": "npm run typecheck",
+      "workspaces": [
+        "@edit-ac/core@0.0.0",
+        "@edit-ac/web@0.0.0",
+        "@edit-ac/react@0.0.0",
+        "@edit-ac/astro@0.0.0",
+        "@edit-ac/markdown@0.0.0"
+      ],
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "command": "npm run build",
+      "workspaces": [
+        "@edit-ac/core@0.0.0",
+        "@edit-ac/web@0.0.0",
+        "@edit-ac/react@0.0.0",
+        "@edit-ac/astro@0.0.0",
+        "@edit-ac/markdown@0.0.0"
+      ],
+      "passed": 5,
+      "failed": 0
+    }
+  ],
+  "preparedModuleRuntimeRegression": {
+    "command": "node --test --test-reporter=tap tests/module-runtime.test.mjs",
+    "counts": {
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "artifact": "module-runtime.tap",
+    "scope": "Prepared subscription/resource fixtures, not engine/browser cases"
+  },
+  "authenticatedRuntime": [
+    {
+      "pack": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-core-0.0.0.tgz",
+      "member": "package/dist/wasm/editac_wasm.js",
+      "sha256": "c5705415e888cd5451d2dc3b3963684bb756a21eb47006423ca52e6cf91920e1",
+      "localStaleDistUsed": false,
+      "layout": "selected admitted generated members replace pre-existing stale local generated members before execution; source JS/declarations are built packed public imports"
+    },
+    {
+      "pack": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-core-0.0.0.tgz",
+      "member": "package/dist/wasm/editac_wasm_bg.wasm",
+      "sha256": "90c4438bf8f8f761d269c08f6119bdace96398b49b369ce5c5c93412f171401b",
+      "localStaleDistUsed": false,
+      "layout": "selected admitted generated members replace pre-existing stale local generated members before execution; source JS/declarations are built packed public imports"
+    },
+    {
+      "pack": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-markdown-0.0.0.tgz",
+      "member": "package/dist/wasm/editac_markdown_wasm.js",
+      "sha256": "6b0d57edbeaa78d14230e9999be4d80435a8ab6106cd2831356bcef59e8ec5b5",
+      "localStaleDistUsed": false,
+      "layout": "selected admitted generated members replace pre-existing stale local generated members before execution; source JS/declarations are built packed public imports"
+    },
+    {
+      "pack": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-markdown-0.0.0.tgz",
+      "member": "package/dist/wasm/editac_markdown_wasm_bg.wasm",
+      "sha256": "35ad1237cdf59f4fabc26fdada23a0e02e7e88eb4092af98a69661f394589b4b",
+      "localStaleDistUsed": false,
+      "layout": "selected admitted generated members replace pre-existing stale local generated members before execution; source JS/declarations are built packed public imports"
+    }
+  ],
+  "packageArchiveInventory": [
+    {
+      "name": "core",
+      "file": "edit-ac-core-0.0.0.tgz",
+      "bytes": 1090055,
+      "sha256": "2cc4008774ad9d108a890de6cfa12e9a21b883136c3698711c2e708b33beecf3",
+      "previousBytes": 1090055,
+      "deltaBytes": 0
+    },
+    {
+      "name": "web",
+      "file": "edit-ac-web-0.0.0.tgz",
+      "bytes": 1844331,
+      "sha256": "364e11c85d1da83e837110c5f5b7ba3a2d93f52b94ba8ec5fdcfb8000bf8ad1e",
+      "previousBytes": 1837517,
+      "deltaBytes": 6814
+    },
+    {
+      "name": "markdown",
+      "file": "edit-ac-markdown-0.0.0.tgz",
+      "bytes": 292207,
+      "sha256": "7cd3a9ec253aa00373e612919e6f2ae14a5148a6b4f5edce435eec9623c0f176",
+      "previousBytes": null,
+      "deltaBytes": null
+    }
+  ],
+  "legacyTask": {
+    "sdkSourceUnchanged": true,
+    "capabilities": "Task naming/defaults and existing controls remain unchanged; facade selection is explicit",
+    "inventoryLimit": "Archive compressed bytes are not runtime transfer/bundle/budget qualification. Existing eager legacy public-barrel costs remain baseline; no disabled bundle separation claimed."
+  },
+  "retainedAttempts": [
+    {
+      "artifact": "checks/attempt-1/tests.tap",
+      "counts": {
+        "tests": 40,
+        "pass": 33,
+        "fail": 7,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    },
+    {
+      "artifact": "failed-cases-repair-1.tap",
+      "counts": {
+        "tests": 7,
+        "pass": 3,
+        "fail": 4,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    },
+    {
+      "artifact": "failed-cases-repair-2.tap",
+      "counts": {
+        "tests": 4,
+        "pass": 0,
+        "fail": 4,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Unchanged diagnostic invocation after a cwd edit failure; not counted as progress"
+    },
+    {
+      "artifact": "failed-cases-repair-3.tap",
+      "counts": {
+        "tests": 4,
+        "pass": 2,
+        "fail": 2,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    },
+    {
+      "artifact": "checks/complete-1/tests.tap",
+      "counts": {
+        "tests": 44,
+        "pass": 42,
+        "fail": 2,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    },
+    {
+      "artifact": "failed-cases-repair-4.tap",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    },
+    {
+      "artifact": "checks/final/tests.tap",
+      "counts": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "note": "Retained actual result"
+    }
+  ],
+  "cleanup": "cleanup.json",
+  "limits": [
+    "Only Chromium configuration integration; no Firefox/WebKit hosting/loading qualification",
+    "Prepared host transports/checker capability policy; no provider-quality or actual OS spelling claim",
+    "SDK-1.12 independent chunks/assets/omitted installs remain open",
+    "No native/device/IME/AT/performance/budget/release or conversion/cloud gate closed"
+  ],
+  "sideEffects": {
+    "providerCalls": 0,
+    "credentialLoads": 0,
+    "pushPublicationDeployment": false,
+    "primaryCheckoutModified": false
+  },
+  "artifactWhitespaceCheck": {
+    "status": 2,
+    "reason": "Raw retained TAP/log/diff whitespace is preserved; authored Markdown/JSON and implementation source checks pass",
+    "artifact": "artifact-whitespace-check.log"
+  }
+}

@@ -7,21 +7,28 @@ template = "docs.html"
 page_template = "doc-page.html"
 +++
 
-**Status: catalog and configuration consumers planned here.**
+**Status: locally packed catalog; unpublished.**
 
-Separate semantic blocks/nodes, inline marks and optional behavior/modules. Each needs exact versions, dependencies, options, costs and presenter limits before a configuration example is runnable. Application labels do not restrict which extensions may be composed.
+Choose features individually; application labels never limit an extension set. Semantic blocks/nodes and inline marks are document data; optional behaviors and host presenters attach to the existing engine.
 
-Read the existing [extension integration contract](@/docs/guides/extensions.md). The catalog will cover headings/lists, code highlighting, tables, assets/links and optional menus/drag handles. [Custom extension tutorials](@/docs/extensions/custom.md) have a separate reserved entry. No new facade API is advertised by this index.
+- [Headings, lists and inline formatting](@/docs/extensions/formatting.md)
+- [Search and block reorder](@/docs/extensions/navigation.md)
+- [Tables, images and source preservation](@/docs/extensions/content.md)
+- [References and slash menus](@/docs/extensions/actions.md)
+- [Markdown, math and highlighting assets](@/docs/extensions/loading.md)
+- [Compose features and inspect presets](@/docs/extensions/presets.md)
+
+Use the [complete installed configuration consumer](@/docs/examples/extension-configurations.md) for exact source/artifact identities and independently checked outcomes. New configuration examples consume SDK-1.11/1.12 and EXT-1.20's immutable candidate; this is not a registry install or a shared-main release. [Custom authoring](@/docs/extensions/custom.md) remains a separate delivery.
 
 ## Before you start
 
 **Prerequisites:** Check the host capability profile and exact extension descriptor version.
 
-**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. The linked consumer uses immutable unpublished 0.0.0 packs; see [capability and release status](@/docs/reference/status.md).
 
 ## Example and expected outcome
 
-Planned configuration examples pair an original input/action/output with source, serialization, cancellation and disposal evidence. A browser presenter does not establish native support.
+Configuration examples pair an original input/action/output with source, serialization, cancellation and disposal evidence. A browser presenter does not establish native support.
 
 ## Failure and recovery
 

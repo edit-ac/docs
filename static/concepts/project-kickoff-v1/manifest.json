@@ -96,6 +96,39 @@
         "content/docs/examples/lifecycle.md"
       ],
       "qualification": "Local Chromium suite only; remote not configured; frozen React/SSR source explanation only"
+    },
+    {
+      "id": "extension-configurations/1",
+      "parent": "DWF-1.34",
+      "maturity": "local-packed",
+      "runtimeQualified": true,
+      "testedSdkVersion": "0.0.0 (unpublished; exact EXT-1.20 packs)",
+      "profile": "v5",
+      "source": "examples/extension-configurations/README.md",
+      "manifest": "examples/extension-configurations/admission.json",
+      "consumer": "examples/extension-configurations/harness.mjs",
+      "test": "tests/docs-extension-catalog.test.mjs",
+      "downloadBase": "/reference-inputs/extension-configurations-v1/",
+      "pages": [
+        "content/docs/examples/extension-configurations.md",
+        "content/docs/extensions/formatting.md",
+        "content/docs/extensions/navigation.md",
+        "content/docs/extensions/content.md",
+        "content/docs/extensions/actions.md",
+        "content/docs/extensions/loading.md",
+        "content/docs/extensions/presets.md"
+      ],
+      "qualification": {
+        "suite": "tests/docs-extension-catalog.test.mjs",
+        "counts": {
+          "executed": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "reader": "tests/docs-extension-catalog-reader.test.mjs (4 distinct cases)",
+        "limits": "Exact unpublished local packs; Chromium mechanics; no registry/shared-main/native/OS/IME/AT/performance/deployed qualification"
+      }
     }
   ]
 }
