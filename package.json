@@ -13,7 +13,8 @@
     "build": "node scripts/site-build.mjs",
     "check:site": "node --test tests/site-build.test.mjs",
     "check:reference": "node scripts/generate-reference.mjs --check && node --test tests/reference-profile.test.mjs",
-    "check:examples": "node scripts/check-examples.mjs"
+    "check:examples": "node scripts/check-examples.mjs",
+    "check:local-admission": "python3 -B scripts/admit-local-docs.py"
   },
   "packageManager": "npm@11.17.0",
   "devDependencies": {

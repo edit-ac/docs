@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "scope": "local-only",
+  "published": false,
+  "releaseQualified": false,
+  "architectureCommit": "970b8c5a56d996f469881facf1d5fdf0b66daa57",
+  "coreCommit": "7ba6a59998ffc9e2cae840e553e43c3f86a3aa5e",
+  "docsBaseline": "14a38259f73df08513cb2e36cea72acb5530d690",
+  "checker": {
+    "path": "scripts/admit-local-candidates.py",
+    "sha256": "7548c6b882edafed13b2131136c1a06ace88707c0b5e9ceb01f8fd8d2b67ad7b"
+  },
+  "manifest": {
+    "path": "evidence/local-consumer-return/20261018/local-candidates-v5.json",
+    "sha256": "27fb6a35786c50d2faa9a3a4d7c90340da6d7c667caf48060c54ae270c055729"
+  },
+  "candidateReceipt": {
+    "path": "evidence/local-consumer-return/20261018/candidate-receipt.json",
+    "sha256": "99b563b9543c2e64eff0dc6d16cada6255d482902517a3419f841bd51b11abdb"
+  },
+  "calloutReceipt": {
+    "path": "evidence/local-consumer-return/20261018/callout-receipt-v2.json",
+    "sha256": "ffe71d91fb02cb5e000679b173a96685a62ae3027793ad78b22491a01612e197"
+  },
+  "priorDocs": {
+    "DWF-1.1": {
+      "task": "DWF-1.1",
+      "docsCommit": "729827b658d54cdaabd22b5203bbeacb35475e50",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.1-delivery.json",
+        "sha256": "b130d9d28dec8beb62e603bb06e46054ce432695fed72b6ed0140c0c0d8187b4"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.1-receipt.json",
+        "sha256": "b130d9d28dec8beb62e603bb06e46054ce432695fed72b6ed0140c0c0d8187b4"
+      }
+    },
+    "DWF-1.2": {
+      "task": "DWF-1.2",
+      "docsCommit": "eb2c4a06ae7cefafb6ed740eb6de0a93c37fa260",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.2-delivery.json",
+        "sha256": "fb53eb3c3731340fb1017cee212838a9f8afac3c33e47572b12fad2e57f13951"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.2-receipt.json",
+        "sha256": "567a94dbb4ddaeb381d3aebfe98ffde98eaeeeceffd0fec64e8e466fac2e5fea"
+      }
+    },
+    "DWF-1.3": {
+      "task": "DWF-1.3",
+      "docsCommit": "ea0d561b99be5b1c005cd0a439db92433cfa0a7b",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.3-delivery.json",
+        "sha256": "5dc859b0651e58f51505461b2e6eafbb26363a2cc6965af2030a11b6813ce544"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.3-receipt.json",
+        "sha256": "ccfcbce1590aa72a67a37d525aec86b8b6ab3796d3e33df51929a4208182de51"
+      }
+    },
+    "DWF-1.4": {
+      "task": "DWF-1.4",
+      "docsCommit": "fd9b5300887d260e6b52e7c2d55eaabb0ccf495c",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.4-delivery.json",
+        "sha256": "13974722f0184d72fc871e1157aff1f6ccedd0f0c5071b00d7fcc6ee4678aaea"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.4-receipt.json",
+        "sha256": "540a8f0f8b4b7af10b49d808ae6f2aa3570923388ec4bc0a5fd4789f5a2f419d"
+      }
+    },
+    "DWF-1.31": {
+      "task": "DWF-1.31",
+      "docsCommit": "19ec440176802a30754da3d3bd89bba33460b60f",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.31-delivery.json",
+        "sha256": "f949731ecce4a072cd3366562fbab4137e0dc148138283774fcabe64d92ce4a3"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.31-receipt.json",
+        "sha256": "f1366863e0dc2141135c70f86a402756372892086bced9bea227d9302e7d1a02"
+      }
+    },
+    "DWF-1.32": {
+      "task": "DWF-1.32/I1/V1",
+      "docsCommit": "7f02e99af51342ce046e78299f03e7706bb0863b",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.32-delivery.json",
+        "sha256": "03f7bd057de5e910ed9981e681ad64997c00c958aa4240c8648a54e6b3cb3c41"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.32-receipt.json",
+        "sha256": "445e9dbafcc507d85b92a81aa1139ea2ac01483e036f000d66961e641422ad04"
+      }
+    },
+    "DWF-1.33": {
+      "task": "DWF-1.33",
+      "docsCommit": "46d0f2a1271e4f7bd372a18d0c5c0ebc457858ce",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.33-delivery.json",
+        "sha256": "575b35eb7febd232cd650ff558e037b2e244a4e7c7016a450420daac31c59c63"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.33-receipt.json",
+        "sha256": "49dbb1d3752f8db729dba0619018da6fcd57b65db3fb539b7d195b72ea5353b7"
+      }
+    },
+    "DWF-1.34": {
+      "task": "DWF-1.34",
+      "docsCommit": "fae044efd46901add814c5b4547b3d23b56ca4b4",
+      "scope": "original-completed-prerequisite",
+      "delivery": {
+        "path": "docs-prerequisites/1.34-delivery.json",
+        "sha256": "a89efaa37252b6ee7e6f486974d360e9dc35ef821847260568a496e351fd5862"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.34-receipt.json",
+        "sha256": "f04b920dc89e38b77d216856882814719311b188ee1a09a58fcc51cc6933f4b3"
+      }
+    },
+    "DWF-1.35-C1": {
+      "task": "DWF-1.35-C1",
+      "docsCommit": "14a38259f73df08513cb2e36cea72acb5530d690",
+      "scope": "source-prerequisite-only",
+      "delivery": {
+        "path": "docs-prerequisites/1.35-source-delivery.json",
+        "sha256": "ffa15a60a132981bedf99ed4a5c79777a838f25be4207f93b7ee31afb8e3d314"
+      },
+      "receipt": {
+        "path": "docs-prerequisites/1.35-source-receipt.json",
+        "sha256": "d7e72730373703e736ff96c6081551c38ac17774678e45009ac64fcbddd8b71f"
+      }
+    }
+  },
+  "dependencyMap": {
+    "DWF-1.1": [
+      "all continuation gates: repository baseline"
+    ],
+    "DWF-1.2": [
+      "all continuation gates: static build"
+    ],
+    "DWF-1.3": [
+      "DWF-1.5",
+      "DWF-1.36",
+      "DWF-1.37",
+      "DWF-1.38"
+    ],
+    "DWF-1.4": [
+      "DWF-1.5",
+      "DWF-1.6",
+      "DWF-1.35"
+    ],
+    "DWF-1.31": [
+      "DWF-1.37",
+      "DWF-1.38"
+    ],
+    "DWF-1.32": [
+      "DWF-1.5",
+      "DWF-1.9",
+      "DWF-1.37"
+    ],
+    "DWF-1.33": [
+      "DWF-1.5",
+      "DWF-1.9",
+      "DWF-1.35"
+    ],
+    "DWF-1.34": [
+      "DWF-1.35"
+    ],
+    "DWF-1.35-C1": [
+      "DWF-1.35: retained source only, runtime parent remains open"
+    ]
+  },
+  "deferredOriginalGates": [
+    "EQL-1.9 publication",
+    "roadmap10 release/registry",
+    "DWF-1.7 native consumer",
+    "DWF-1.8 actual cloud host",
+    "native/device/IME/AT/performance/budget qualification"
+  ],
+  "readyRequests": [
+    {
+      "path": "evidence/local-admission-continuation-20261018/inputs/local-candidates-ready-20261018.json",
+      "sha256": "8be7927149a41863d34cab21e00f32ea714adb478812ebf33d8da8cd90bb44e1"
+    },
+    {
+      "path": "evidence/local-admission-continuation-20261018/inputs/local-candidates-ready-20261018-v2.json",
+      "sha256": "d9f43a5358ff8268f354a957eec62dd6adc579c6beb3d12f375664439667b1f5"
+    }
+  ],
+  "reviewedCompatibility": {
+    "package.json": {
+      "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
+      "afterSha256": "17fb176f42ab715fc1b7fb2fc9f40c5d4391aad7b47ef8ab47e57c7799127c29",
+      "reason": "Add deterministic local admission command; existing docs scripts, versions and dependencies are unchanged."
+    }
+  }
+}
