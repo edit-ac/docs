@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "profile": "v5",
+  "maturity": "local-packed",
+  "published": false,
+  "sourceCommit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+  "packages": [
+    {
+      "name": "@edit-ac/core",
+      "version": "0.0.0",
+      "path": "evidence/integrated-browser/primary-flow-20261018/pin-1.3/installed-chromium-desktop/edit-ac-core-0.0.0.tgz",
+      "sha256": "8c31e6f6ce4ed4f61b2b3c7a06b4204a4fad3349af07c61c03184f69a80a265c"
+    },
+    {
+      "name": "@edit-ac/web",
+      "version": "0.0.0",
+      "path": "evidence/integrated-browser/primary-flow-20261018/pin-1.3/installed-chromium-desktop/edit-ac-web-0.0.0.tgz",
+      "sha256": "a057d623d3a24e609b400c2535158e9cc28e2c091f214464a93133c0758910ba"
+    }
+  ],
+  "runtime": [
+    {
+      "path": "evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-core-0.0.0.tgz",
+      "packSha256": "fd3334139be8c7e403be5fb885222c29b12d8e311912e461783ad4520de21a8c",
+      "member": "package/dist/wasm/editac_wasm.js",
+      "sha256": "c5705415e888cd5451d2dc3b3963684bb756a21eb47006423ca52e6cf91920e1"
+    },
+    {
+      "path": "evidence/extension-dx/owner-return-20261017/consumer-final/edit-ac-core-0.0.0.tgz",
+      "packSha256": "fd3334139be8c7e403be5fb885222c29b12d8e311912e461783ad4520de21a8c",
+      "member": "package/dist/wasm/editac_wasm_bg.wasm",
+      "sha256": "90c4438bf8f8f761d269c08f6119bdace96398b49b369ce5c5c93412f171401b"
+    }
+  ],
+  "fixture": "project-kickoff/1",
+  "fixtureSha256": "58967b5a999def076718ad96f38ff2d0ac3e55ab78b86dd82357a2caaa8ea704",
+  "id": "project-kickoff-lifecycle/1",
+  "parent": "DWF-1.33",
+  "files": {
+    "README.md": "1b1c0814326b8e551fe382e8ce35a939c8f83a53d41d45068466b4d5e30859d2",
+    "consumer.mjs": "88e8d5c8be1a99c988db23db10aab646900cd0325fac6912dd3a1376eca785c6",
+    "docs-lifecycle.test.mjs": "e5ea6d3830e04a1e30220fa9017e78dc825b82082c5997ff1ce4b1e3e479152c",
+    "harness.mjs": "48e23d48950785e523069dccc8b517c2a0dc6de738fa7229039d15a15472b936",
+    "prepare-lifecycle.mjs": "5797c6eed8249b1c815f11494875d540c140a5d8e1d4941595046f7d34048e28",
+    "react-browser.spec.ts.txt": "63c46a1ca9989a3f7919f1e1e113773be2df835705c5cc3705351da61b0ba7d5",
+    "react-consumer.mjs": "9cc0c39af5490e2428d440e080b8df0bcf735b1452f5c04102bae1c6aa7ceac8",
+    "react-owner.ts.txt": "9fb46490d138f0ec38d88c9ae5c4c3661a9050be5413da2a1d9f12eadf967400",
+    "react-sources.json": "d18ea21b9f9e89c6c6e3f7202795de8b2c884ddb504a93550776287b874da173",
+    "react-ssr.test.mjs": "bf77a91dcc431c2d52681a64aba4e1c97b898eef19efca1f3990c302e8f9a545"
+  },
+  "snippets": {
+    "open": {
+      "file": "consumer.mjs",
+      "start": 76,
+      "end": 102,
+      "sha256": "f5eb1665b58ff454ed32a15a2a6af9a9c3b3d79de196641ad8e536e4d53ce6bb"
+    },
+    "save": {
+      "file": "consumer.mjs",
+      "start": 105,
+      "end": 116,
+      "sha256": "b9d47c9a70a93220a5ec5019a241323b2a0a0b65429b5d58305b37fc54d5a220"
+    },
+    "close": {
+      "file": "consumer.mjs",
+      "start": 135,
+      "end": 143,
+      "sha256": "ca5b194ed71eab7dbbc353b167d11f5b4aab32d71c4ff4ab04a394f8dc52232c"
+    }
+  },
+  "declarations": {
+    "web/dist/editor.d.ts": "fca919eff66e60eeca01828544d7f3a14666708eb745cb1e1f8e0fa3730dd35c",
+    "web/dist/lifecycle.d.ts": "51fa3b63956b0df5410d0df217301b5a3c367924417d41b836fe21b82dc27905",
+    "web/dist/entry.d.ts": "b01d75f76a5422d7e6bff4eeec99ab056af6c6cf6254557c9c21eb4c008aa015",
+    "web/dist/storage/index.d.ts": "a42bc2b70ac324ca8ff0d04583e8f88cdb607baec5aa0447b052fe14dc75126a",
+    "web/dist/storage/journal.d.ts": "448833c91938845dfad62a12ec3da49a81932445e1ee883a381bdc59a87001b6",
+    "web/dist/sdk.d.ts": "a351387db29340117ec9084b2f06e186ea80717c34dd267ccc6ec35e1559015e",
+    "core/dist/engine.d.ts": "936b5c040c1c538c3abae3623a35f3fbe43a44be206b6ea7ec8b334199dbab3d"
+  },
+  "remoteDurability": "not-configured; no qualified remote receipt",
+  "react": "Existing pinned source explanation only; not reexecuted or newly qualified"
+}

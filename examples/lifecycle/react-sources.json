@@ -1,0 +1,38 @@
+[
+  {
+    "repository": "edit-ac/core",
+    "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+    "path": "fixtures/browser-react/client.mjs",
+    "file": "react-consumer.mjs",
+    "sha256": "9cc0c39af5490e2428d440e080b8df0bcf735b1452f5c04102bae1c6aa7ceac8",
+    "gitBlob": "7f498dd24ea745d677fd07e88d20435b4c72d827",
+    "qualification": "source explanation only; not reexecuted as React/framework proof"
+  },
+  {
+    "repository": "edit-ac/core",
+    "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+    "path": "tests/browser/react.spec.ts",
+    "file": "react-browser.spec.ts.txt",
+    "sha256": "63c46a1ca9989a3f7919f1e1e113773be2df835705c5cc3705351da61b0ba7d5",
+    "gitBlob": "297e7edb3cddead35c690b5d7ecb44052d5c78f5",
+    "qualification": "source explanation only; not reexecuted as React/framework proof"
+  },
+  {
+    "repository": "edit-ac/core",
+    "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+    "path": "tests/react-ssr.test.mjs",
+    "file": "react-ssr.test.mjs",
+    "sha256": "bf77a91dcc431c2d52681a64aba4e1c97b898eef19efca1f3990c302e8f9a545",
+    "gitBlob": "04f7be71c50417d87e4658c6d43a057f0a942284",
+    "qualification": "source explanation only; not reexecuted as React/framework proof"
+  },
+  {
+    "repository": "edit-ac/core",
+    "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+    "path": "packages/react/src/index.ts",
+    "file": "react-owner.ts.txt",
+    "sha256": "9fb46490d138f0ec38d88c9ae5c4c3661a9050be5413da2a1d9f12eadf967400",
+    "gitBlob": "69252ac7f2a2d5407c8c791f5867b10616e1ec50",
+    "qualification": "source explanation only; not reexecuted as React/framework proof"
+  }
+]

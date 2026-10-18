@@ -27,3 +27,5 @@ Check release status and capability limits before choosing an integration.
 - [Glossary](@/docs/reference/glossary.md): current contract vocabulary.
 
 These generated entries link the [qualified local consumer](@/docs/examples/qualified-local.md) and [core concepts](@/docs/concepts/_index.md). This index advertises no absent API.
+
+[Open, save and close](@/docs/reference/lifecycle.md) traces real local receipts, failure recovery and cleanup. [Events and ordering](@/docs/reference/events.md) separates lifecycle state, document patches and selection.

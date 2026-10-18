@@ -25,3 +25,5 @@ Cancel pending work and unsubscribe on unmount. A missing browser global during 
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+
+See [lifecycle effect cleanup and SSR boundaries](@/docs/reference/lifecycle.md#react-effects-and-ssr-boundaries) for a pinned explanation of the existing React consumer. The accompanying new saving suite qualifies local BrowserEditor behavior only; this React package tutorial remains pending its separate artifact evidence.
