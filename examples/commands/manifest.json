@@ -39,7 +39,7 @@
   "files": {
     "README.md": "ed5a18891282d79689374e62fdcb69390c353b253daf3953d6b508210879ca82",
     "consumer.mjs": "a8979a290ee07208ea2659149626d99240037f922a3ee133fae86bf49704fbbb",
-    "docs-commands.test.mjs": "3aee9bb24ed581d658040d848c690cb5ffe56917acd774c0400a4c0bf5d2ad5b",
+    "docs-commands.test.mjs": "f11febc9f8410f5af4696dad68f4316e2e43dab9b8608c95e4c09f7a6357a830",
     "harness.mjs": "a266c7b3e45087e2daa7b69e7e28e9fc2f99bf9ac2d61bf7ffda0097861f03ff",
     "prepare-commands.mjs": "58e883b208deeb6e5e2bc369fe5f7cfa32deba633c0dd67837c1bd2bc938297c"
   },

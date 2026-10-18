@@ -1,6 +1,7 @@
 import {test,before,after,beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {join} from 'node:path';
 import {openHarness,docsRoot,digest,manifest} from '../examples/commands/harness.mjs';
 import {declaration,renderReference} from '../scripts/generate-reference.mjs';
@@ -81,6 +82,9 @@ test('invalid later chain command rejects the whole prepared transaction and pre
 });
 test('generated signatures and all snippet/source/download hashes match the exact packed declarations',()=>{
   renderReference(docsRoot);
+  const inputs=JSON.parse(readFileSync(join(docsRoot,'releases/local-pin-1.3.json'))).inputs;
+  const tracked=new Set(execFileSync('git',['-C',docsRoot,'ls-files','-z'],{encoding:'utf8'}).split('\0'));
+  for(const pin of inputs) assert.ok(tracked.has(`static/reference-inputs/local-pin-1.3/${pin.path}`),`Uncommitted frozen input: ${pin.path}`);
   const modules=['commands/catalog.d.ts','input/keyboard.d.ts','commands/formatting.d.ts','editor.d.ts'];
   for(const file of modules) assert.equal(digest(readFileSync(join(docsRoot,'static/reference-inputs/local-pin-1.3/web/dist',file))),manifest.declarations[file]);
   assert.match(declaration(readFileSync(join(docsRoot,'static/reference-inputs/local-pin-1.3/web/dist/commands/catalog.d.ts'),'utf8'),'CapturedCommand'),/execute\(text\?: string\)/);
