@@ -9,7 +9,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "check": "node scripts/prepare-formats.mjs --check && node scripts/prepare-concepts.mjs --check && node scripts/generate-reference.mjs --check && node scripts/check-docs.mjs",
+    "check": "node scripts/prepare-host-services.mjs --check && node scripts/prepare-formats.mjs --check && node scripts/prepare-concepts.mjs --check && node scripts/generate-reference.mjs --check && node scripts/check-docs.mjs",
     "build": "node scripts/site-build.mjs",
     "check:site": "node --test tests/site-build.test.mjs",
     "check:reference": "node scripts/generate-reference.mjs --check && node --test tests/reference-profile.test.mjs",

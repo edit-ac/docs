@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "id": "host-services-transcripts/1",
+  "maturity": "prepared-conceptual",
+  "runtimeQualified": false,
+  "fieldNames": "Descriptive oracle fields; not an SDK or wire schema. R0/R1 and receipt IDs are illustrative opaque tokens.",
+  "scenarios": [
+    {
+      "id": "two-client-save-reconnect",
+      "owner": "roadmap28 (not yet executable)",
+      "steps": [
+        {
+          "id": "C01",
+          "action": "A edits Friday to Monday while B is disconnected",
+          "expect": {
+            "aText": "Deadline Monday",
+            "bText": "Deadline Friday",
+            "localCommitted": true,
+            "remoteCommitted": false
+          }
+        },
+        {
+          "id": "C02",
+          "action": "A sends queued update; socket acknowledges",
+          "expect": {
+            "aText": "Deadline Monday",
+            "bText": "Deadline Friday",
+            "remoteCommitted": false,
+            "receipt": null
+          }
+        },
+        {
+          "id": "C03",
+          "action": "Host transaction commits but response is lost",
+          "expect": {
+            "clientOutcome": "unknown",
+            "retryIdentity": "same operation and digest",
+            "receipt": null
+          }
+        },
+        {
+          "id": "C04",
+          "action": "A reauthenticates and queries the operation ledger",
+          "expect": {
+            "remoteCommitted": true,
+            "receipt": "service-receipt-1",
+            "durability": "declared backend class only",
+            "assetAvailable": false
+          }
+        },
+        {
+          "id": "C05",
+          "action": "B reauthenticates and resumes from committed cursor",
+          "expect": {
+            "aText": "Deadline Monday",
+            "bText": "Deadline Monday",
+            "receipt": "service-receipt-1",
+            "duplicateEffects": 0
+          }
+        },
+        {
+          "id": "C06",
+          "action": "B reconnects after write access is revoked",
+          "expect": {
+            "writeDenied": true,
+            "localBackupRetained": true,
+            "newRemoteEffects": 0
+          }
+        },
+        {
+          "id": "C07",
+          "action": "Recover backup into isolated destination",
+          "expect": {
+            "sourceStoreOverwritten": false,
+            "hashesAndCoverageVerified": true,
+            "acknowledgedText": "Deadline Monday",
+            "assetBytesRequireSeparateVerification": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "fixed-host-mcp-proposal",
+      "owner": "roadmap14 retained AGT-APP-01,04,05,06,08",
+      "steps": [
+        {
+          "id": "M01",
+          "action": "Authorized app reads retained Markdown baseline",
+          "expect": {
+            "source": "base\n\nother\n",
+            "baseRevision": "R0"
+          }
+        },
+        {
+          "id": "M02",
+          "action": "Prepare fixed candidate against baseline",
+          "input": {
+            "candidateMarkdown": "uploaded 😀\n\nother\n"
+          },
+          "expect": {
+            "sourceUnchanged": true,
+            "proposalStatus": "prepared",
+            "sourceAndSemanticDiff": true
+          }
+        },
+        {
+          "id": "M03",
+          "action": "Human reviews and host applies proposal with stable request ID",
+          "expect": {
+            "paragraphs": [
+              "uploaded 😀",
+              "other"
+            ],
+            "localDurability": "durable",
+            "remoteDurability": "pending",
+            "effects": 1
+          }
+        },
+        {
+          "id": "M04",
+          "action": "Reopen Session/SQLite and retry same payload/request after human revision advances",
+          "expect": {
+            "originalReceiptReturned": true,
+            "newEffects": 0
+          }
+        },
+        {
+          "id": "M05",
+          "action": "Attempt stale overlapping proposal as a new request",
+          "expect": {
+            "outcome": "conflict",
+            "newEffects": 0,
+            "newerHumanContentPreserved": true
+          }
+        },
+        {
+          "id": "M06",
+          "action": "Read current baseline and prepare a new reviewed proposal",
+          "expect": {
+            "automaticReplacement": false,
+            "requiresReview": true,
+            "newRequestId": true
+          }
+        },
+        {
+          "id": "M07",
+          "action": "Persistence fails after an engine edit",
+          "expect": {
+            "outcome": "pending-or-unknown",
+            "mutationAdmissionFrozen": true,
+            "outboundSyncFrozen": true,
+            "readAndRecoveryExportAvailable": true
+          }
+        },
+        {
+          "id": "M08",
+          "action": "Ordered journal recovery resolves original request",
+          "expect": {
+            "sameRequestIdentity": true,
+            "duplicateEffects": 0,
+            "remoteDurability": "pending"
+          }
+        }
+      ]
+    }
+  ]
+}

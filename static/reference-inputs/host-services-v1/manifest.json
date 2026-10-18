@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "host-services/1",
+  "parent": "DWF-1.8",
+  "maturity": "source-prerequisite",
+  "runtimeQualified": false,
+  "testedSdkVersion": null,
+  "downloadBase": "/reference-inputs/host-services-v1/",
+  "agent": {
+    "coreCommit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+    "receiptFile": "source/architecture/evidence/agent-integration/agt-1.7-20261017/receipt.json",
+    "caseRevision": "AGT-APP-01..10-v1",
+    "checks": [
+      {
+        "command": "node --test tests/agent-integration.test.mjs",
+        "log": "integration-canonical.log",
+        "exit": 0,
+        "executed": 10,
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      {
+        "command": "npm run test:browser -- agent-realtime",
+        "log": "browser-final.log",
+        "exit": 0,
+        "executed": 27,
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      {
+        "command": "node --test tests/host-agent-contract.test.mjs tests/agent-markdown.test.mjs tests/agent-prepare.test.mjs tests/agent-observe.test.mjs",
+        "log": "host-regression.log",
+        "exit": 0,
+        "executed": 71,
+        "passed": 71,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "reuse": "52 unaffected cases; identity repair requalifies19 observation cases below"
+      },
+      {
+        "command": "node --test tests/agent-integration.test.mjs tests/agent-observe.test.mjs",
+        "log": "identity-repair.log",
+        "exit": 0,
+        "executed": 29,
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0
+      }
+    ],
+    "remoteDurability": "pending",
+    "evidenceUse": "retained owning executions, not docs runtime executions",
+    "receiptSha256": "931413ad50eedfaf2e1783ed941b8ef8f846dc3fcd52317b0adcdd1232dd8714"
+  },
+  "service": {
+    "owner": "roadmap28 / CLD-1",
+    "requiredPath": "services/document-store",
+    "status": "unavailable",
+    "consumerReceipt": null,
+    "deploymentManifest": null,
+    "runner": null
+  },
+  "records": [
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/README.md",
+      "file": "source/core/examples/host-mcp/README.md.txt",
+      "sha256": "c17fde3b6ca180ab4d0dcd3dfb2f19901acdca2f6a2fc012a6f9b971b64e0589"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/register.mjs",
+      "file": "source/core/examples/host-mcp/register.mjs",
+      "sha256": "6e2598d5da031cb1e5daeccbb568390fb4362b96533a258e7545afd8f9052663"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/prepared-app.mjs",
+      "file": "source/core/examples/host-mcp/prepared-app.mjs",
+      "sha256": "45a84bbed1a320d366ef187801f8a0058d6ad2d9a51f76374123267912fabbf6"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/realtime-owner.rs",
+      "file": "source/core/examples/host-mcp/realtime-owner.rs",
+      "sha256": "fd61099526a9c1e2f4fc832476c29194ec154fadc76e4e6798584119dd6ce558"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/previews.rs",
+      "file": "source/core/examples/host-mcp/previews.rs",
+      "sha256": "8c3ae88254ed6510256f8aa2ce012ec10bd4945987ff13f53410dd29bf9bc039"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "examples/host-mcp/src/observe.ts",
+      "file": "source/core/examples/host-mcp/src/observe.ts",
+      "sha256": "9e558b857b39d6eac747d934e76678df1a2c7846dc413ac53e77edeb42495b8b"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "tests/agent-integration.test.mjs",
+      "file": "source/core/tests/agent-integration.test.mjs",
+      "sha256": "6f5647d6e65458b337e0581f6558974dcf5abc7808f7bf1df3ffe0f72b6e7349"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "tests/helpers/agent-observe.mjs",
+      "file": "source/core/tests/helpers/agent-observe.mjs",
+      "sha256": "3517a1cd2adf48f89872590fc63186ef1494b76d3cbbbe9216e2351f9133fc9c"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "packages/web/src/host/contract.ts",
+      "file": "source/core/packages/web/src/host/contract.ts",
+      "sha256": "87d7151d14e9feb564b729947e3fa796529dff7edfad664a6b8db67f5fed1052"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "packages/web/src/host/apply.ts",
+      "file": "source/core/packages/web/src/host/apply.ts",
+      "sha256": "2096dd679f1e26eb168951b944a90b7f86d48f3f5a35e31714d0d25a15b0dc67"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "packages/web/src/host/prepare.ts",
+      "file": "source/core/packages/web/src/host/prepare.ts",
+      "sha256": "8f43e25a4ea0a3367c3795635e42ce235f8ffd2cf1600da39b4b4ed4f8d1a8b0"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "packages/web/src/host/markdown.ts",
+      "file": "source/core/packages/web/src/host/markdown.ts",
+      "sha256": "3c8132332e337956921ff5a843f8f9044b6f0459179bbf1a4eccdaa3a9b57fb5"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "crates/editac-session/src/receipts.rs",
+      "file": "source/core/crates/editac-session/src/receipts.rs",
+      "sha256": "b2c0643508ddbc39527129b103517a405719a83ffe7e7d65c3155ea9672af7bf"
+    },
+    {
+      "repository": "core",
+      "commit": "c16ddbf76b04b896ba6bcbab77bfc6743ff458bf",
+      "path": "LICENSE",
+      "file": "source/core/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "repository": "architecture",
+      "commit": "b0ab84ab950f8fc0a3d4abcde4d93c0db6169544",
+      "path": "evidence/agent-integration/agt-1.7-20261017/receipt.json",
+      "file": "source/architecture/evidence/agent-integration/agt-1.7-20261017/receipt.json",
+      "sha256": "931413ad50eedfaf2e1783ed941b8ef8f846dc3fcd52317b0adcdd1232dd8714"
+    },
+    {
+      "repository": "architecture",
+      "commit": "b0ab84ab950f8fc0a3d4abcde4d93c0db6169544",
+      "path": "specs/agent-editing.md",
+      "file": "source/architecture/specs/agent-editing.md.txt",
+      "sha256": "e7eda7c8e1e686aaf54838426d277ece00314be764d8db89992cb10bbcfea2f1"
+    },
+    {
+      "repository": "architecture",
+      "commit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "path": "specs/cloud-document-store.md",
+      "file": "source/architecture/specs/cloud-document-store.md.txt",
+      "sha256": "88ee7d5a3eb83477b7af5df5818525ce3f07c5f9ce71342cac953b9a4c39d748"
+    },
+    {
+      "repository": "architecture",
+      "commit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "path": "roadmaps/28-cloud-document-store.md",
+      "file": "source/architecture/roadmaps/28-cloud-document-store.md.txt",
+      "sha256": "989291c7b4ed2c6e12968308898ab0b0fca50dad96b7188f63f06313ac51864d"
+    }
+  ]
+}

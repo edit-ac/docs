@@ -45,6 +45,8 @@
     "content/docs/reference/api-capabilities.md",
     "content/docs/concepts/structure.md",
     "content/docs/concepts/editing.md",
-    "content/docs/concepts/persistence.md"
+    "content/docs/concepts/persistence.md",
+    "content/docs/guides/host-operations.md",
+    "content/docs/examples/host-services.md"
   ]
 }
