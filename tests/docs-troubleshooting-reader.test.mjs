@@ -1,0 +1,20 @@
+import {test,before,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {createServer} from 'node:http';
+import {readFileSync,mkdirSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {join,resolve,sep,extname} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {buildSite} from '../scripts/site-build.mjs';
+const output=resolve(process.env.DOCS_TROUBLESHOOTING_READER_OUTPUT||'evidence/troubleshooting-20261018/reader');
+let temporary,site,server,browser,origin;const facts={cases:[],external:[],errors:[],cleanup:{}};
+before(async()=>{mkdirSync(output,{recursive:true});temporary=mkdtempSync(resolve('.site-build-test-troubleshooting-reader-'));site=join(temporary,'site');
+ server=createServer((req,res)=>{try{let file=resolve(site,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));assert(file===site||file.startsWith(site+sep));if(!extname(file))file=join(file,'index.html');res.setHeader('content-type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.zip':'application/zip'})[extname(file)]||'application/octet-stream');res.end(readFileSync(file));}catch{res.writeHead(404).end();}});await new Promise(r=>server.listen(0,'127.0.0.1',r));facts.port=server.address().port;origin='http://127.0.0.1:'+facts.port;buildSite({outputDir:site,baseUrl:origin});
+ const {chromium}=await import(pathToFileURL(resolve(process.env.DOCS_PLAYWRIGHT_MODULE||'../core/node_modules/playwright/index.mjs')));browser=await chromium.launch({headless:true});facts.browser=browser.version();
+});
+after(async()=>{try{await browser?.close();facts.cleanup.browserClosed=true;}finally{if(server?.listening)await new Promise(r=>server.close(r));facts.cleanup.serverClosed=true;if(temporary)rmSync(temporary,{recursive:true,force:true});facts.cleanup.siteRemoved=true;writeFileSync(join(output,'reader.json'),JSON.stringify(facts,null,2)+'\n');}});
+for(const width of [1440,390])test('troubleshooting source/navigation/search at width '+width,async()=>{const context=await browser.newContext({viewport:{width,height:1000}});try{await context.route('**/*',r=>r.request().url().startsWith(origin+'/')?r.continue():(facts.external.push(r.request().url()),r.abort()));const page=await context.newPage();page.on('pageerror',e=>facts.errors.push(e.message));
+ await page.goto(origin+'/');assert.ok(await page.locator('main h1').count()>0);await page.goto(origin+'/docs/troubleshooting/');assert.ok(await page.locator('main').getByRole('link',{name:'Recover from mismatched JS and WASM',exact:true}).count()>0);
+ await page.locator('main').getByRole('link',{name:'Recover from mismatched JS and WASM',exact:true}).first().focus();await page.keyboard.press('Enter');await page.waitForURL(origin+'/docs/troubleshooting/assets/');assert.equal(await page.locator('main h1').innerText(),'Recover from mismatched JS and WASM');assert((await page.locator('main').innerText()).includes('wasm.__wbindgen_add_to_stack_pointer'));assert.equal((await context.request.get(origin+'/reference-inputs/troubleshooting-v1/source.zip')).status(),200);
+ if(width===390){const toggle=page.locator('[data-site-menu-toggle]');await toggle.focus();await page.keyboard.press('Enter');assert.equal(await page.locator('[data-site-menu]').getAttribute('aria-hidden'),'false');await page.keyboard.press('Escape');assert.equal(await page.locator('[data-site-menu]').getAttribute('aria-hidden'),'true');}
+ await page.goto(origin+'/docs/');const input=page.locator('[data-search-input]');await input.fill('Recover a stale command');await page.locator('.site-search-result').filter({hasText:'Recover a stale command'}).first().waitFor({state:'visible'});await input.press('ArrowDown');await input.press('Enter');await page.waitForURL(origin+'/docs/troubleshooting/stale/');await page.screenshot({path:join(output,'troubleshooting-'+width+'.png'),fullPage:true});facts.cases.push({width,passed:true});assert.deepEqual(facts.errors,[]);assert.deepEqual(facts.external,[]);
+ }finally{await context.close();}});

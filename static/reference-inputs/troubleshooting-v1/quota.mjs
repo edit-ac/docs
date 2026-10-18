@@ -1,0 +1,7 @@
+test('quota error retains edited bytes and report backup restores into a separate database',async()=>{
+ const page=await freshLifecycle();await page.evaluate(()=>{const f=window.lifecycleExample;f.fault.save=true;f.editFriday();});
+ await assert.rejects(()=>page.evaluate(()=>window.lifecycleExample.save()),/Prepared local quota failure/);
+ const failed=await page.evaluate(()=>window.lifecycleExample.snapshot());assert.equal(failed.state.error.name,'QuotaExceededError');assert.equal(failed.state.localCommitted,null);assert.deepEqual(failed.texts,edited);assert.doesNotMatch(failed.indicator,/^Saved locally/);
+ const result=await page.evaluate(async()=>{const f=window.lifecycleExample,old=f.record.databaseName,report=await f.close('report');const backup={checkpoint:report.recovery.checkpoint,updates:report.recovery.unsavedUpdates};f.fault.save=false;await f.seed(backup.checkpoint);await f.open();const recovered=f.snapshot();return {unsaved:report.unsaved,backupBytes:backup.checkpoint.bytes.length,updates:backup.updates.length,differentDatabase:old!==f.record.databaseName,recovered};});
+ assert.equal(result.unsaved,true);assert(result.backupBytes>0);assert(result.updates>0);assert.equal(result.differentDatabase,true);assert.deepEqual(result.recovered.texts,edited);assert.equal(result.recovered.state.error,null);assert.equal(result.recovered.remote,'not-configured');await page.evaluate(()=>window.lifecycleExample.close());observe('quota',{failed,result});
+});

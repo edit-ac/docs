@@ -244,6 +244,27 @@
       "scope": "Gallery curation; entries individually retain exact local-runtime or unavailable status. No new editor/profile qualification."
     },
     {
+      "id": "troubleshooting/1",
+      "parent": "DWF-1.38",
+      "maturity": "local-prepared-failures",
+      "runtimeQualified": true,
+      "testedSdkVersion": "0.0.0 (unpublished; exact separate families)",
+      "source": "examples/troubleshooting/README.md",
+      "manifest": "examples/troubleshooting/manifest.json",
+      "qualification": "examples/troubleshooting/qualification.json",
+      "pages": [
+        "content/docs/troubleshooting/_index.md",
+        "content/docs/troubleshooting/assets.md",
+        "content/docs/troubleshooting/content.md",
+        "content/docs/troubleshooting/loading.md",
+        "content/docs/troubleshooting/ssr.md",
+        "content/docs/troubleshooting/quota.md",
+        "content/docs/troubleshooting/permission.md",
+        "content/docs/troubleshooting/stale.md"
+      ],
+      "scope": "Prepared host failures; independent production preservation/recovery; no external qualification"
+    },
+    {
       "id": "recipes/1",
       "parent": "DWF-1.37",
       "maturity": "local-runtime",

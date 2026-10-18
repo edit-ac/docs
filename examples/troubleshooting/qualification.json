@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "parent": "DWF-1.38",
+  "published": false,
+  "releaseQualified": false,
+  "counts": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "actualBrowserCases": 6,
+  "nodeSSRChecks": 1,
+  "integrityAndCleanupChecks": 2,
+  "cases": [
+    {
+      "name": "mismatched JS/WASM rejects initialization, preserves saved checkpoint and correct bytes recover",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "unsupported schema refuses restore without mutation; unknown custom envelope survives compatible reopen",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "cancelled browser loading rejects ready, releases recovery and remounts saved data",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "SSR imports avoid browser globals; mounting there reports the host boundary before any document access",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "quota error retains edited bytes and report backup restores into a separate database",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "revoked host write permission denies captured intent without mutation; explicit reauthorization and recapture recover",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "stale command target cannot overwrite newer content; reselect and recapture deliberately apply once",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "troubleshooting source/profile/fixture/download ranges and visible navigation are exact",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    },
+    {
+      "name": "all harnesses block external traffic and lifecycle teardown closes resources",
+      "passed": true,
+      "evidence": "evidence/troubleshooting-20261018/final.tap",
+      "evidenceSha256": "f05745546f0dda571f0eb24dcfed660b7c6acb50c9a32f40e12ef13ed0943327"
+    }
+  ],
+  "reader": {
+    "tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "evidence": "evidence/troubleshooting-20261018/reader.tap",
+    "sha256": "0d6e4327797b644f8b82d48bcd6004998d58ee1499a64748fca5ca8e5430d0c9"
+  },
+  "sourceFiles": {
+    "examples/commands/consumer.mjs": "a8979a290ee07208ea2659149626d99240037f922a3ee133fae86bf49704fbbb",
+    "examples/commands/harness.mjs": "a266c7b3e45087e2daa7b69e7e28e9fc2f99bf9ac2d61bf7ffda0097861f03ff",
+    "examples/commands/manifest.json": "ab0e1d0b183aa85761c40254581107cb148f60a72053f97ebc4df8d7eeb15c34",
+    "examples/concepts/kickoff-v1.md": "58967b5a999def076718ad96f38ff2d0ac3e55ab78b86dd82357a2caaa8ea704",
+    "examples/lifecycle/consumer.mjs": "88e8d5c8be1a99c988db23db10aab646900cd0325fac6912dd3a1376eca785c6",
+    "examples/lifecycle/harness.mjs": "48e23d48950785e523069dccc8b517c2a0dc6de738fa7229039d15a15472b936",
+    "examples/lifecycle/manifest.json": "f6fa4c4ee8fa8c4b4f7f0f02a56d4e1bd022ebce2d9180c4a5324fe42855a62b",
+    "examples/troubleshooting/README.md": "ca8ddf872df978a9dc4bb6c329ecaa90b4f5fff844b03441006851fd8d12b453",
+    "examples/troubleshooting/callout-harness.mjs": "10d55891cd1a06d8a713f6e1e16a0736ef6954d3f490ba3b39149b1133a429ac",
+    "examples/troubleshooting/fixtures.json": "dda5d726cccdab68c4a7e070318cae118c0568710333bc67d11b93f632bc8a66",
+    "examples/troubleshooting/profile.json": "e5fe4f935a017170853b814f1fdc43ac8d2ff99c3081607a4d46044912467bd8",
+    "examples/troubleshooting/upstream/recipe.mjs": "4ab61363ccef4c4b3e0d0b42daccf1bfc96e3cca01260126a569958d168bd3a0",
+    "examples/troubleshooting/upstream/session.mjs": "e21a4cecc3c811a7e35b2eec483373399c6522cf714e3a3a998603cbaca3290b",
+    "scripts/prepare-troubleshooting.py": "d790cc32064de10e105a18c22a24acfbdf3fa6d63cc509908db93e0c6a52e7c0",
+    "tests/docs-troubleshooting-reader.test.mjs": "936f9388b9acb3691ccfd5989c603fc35ec70d37b830f1b0820809181bcd72be",
+    "tests/docs-troubleshooting.test.mjs": "544935fe3ee950110388e9ed65ea11c7f49c4d8b7e026431ee0b9e2a0b2f22ad"
+  },
+  "diagnostics": {
+    "assets": "Initialization rejects with an EngineError mentioning a missing WASM export (wasm.__wbindgen_add_to_stack_pointer is not a function in the pinned Chromium run). The editor phase is failed, ready is false and no localCommitted receipt is created.",
+    "content": "A restore request with schema future.schema.v99 rejects with EngineError / EngineRejected: unsupported identity envelope. Unknown custom data instead has a source fallback: Future kickoff. A fallback does not authorize editing that custom type.",
+    "loading": "ready rejects with initialization canceled. A visible host element does not establish ready state. A cancelled instance reaches destroyed and releases subscriptions and recovered storage.",
+    "ssr": "The deliberate null-host server-side mount reports Invalid value used in weak set in pinned Node 24.19.0. This low-level error means no valid browser host was provided; it is not a user-facing SDK diagnostic contract. Importing the public core/web entries alone accesses none of window, document, indexedDB, navigator, fetch or WebAssembly.",
+    "quota": "QuotaExceededError: Prepared local quota failure. localCommitted is null for the failed edit, and the indicator does not claim Saved locally. Remote save remains not-configured.",
+    "permission": "The captured intent returns rejected / stale-or-unavailable-command-target; new capture is unavailable and direct public commit throws Editor is read-only.",
+    "stale": "The captured replace intent returns rejected / stale-or-unavailable-command-target after another admitted edit advances the revision."
+  },
+  "failuresRetained": [
+    "run-1.tap",
+    "repair-1.tap"
+  ],
+  "repairEvidence": [
+    "repair-1.tap",
+    "repair-2.tap"
+  ],
+  "scope": "One complete final 9/9 invocation against exact sources; prepared faults, actual production engines/browser/storage; 2 separate rendered desktop/mobile reader checks. No OS/provider/remote/registry/release proof."
+}

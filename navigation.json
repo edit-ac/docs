@@ -70,6 +70,14 @@
     "content/docs/guides/recipes/save-recovery.md",
     "content/docs/guides/recipes/reconnect.md",
     "content/docs/guides/recipes/two-editors.md",
-    "content/docs/guides/recipes/site-routes.md"
+    "content/docs/guides/recipes/site-routes.md",
+    "content/docs/troubleshooting/assets.md",
+    "content/docs/troubleshooting/content.md",
+    "content/docs/troubleshooting/loading.md",
+    "content/docs/troubleshooting/ssr.md",
+    "content/docs/troubleshooting/quota.md",
+    "content/docs/troubleshooting/permission.md",
+    "content/docs/troubleshooting/stale.md",
+    "content/docs/troubleshooting/upgrades.md"
   ]
 }

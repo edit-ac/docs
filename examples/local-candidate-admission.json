@@ -200,8 +200,8 @@
   "reviewedCompatibility": {
     "package.json": {
       "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
-      "afterSha256": "a29a11776bb39321e999c1f7868d3926d2abc5a2196d0eb5b2d5d233d43fff82",
-      "reason": "DWF-1.37 derives task recipes/navigation/source downloads from existing immutable qualified consumers. The PIN-1.3 toolbar calls the public retained command owner; shared SDK recipes retain exact sdk-framework-v1 tarballs and SHR prerequisite sources. No loader, runtime package, semantics, prior owning manifest or deferred external gate changed."
+      "afterSha256": "f6e9a8fc95ac27b2d0ff7acfb530fdce6ad8ce2539edeed665e39aca5dce8eff",
+      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
     },
     "content/docs/examples/_index.md": {
       "beforeSha256": "49c2d01be067914dc41f67309e70f8e0ed659905b24422c846457277acdffaa5",
@@ -230,8 +230,8 @@
     },
     "examples/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "4d6632fcdb5360b758f5d87ea82aab4257ff42b39ce74d883aeb330dd01c51f5",
-      "reason": "DWF-1.37 derives task recipes/navigation/source downloads from existing immutable qualified consumers. The PIN-1.3 toolbar calls the public retained command owner; shared SDK recipes retain exact sdk-framework-v1 tarballs and SHR prerequisite sources. No loader, runtime package, semantics, prior owning manifest or deferred external gate changed."
+      "afterSha256": "f3fe774c5133097051770d49bb38ef8b122b87b093d319d4ec4ac6f5a9f7f0f6",
+      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
     },
     "scripts/check-examples.mjs": {
       "beforeSha256": "b9213846202ea03b53935c7836dcf02add2b1ef8f631e5e34a63891da3a7fa39",
@@ -240,8 +240,8 @@
     },
     "static/concepts/project-kickoff-v1/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "4d6632fcdb5360b758f5d87ea82aab4257ff42b39ce74d883aeb330dd01c51f5",
-      "reason": "DWF-1.37 derives task recipes/navigation/source downloads from existing immutable qualified consumers. The PIN-1.3 toolbar calls the public retained command owner; shared SDK recipes retain exact sdk-framework-v1 tarballs and SHR prerequisite sources. No loader, runtime package, semantics, prior owning manifest or deferred external gate changed."
+      "afterSha256": "f3fe774c5133097051770d49bb38ef8b122b87b093d319d4ec4ac6f5a9f7f0f6",
+      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
     },
     "content/docs/guides/_index.md": {
       "beforeSha256": "ca44e8f11a6f6898eab69d533f88dae92c8d3bdf3c22764cc67bede803eba40f",
@@ -255,8 +255,8 @@
     },
     "navigation.json": {
       "beforeSha256": "2c763a982a260c6227c6f87342d613bfe29488a8ab1d2e07da23a575e3608da5",
-      "afterSha256": "e2359ad160e2873dafdba6ffce547ac9b056b5408f410bc602167fc6f075c857",
-      "reason": "DWF-1.37 derives task recipes/navigation/source downloads from existing immutable qualified consumers. The PIN-1.3 toolbar calls the public retained command owner; shared SDK recipes retain exact sdk-framework-v1 tarballs and SHR prerequisite sources. No loader, runtime package, semantics, prior owning manifest or deferred external gate changed."
+      "afterSha256": "4510598f5c9b0df1cfde83045e96dcb84149b62a981379b2982a9a6ff1d21e85",
+      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
     },
     ".gitignore": {
       "beforeSha256": "f2547eddff1829210654559ccf2fbd35fc4acff831d889359a31915aa2f07244",
@@ -272,6 +272,11 @@
       "beforeSha256": "bb012652514c6fabb80655d466f81dd274d2cdb0251e7d5b60a6b2af6b459655",
       "afterSha256": "508ef4acb50d6ed186ebfc6b637260a5ff7e5b771fb63da5d7216c74ee047939",
       "reason": "DWF-1.37 derives task recipes/navigation/source downloads from existing immutable qualified consumers. The PIN-1.3 toolbar calls the public retained command owner; shared SDK recipes retain exact sdk-framework-v1 tarballs and SHR prerequisite sources. No loader, runtime package, semantics, prior owning manifest or deferred external gate changed."
+    },
+    "content/docs/troubleshooting/_index.md": {
+      "beforeSha256": "07830beea389658256ec634ecfbf8c178192785fb83050d69677f0c072261d36",
+      "afterSha256": "e8f559062d5b41a9f73839d2ca6767569de8c6f5d7bc30dac849db7e7fd53d91",
+      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
     }
   }
 }

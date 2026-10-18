@@ -1,0 +1,44 @@
+{
+  "license": "Apache-2.0",
+  "initial": [
+    "Project kickoff",
+    "Owner: Alex",
+    "Due Friday",
+    "Draft agenda",
+    "Confirm attendees",
+    "Reference"
+  ],
+  "edited": [
+    "Project kickoff",
+    "Owner: Alex",
+    "Due Thursday",
+    "Draft agenda",
+    "Confirm attendees",
+    "Reference"
+  ],
+  "incompatibleWasmHex": "0061736d01000000",
+  "unsupportedSchema": "future.schema.v99",
+  "futureEnvelope": {
+    "version": 1,
+    "type": "future.team-callout",
+    "dataVersion": 7,
+    "source": "Future kickoff",
+    "payload": {
+      "title": "Project kickoff",
+      "body": [
+        "Owner: Alex",
+        "Due Friday"
+      ],
+      "unknown": {
+        "flag": true
+      }
+    }
+  },
+  "futureMark": [
+    9,
+    {
+      "label": "future highlight",
+      "extra": "retain"
+    }
+  ]
+}

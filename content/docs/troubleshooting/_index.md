@@ -1,32 +1,34 @@
 +++
 title = "Troubleshooting"
-description = "Planned bounded reproductions and data-preserving recovery."
+description = "Reproduce local failures and preserve documents through recovery."
 weight = 9
 sort_by = "weight"
 template = "docs.html"
 page_template = "doc-page.html"
 +++
 
-**Status: prepared diagnostic recipes planned; no tested recovery consumer on this page.**
-
-Reserved symptoms: mismatched JS/WASM assets, unsupported schema/custom content, SSR/browser loading boundaries, quota/save failure, revoked permission and stale command targets. Each future recipe starts with the observable symptom and exact diagnostic, then a deterministic reproduction and tested recovery.
-
-Until those consumers qualify, use [status](@/docs/reference/status.md), [local save responsibilities](@/docs/guides/local-first.md) and [compatibility](@/docs/reference/compatibility.md).
+Use a bounded reproduction before choosing a recovery. These guides test prepared failures through exact local unpublished production consumers, with independent diagnostic and data-preservation assertions. They do not establish registry/release, hosted service, native/device/OS/IME/AT or performance qualification.
 
 ## Before you start
 
-**Prerequisites:** Record exact assets, schema/profile, host and diagnostic without credentials or private document data.
-
-**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+**Prerequisites:** keep the original checkpoint/journal and record schema/profile, document identity, asset hashes and diagnostic. **Tested version:** separate pinned local **0.0.0, unpublished** families in the [manifest](/reference-inputs/troubleshooting-v1/manifest.json), not interchangeable version labels.
 
 ## Example and expected outcome
 
-Planned recipes will show independent failure/preservation/recovery outcomes and link their owning sources in the [examples gallery](@/docs/examples/_index.md).
+- [Recover from mismatched JS and WASM](@/docs/troubleshooting/assets.md)
+- [Preserve unsupported schema and custom content](@/docs/troubleshooting/content.md)
+- [Recover from cancelled browser initialization](@/docs/troubleshooting/loading.md)
+- [Keep browser initialization behind the client boundary](@/docs/troubleshooting/ssr.md)
+- [Recover an unsaved edit after quota failure](@/docs/troubleshooting/quota.md)
+- [Handle revoked host write permission](@/docs/troubleshooting/permission.md)
+- [Recover a stale command without retargeting](@/docs/troubleshooting/stale.md)
+
+Each page starts with the observed symptom, then a deterministic reproduction and independently expected preserved/recovered data. [Complete checked source](/reference-inputs/troubleshooting-v1/source.zip) reuses the [example gallery](@/docs/examples/gallery.md).
 
 ## Failure and recovery
 
-Preserve a backup/export and retry compatible loading or saving. Never silently clear documents, downgrade schemas or confuse transport sync with durable save. Upgrade/rollback instructions remain planned.
+Never silently clear a database, downgrade a schema or replace an original checkpoint with a lossy text export. A connected transport is not durable save. Retain recoverable bytes, dispose failed instances, then retry compatible assets or reopen a separate recovery copy. Prepared failures are not real OS/disk/host-service qualification.
 
 ## Migration and compatibility
 
-Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+Read [compatibility](@/docs/reference/compatibility.md), [migration](@/docs/migrate/_index.md), [versioned APIs](@/docs/reference/api-capabilities.md) and [upgrade/rollback](@/docs/troubleshooting/upgrades.md). Public release qualification remains [pending](@/docs/reference/status.md).

@@ -1,0 +1,5 @@
+test('SSR imports avoid browser globals; mounting there reports the host boundary before any document access',()=>{
+ const dir=callout.temporary,script=join(dir,'ssr.mjs');
+ writeFileSync(script,`import assert from 'node:assert/strict';let accesses=[];for(const n of ['window','document','indexedDB','navigator','fetch','WebAssembly'])Object.defineProperty(globalThis,n,{configurable:true,get(){accesses.push(n);throw Error('SSR accessed '+n);}});await import('@edit-ac/core');const web=await import('@edit-ac/web');assert.deepEqual(accesses,[]);let diagnostic;try{web.createEditor(null,{identity:{schema:'editac.registry.editor.v5'},extensions:[]})}catch(e){diagnostic=e.message;}assert.ok(diagnostic);console.log(JSON.stringify({importAccesses:[],mountAccesses:accesses,diagnostic,documentsOpened:0}));`);
+ const result=JSON.parse(execFileSync(process.execPath,[script],{cwd:dir,encoding:'utf8'}));observe('ssr',result);assert.deepEqual(result.importAccesses,[]);assert.equal(result.documentsOpened,0);assert.equal(result.diagnostic,'Invalid value used in weak set');assert.deepEqual(result.mountAccesses,[]);observe('ssr',result);
+});
