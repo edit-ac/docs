@@ -1,36 +1,29 @@
 +++
-title = "Add an extension"
-description = "Plan portable extension semantics and platform presenters."
+title = "Integrate extensions and host services"
+description = "Run prepared resolver and asset recipes through the public editor APIs."
 weight = 4
 +++
 
-**Status: integration contract, not a package setup tutorial.** Selected local implementation evidence is described on the [status page](@/docs/reference/status.md); runnable configuration and authoring recipes need their own exact artifact profiles.
+Start with the [complete extension/resolver example](@/docs/examples/extensions-resolvers.md). It uses real public production packages, the shared engine, BrowserEditor and IndexedDB with prepared host responses. Tested package identity is the unpublished `extension-authoring-v1` local candidate (`@edit-ac/core` and `@edit-ac/web` `0.0.0`), pinned by source and tarball hashes. [Release and platform status](@/docs/reference/status.md) remains separate; no registry or durable-host support is inferred.
 
-An extension combines portable document data and commands with optional host presentation. Register its namespaced type, version, validated content shape and fallback before mounting the document. Document data never contains executable plugin code.
+## Preserve content while optional work runs
 
-The first-party feature families include code blocks, tables, assets and embeds, slash commands, block reordering, references and link display. Each feature has separate read, edit, copy, import/export and platform capabilities; the family list is not a support matrix. Disabled presentation must preserve bounded unknown data.
+Register portable, versioned data separately from its host presenter. Document content contains inert identities, bounded metadata and authored fallbacks. Presenters and host services do not maintain another writable document. Apply accepted results through the existing prepared command and history boundary. Unknown bounded extension data stays available through its declared fallback.
 
-Use prepared semantic commands for changes. Presenters receive stable identities and incremental patches; they must not maintain another authoritative writable document. Cancel asynchronous work when its document, revision, target or permission context changes.
+For [public preview and internal-reference recipes](@/docs/guides/references.md), opening the Project kickoff document makes zero resolver calls. Public previews remain transient. Permission-denied internal targets never fall back to public fetching. Automatic local-paste metadata is an explicit policy, distinct from authorization and document-open behavior.
 
-Network resolvers and uploads belong to host services. Opening a document does not grant permission to fetch every URL it contains. Private reference metadata belongs to the authorized viewer unless a separate disclosure policy permits sharing it.
+## Cancel an asset upload and recover
 
-See the [extension contract](https://github.com/edit-ac/architecture/blob/main/specs/extension-library.md). Executable authoring tutorials will accompany the matching package release.
+**Input:** the prepared local `notes.txt` bytes are `Project kickoff attachment` followed by a newline. **Action:** run a prepared host upload through the public `ServiceLifecycle` with a captured document/session/revision/permission scope, then cancel it. **Output:** cancellation aborts the host signal; even if the host returns late, no asset enters the document. The local bytes remain available for recovery.
 
+Once the first host operation actually settles, retry as a new explicit intent. Its prepared success returns a stable nonsecret asset identity (`prepared` / `kickoff_notes`), never a bearer URL. The existing editor fragment command inserts one inert file descriptor and `notes.txt` fallback. Flush locally, destroy and reopen: the descriptor survives. Read-only, revoked permission and an intervening document edit invalidate the pending upload before insertion.
 
-## Before you start
+This is an executable prepared-host upload recipe. It does not send a binary, claim remote durability or implement the host's storage, encryption, binary reference counts or garbage collection. Production hosts must authorize each operation, retain recovery bytes, support cancellation and distinguish transport acknowledgment from durable receipts. A document-open operation must not upload or resolve arbitrary stored assets.
 
-**Prerequisites:** Identify descriptor versions, capabilities and host presenters.
+## Bound work and release resources
 
-**Tested version:** documentation navigation checked with Zola 0.23.6 and DevLab 0.9.0. No SDK consumer is qualified by this page; see [capability and release status](@/docs/reference/status.md).
+The example's service policy allows one active operation, no queued work, 1,024 bytes, one item and a 30-second deadline. Oversized work fails before the host callback. Cancellation settles the caller promptly, but an uncooperative host keeps its occupied slot until it finishes; retrying in a loop would cause unnecessary work. Revalidate current scope before accepting a result. Keep failure and recovery visible to the reader.
 
-## Example and expected outcome
+Dispose lookup subscriptions and service lifecycles, then flush/destroy the editor. Release captured anchors and controls. The browser harness checks subscriptions, pending work and server/browser teardown. It blocks external browser requests and records exact executed/passed/failed/skipped counts.
 
-Catalog and [custom extension examples](@/docs/extensions/custom.md) remain planned; this contract is not a runnable configuration.
-
-## Failure and recovery
-
-Cancel stale work, preserve unknown bounded payloads and release owned resources. Never fetch private metadata after permission denial.
-
-## Migration and compatibility
-
-Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) before moving existing content.
+For authoring rather than host integration, see [custom extensions](@/docs/extensions/custom.md). Each independent feature profile retains its own qualification; these recipes do not establish Tiptap runtime compatibility or native/device support.

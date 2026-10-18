@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scope": "local-only",
+  "published": false,
+  "releaseQualified": false,
+  "candidate": "extension-authoring-v1",
+  "sourceCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+  "sourceFiles": {
+    "recipes.mjs": "8bf3d149dd0933839caed72ef433653540d6853b30c34984773c59a6c48a8afa",
+    "kickoff.mjs": "e1c9aa4b55e45dfecbfd552a917ab31caf1961f02909817da776277e162bcf01",
+    "harness.test.mjs": "063ba0723cdff2ebd658f40c805500a44b3e2f4231593d3185a6e70f838a640c",
+    "README.md": "530bb0278e081f15fc33f31e39f570f4e980f435d01a553a7f7a43bd80cf9474"
+  },
+  "summary": {
+    "path": "evidence/extensions-resolvers-20261018/repair-2/summary.json",
+    "sha256": "23091a8518f3c7df33d36178fe58773ae4f68f34751f729904fde6d39fa79749"
+  },
+  "proof": {
+    "path": "evidence/extensions-resolvers-20261018/repair-2/harness.json",
+    "sha256": "29037b6f83dd03e52f2d2adb3255553d67f30974b333f214141b0c9f758df903"
+  },
+  "artifacts": [
+    {
+      "path": "evidence/extensions-resolvers-20261018/repair-2/compiled-consumer.tgz",
+      "sha256": "f005fe19ae409b393cdee47e960ecff69a0b8c3f82367d95d932e1f62f779e95"
+    },
+    {
+      "path": "evidence/extensions-resolvers-20261018/repair-2/tests.log",
+      "sha256": "2c6f4217225b8748df3e78112c85ac6f833ed12e69fe570ff63312f687f40345"
+    }
+  ],
+  "runtimeCases": 13,
+  "counts": {
+    "executed": 13,
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "limitations": [
+    "Prepared metadata/upload responses; no durable service or actual binary transfer",
+    "Chromium local browser only; no device/OS qualification",
+    "Unpublished local tarballs; registry/release/public-hosting remain open"
+  ]
+}

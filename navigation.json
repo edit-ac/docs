@@ -59,6 +59,8 @@
     "content/docs/extensions/loading.md",
     "content/docs/extensions/presets.md",
     "content/docs/examples/extension-configurations.md",
-    "content/docs/examples/custom-extensions.md"
+    "content/docs/examples/custom-extensions.md",
+    "content/docs/guides/references.md",
+    "content/docs/examples/extensions-resolvers.md"
   ]
 }

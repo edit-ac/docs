@@ -1,11 +1,12 @@
+import {runExtensionsResolvers} from './check-extensions-resolvers.mjs';
 import { runQuickstarts } from './check-quickstarts.mjs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { loadManifest } from './prepare-formats.mjs';
 import { loadHostManifest } from './prepare-host-services.mjs';
 export function selectSuite(args) {
-  if (args.length !== 2 || args[0] !== '--suite' || !['formats-native','host-services','web-react','astro'].includes(args[1]))
-    throw Error('Unknown or absent example suite; expected --suite formats-native, host-services, web-react or astro');
+  if (args.length !== 2 || args[0] !== '--suite' || !['formats-native','host-services','web-react','astro','extensions-resolvers'].includes(args[1]))
+    throw Error('Unknown or absent example suite; expected --suite formats-native, host-services, web-react, astro or extensions-resolvers');
   return args[1];
 }
 export function requireFormatsConsumer(manifest) {
@@ -23,6 +24,7 @@ export function requireHostServicesConsumer(manifest) {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) try {
   const suite = selectSuite(process.argv.slice(2));
   if (suite === 'web-react' || suite === 'astro') runQuickstarts(suite);
+  else if (suite === 'extensions-resolvers') runExtensionsResolvers();
   else if (suite === 'host-services') requireHostServicesConsumer(loadHostManifest());
   else requireFormatsConsumer(loadManifest());
 } catch (error) {

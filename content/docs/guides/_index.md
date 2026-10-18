@@ -11,3 +11,5 @@ Choose a guide for the integration you are planning. Each guide states its devel
 Current contracts: [getting started](@/docs/guides/getting-started.md), [local-first saving](@/docs/guides/local-first.md), [extensions](@/docs/guides/extensions.md), [document formats](@/docs/guides/document-formats.md), [cloud hosting](@/docs/guides/cloud-hosting.md) and [agent editing](@/docs/guides/agents.md).
 
 [Task recipes](@/docs/guides/recipes/_index.md) reserve complete walkthroughs; executable instructions remain pending their qualified consumers.
+
+For executable local prepared-host integration, follow [extension services](@/docs/guides/extensions.md) and [link/reference policy](@/docs/guides/references.md), backed by the [complete checked consumer](@/docs/examples/extensions-resolvers.md).
