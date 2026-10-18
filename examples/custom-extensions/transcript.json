@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "maturity": "conceptual",
+  "runtimeQualified": false,
+  "notation": "Reader expectations; not an engine document schema, transformer, runtime observation or provider result.",
+  "fixture": {
+    "title": "Project kickoff",
+    "owner": "Alex",
+    "due": "Friday",
+    "checklist": [
+      "Draft brief",
+      "Review plan"
+    ],
+    "safeLink": "https://example.test/kickoff"
+  },
+  "cases": [
+    {
+      "id": "callout",
+      "before": "Project kickoff\nOwner: Alex\nDue Friday",
+      "action": "Design a callout around the kickoff content",
+      "expected": {
+        "title": "Project kickoff",
+        "body": [
+          "Owner: Alex",
+          "Due Friday"
+        ],
+        "structuralCallout": "pending",
+        "fallback": "Existing heading/bold presentation; not a new block semantic"
+      }
+    },
+    {
+      "id": "highlight",
+      "before": "Due Friday",
+      "action": "Annotate Friday with a versioned highlight in the reader design",
+      "expected": {
+        "text": "Due Friday",
+        "rangeUtf16": [
+          4,
+          10
+        ],
+        "type": "demo.highlight",
+        "version": 1,
+        "kind": "mark",
+        "label": "Review due date",
+        "runtime": "pending"
+      }
+    },
+    {
+      "id": "command",
+      "before": {
+        "text": "Due Friday",
+        "bold": false
+      },
+      "action": "Capture Friday and request one emphasis intent from a local button",
+      "expected": {
+        "text": "Due Friday",
+        "bold": true,
+        "undo": {
+          "text": "Due Friday",
+          "bold": false
+        },
+        "redo": {
+          "text": "Due Friday",
+          "bold": true
+        },
+        "historyIntents": 1
+      }
+    },
+    {
+      "id": "validation",
+      "before": "Due Friday",
+      "action": "Supply an invalid option, malformed label, unsupported version or read-only target",
+      "expected": {
+        "text": "Due Friday",
+        "historyIntents": 0,
+        "result": "reject or decline according to the owning contract; preserve the original"
+      }
+    },
+    {
+      "id": "preservation",
+      "before": {
+        "type": "future.team-callout",
+        "version": 9,
+        "payload": {
+          "title": "Project kickoff",
+          "unknown": {
+            "severity": "review"
+          }
+        },
+        "fallback": "Project kickoff"
+      },
+      "action": "Open without this definition or presenter",
+      "expected": {
+        "preserved": {
+          "type": "future.team-callout",
+          "version": 9,
+          "payload": {
+            "title": "Project kickoff",
+            "unknown": {
+              "severity": "review"
+            }
+          },
+          "fallback": "Project kickoff"
+        },
+        "editing": "unsupported; preserve original checkpoint",
+        "plainMarkdown": "lossy fallback; not a backup"
+      }
+    },
+    {
+      "id": "task-found",
+      "before": "ASD-123 ",
+      "action": "Prepared catalog lookup after delimiter and permission check",
+      "expected": {
+        "text": "ASD-123 ",
+        "href": "https://tasks.example.test/ASD-123",
+        "historyIntents": 1
+      }
+    },
+    {
+      "id": "task-missing",
+      "before": "ASD-999 ",
+      "action": "Prepared catalog reports missing",
+      "expected": {
+        "text": "ASD-999 ",
+        "href": null,
+        "historyIntents": 0
+      }
+    },
+    {
+      "id": "task-stale",
+      "before": "ASD-123 ",
+      "action": "Edit target before lookup resolves",
+      "expected": {
+        "text": "ASD-124 ",
+        "href": null,
+        "lateResultApplied": false
+      }
+    },
+    {
+      "id": "spelling",
+      "before": "teh",
+      "action": "Explicit custom checker offers the; user accepts current suggestion",
+      "expected": {
+        "text": "the",
+        "undoText": "teh",
+        "historyIntents": 1,
+        "bundledDictionary": false,
+        "osObservation": false
+      }
+    },
+    {
+      "id": "parsing",
+      "before": "[note] Project kickoff",
+      "action": "Request the owning prepared note parser",
+      "expected": {
+        "text": "Project kickoff",
+        "fallback": "Existing heading/bold semantics; not a structural callout",
+        "malformed": "Preserve literal input"
+      }
+    },
+    {
+      "id": "unsafe-url",
+      "before": "Project kickoff",
+      "action": "Request insertion of javascript:alert(1)",
+      "expected": {
+        "text": "Project kickoff",
+        "historyIntents": 0,
+        "result": "reject unsafe scheme"
+      }
+    },
+    {
+      "id": "dispose",
+      "before": {
+        "pendingLookup": true,
+        "menuListener": true
+      },
+      "action": "Unsubscribe host button and dispose the editor; settle late work",
+      "expected": {
+        "pendingLookup": false,
+        "menuListener": false,
+        "lateResultApplied": false,
+        "disposal": "idempotent; exact runtime resource counts pending"
+      }
+    }
+  ]
+}
