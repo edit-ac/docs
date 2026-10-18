@@ -14,7 +14,7 @@ export async function buildFormatsPlayground(destination){
  assert.equal(receipt.coreCommit,'c15ac91d47f2ddf51bf20056686bc912f5c76a36');
  assert.equal(spawnSync('git',['merge-base','--is-ancestor',receipt.coreCommit,'HEAD'],{cwd:resolve(root,'../core')}).status,0,'Qualified return must be adopted first');
  const temp=await mkdtemp(join(root,'.formats-build-'));
- const facts={parent:'DPG-1.2',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
+ const facts={parent:'DPG-1.3',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
  try{
   await mkdir(destination,{recursive:true});
   for(const [name,hash] of Object.entries(pins)){
@@ -34,6 +34,22 @@ export async function buildFormatsPlayground(destination){
   const pixel=await readFile(resolve(root,'../core/fixtures/formats/docx/probe/pixel.png'));
   const grant={identity:{host:'fixture-host',key:'docx-original-png'},actions:['ingest','read','cancel','release-reference'],sha256:Array.from(createHash('sha256').update(pixel).digest())};
   await writeFile(join(destination,'fixtures/docx.json'),JSON.stringify({fixtures:facts.fixtures,grant},null,2));facts.sources['fixtures/docx.json']=sha(await readFile(join(destination,'fixtures/docx.json')));
+  facts.directionFixtures={};
+  const fixturePins={odt:'01f0ad59b50a209d6d3b62cc9f3d4613b940ae23e05c0bb8fe8d555f320f2060',epub:'4da7c21e1afeadad7f82a5c17a2401b4aed3650d22eb8d8317fce80ae727a0b2'};
+  for(const kind of ['odt','epub']){
+   const manifestBytes=await readFile(join(producer,'canonical2',kind+'-import-fixtures/manifest.json'));
+   assert.equal(sha(manifestBytes),fixturePins[kind]);const manifest=JSON.parse(manifestBytes);
+   await mkdir(join(destination,'fixtures',kind),{recursive:true});const fixtures={};
+   for(const name of ['media','media-loss','corrupt']){
+    const bytes=await readFile(join(producer,'canonical2',kind+'-import-fixtures',name+'.'+kind));
+    assert.equal(sha(bytes),manifest[name].sha256);assert.equal(bytes.length,manifest[name].bytes);
+    await writeFile(join(destination,'fixtures',kind,name+'.'+kind),bytes);fixtures[name]=manifest[name];
+   }
+   const policy={fixtures,grant:{...grant,identity:{host:'fixture-host',key:kind+'-original-png'}}};
+   await writeFile(join(destination,'fixtures',kind+'.json'),JSON.stringify(policy,null,2));
+   facts.sources['fixtures/'+kind+'.json']=sha(await readFile(join(destination,'fixtures',kind+'.json')));
+   facts.directionFixtures[kind]={manifestSha256:fixturePins[kind],source:'consumers-epub-import-20261018/canonical2/'+kind+'-import-fixtures',fixtures};
+  }
   await writeFile(join(destination,'profile.json'),JSON.stringify(facts,null,2)+'\n');return facts;
  }finally{await rm(temp,{recursive:true,force:true});}
 }

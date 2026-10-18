@@ -1,6 +1,6 @@
 // No static dependency on the optional package: the baseline requests no codec payload.
 const $=id=>document.getElementById(id);
-let client,enabled=false,generation=0;
+let client,enabled=false,generation=0,directions=[];
 function disable(message='Formats disabled. Prepared jobs canceled; editor content preserved.'){
  generation++;enabled=false;client?.dispose();client=undefined;
  $('formats-panel').hidden=true;$('formats-capabilities').replaceChildren();
@@ -18,11 +18,11 @@ async function enable(){
   if(ticket!==generation)return;
   if(manifest.schemaVersion!==1||!Array.isArray(manifest.directions))throw Error('Unsupported capability manifest');
   client=api.createFormatClient();
-  const rows=manifest.directions.filter(d=>d.target==='browser-worker-wasm32');
+  const rows=directions=manifest.directions.filter(d=>d.target==='browser-worker-wasm32');
   if(!rows.length||rows.some(d=>d.format==='pdf'&&d.direction==='import'))throw Error('Unsupported browser profile');
   for(const d of rows){const row=document.createElement('tr');for(const key of ['format','direction','profile','fidelity']){const cell=document.createElement('td');cell.textContent=d[key];row.append(cell);}$('formats-capabilities').append(row);}
   $('formats-unavailable').textContent='Unavailable: '+(manifest.unavailable||[]).join(', ');
-  $('formats-panel').hidden=false;$('formats-status').textContent='Local public format client ready. No conversion has run; direction-specific fidelity applies.';
+  updateFormat();$('formats-panel').hidden=false;$('formats-status').textContent='Local public format client ready. No conversion has run; direction-specific fidelity applies.';
  }catch(error){if(ticket===generation)disable(`Format capabilities unavailable: ${error.message}. Editor preserved; enable to retry.`);}
 }
 $('formats-toggle').onclick=()=>{if(enabled)disable();else void enable();};
@@ -32,9 +32,19 @@ window.addEventListener('pagehide',()=>disable());
 window.playgroundFormats={get enabled(){return enabled;},get ready(){return !!client;}};
 
 let pending,working=false,actionGeneration=0,output,retainedInput,recovery,lastReport;
+const format=()=>$('package-format').value;
+const sourceGrant=kind=>({identity:{host:'local-recovery',key:`complete-${kind}-package`},actions:['ingest','read','cancel','release-reference']});
+const mime={docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',epub:'application/epub+zip'};
+function updateFormat(){
+ const kind=format(),label=kind.toUpperCase();
+ for(const [id,prefix] of [['prepare','Preview'],['confirm','Confirm'],['cancel','Cancel'],['export','Prepare'],['stored','Retrieve stored']])$('docx-'+id).textContent=`${prefix} ${label} ${id==='export'?'export':id==='cancel'?'preparation':'import'}`;
+ $('docx-heading').textContent=label+' fixture workflow';
+ $('direction-profile').textContent=directions.filter(d=>d.format===kind).map(d=>`${d.direction}: ${d.profile} / ${d.fidelity}`).join('; ');
+}
+
 const message=text=>$('docx-status').textContent=text;
 function report(result){
- lastReport={profile:result.profile,diagnostics:result.diagnostics||result.report?.diagnostics||[],reason:result.code||result.report?.reason,bytes:result.bytes?.length,originalBytes:result.original?.length};
+ lastReport={profile:result.profile,diagnostics:result.diagnostics||result.report?.diagnostics||[],code:result.code,reason:result.report?.reason||result.code,action:result.report?.action,bytes:result.bytes?.length,originalBytes:result.original?.length};
  $('docx-report').textContent=JSON.stringify(lastReport,null,2);
  if(result.recovery){recovery=structuredClone(result.recovery);$('docx-recovery').disabled=false;}
 }
@@ -43,7 +53,7 @@ function cancelDocx(){actionGeneration++;client?.cancel();clearPending();$('docx
 async function action(fn){
  if(working)return;working=true;const ticket=++actionGeneration;
  try{if(!client||!window.playground.editor?.state.ready||window.playground.busy)throw Error('Enable formats and open the editor first');await fn(ticket);}
- catch(error){report(error);message(`DOCX action rejected: ${error.code||error.message}. Retain input/recovery; approve losses and prepare again if required.`);}
+ catch(error){report(error);message(`${format().toUpperCase()} action rejected: ${error.code||error.message}. Retain input/recovery; approve losses and prepare again if required.`);}
  finally{working=false;}
 }
 function current(ticket,editor,revision,write=false){
@@ -54,66 +64,68 @@ async function prepareDocx(ticket){
  clearPending();$('docx-confirm').disabled=true;
  const editor=window.playground.editor,revision=editor.read().revision;
  current(ticket,editor,revision,true);
- const fixture=$('docx-fixture').value,approveLoss=$('docx-loss').checked;
- const [response,policyResponse]=await Promise.all([fetch('./fixtures/'+fixture+'.docx'),fetch('./fixtures/docx.json')]);
+ const kind=format(),fixture=$('docx-fixture').value,approveLoss=$('docx-loss').checked;
+ if(!directions.some(d=>d.format===kind&&d.direction==='import'))throw Error('Import unavailable in installed profile');
+ const [response,policyResponse]=await Promise.all([fetch(`./fixtures/${kind==='docx'?'':kind+'/'}${fixture}.${kind}`),fetch(`./fixtures/${kind}.json`)]);
  if(!response.ok||!policyResponse.ok)throw Error('Approved fixture unavailable');
  const source=new Uint8Array(await response.arrayBuffer()),policy=await policyResponse.json();
  const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',source))).map(x=>x.toString(16).padStart(2,'0')).join('');
  if(hash!==policy.fixtures[fixture]?.sha256)throw Error('Approved fixture integrity mismatch');
- retainedInput=source.slice();$('docx-original').disabled=false;
+ retainedInput={bytes:source.slice(),kind};$('docx-original').disabled=false;
  current(ticket,editor,revision,true);
  const engine=editor.owner.engine,node=engine.read().visible.find(n=>n.kind==='block'&&n.runs?.length);
  if(!node)throw Error('No text block target');
  const anchor=engine.anchor(node.id,0,'right'),focus=engine.anchor(node.id,node.runs.reduce((n,r)=>n+Array.from(r.text).length,0),'left');
- message('Preparing approved DOCX in the local worker; live content is unchanged…');
+ message(`Preparing approved ${kind.toUpperCase()} in the local worker; live content is unchanged…`);
  try{
-  const prepared=await client.prepareImport(engine,{format:'docx',source,filename:fixture+'.docx',range:{anchor,focus},importGrants:[policy.grant],approveLoss});
+  const prepared=await client.prepareImport(engine,{format:kind,source,filename:fixture+'.'+kind,range:{anchor,focus},importGrants:[policy.grant],approveLoss});
   current(ticket,editor,revision,true);report(prepared);
-  pending={prepared,editor,revision,ticket,approveLoss,release:()=>{engine.releaseAnchor(anchor);engine.releaseAnchor(focus);}};$('docx-confirm').disabled=false;
+  pending={prepared,editor,revision,ticket,approveLoss,kind,release:()=>{engine.releaseAnchor(anchor);engine.releaseAnchor(focus);}};$('docx-confirm').disabled=false;
   message('Preview ready. Review diagnostics and confirm one atomic replacement. No live content has changed.');
  }finally{if(!pending){engine.releaseAnchor(anchor);engine.releaseAnchor(focus);}}
 }
-const grant={identity:{host:'local-recovery',key:'complete-docx-package'},actions:['ingest','read','cancel','release-reference']};
 // Fixture-only local host: exact bytes are durable in AssetSession before this
 // deterministic transport acknowledges ingest. No external service or upload.
 const fixtureHost={authorize:async r=>({identity:r.identity,actions:['ingest','read','cancel','release-reference']}),execute:async()=>null};
 async function confirmDocx(){
  const p=pending;if(!p)throw Error('Prepare an import first');pending=undefined;$('docx-confirm').disabled=true;
  try{current(p.ticket,p.editor,p.revision,true);
- const result=await p.prepared.commitAssets(p.editor.owner,'docx_'+crypto.randomUUID(),fixtureHost,grant);
- await p.editor.flush({target:'local'});message(`DOCX imported: ${result.localCommit.state}. One history group; package and PNG retained locally.`);
+ const result=await p.prepared.commitAssets(p.editor.owner,p.kind+'_'+crypto.randomUUID(),fixtureHost,sourceGrant(p.kind));
+ await p.editor.flush({target:'local'});message(`${p.kind.toUpperCase()} imported: ${result.localCommit.state}. One history group; package and PNG retained locally.`);
  }finally{p.release();}
 }
 async function exportDocx(ticket){
  clearPending();$('docx-confirm').disabled=true;
- const editor=window.playground.editor,revision=editor.read().revision;
+ const kind=format(),editor=window.playground.editor,revision=editor.read().revision;
+ if(!directions.some(d=>d.format===kind&&d.direction==='export'))throw Error('Export unavailable in installed profile');
  current(ticket,editor,revision);const assets=await editor.owner.enableAssets(),originalAssets=[];
  for(const node of editor.read().visible){if(node.blockAttributes?.[0]!=='module:editac.asset')continue;
   const identity=node.blockAttributes[2].identity,grant={identity,actions:['read']};
   const bytes=await assets.retainedSource(node.id,grant);if(!bytes)throw Error('Missing approved original media');originalAssets.push({...grant,bytes});
  }
- current(ticket,editor,revision);message('Preparing DOCX export from a captured checkpoint…');
- const result=await client.export(editor.owner.engine,{format:'docx',originalAssets,approveLoss:$('docx-loss').checked});
- current(ticket,editor,revision);output=result.bytes.slice();report(result);$('docx-download').disabled=false;
- message('DOCX output retained in this tab. Download explicitly; captured recovery remains available if delivery fails.');
+ current(ticket,editor,revision);message(`Preparing ${kind.toUpperCase()} export from a captured checkpoint…`);
+ const result=await client.export(editor.owner.engine,{format:kind,originalAssets,approveLoss:$('docx-loss').checked});
+ current(ticket,editor,revision);output={bytes:result.bytes.slice(),kind};report(result);$('docx-download').disabled=false;$('docx-download').textContent='Download prepared '+kind.toUpperCase();
+ message(`${kind.toUpperCase()} output retained in this tab. Download explicitly; captured recovery remains available if delivery fails.`);
 }
 function download(bytes,name,type){const url=URL.createObjectURL(new Blob([bytes],{type})),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('docx-prepare').onclick=()=>void action(prepareDocx);
 // Confirm uses the preparation ticket; starting a new action must not invalidate it.
-$('docx-confirm').onclick=()=>{if(working)return;working=true;void confirmDocx().catch(error=>{report(error);message(`DOCX import rejected: ${error.code||error.message}. Prepare again; document preserved on rejected commit.`);}).finally(()=>working=false);};
+$('docx-confirm').onclick=()=>{if(working)return;working=true;void confirmDocx().catch(error=>{report(error);message(`${format().toUpperCase()} import rejected: ${error.code||error.message}. Prepare again; document preserved on rejected commit.`);}).finally(()=>working=false);};
 $('docx-export').onclick=()=>void action(exportDocx);
 $('docx-cancel').onclick=cancelDocx;
 $('docx-stored').onclick=()=>void action(async ticket=>{
- const editor=window.playground.editor,revision=editor.read().revision,assets=await editor.owner.enableAssets();
- const journal=await assets.inspect(),source=journal.prepared.findLast(p=>p.reference.endsWith('_source'));
- if(!source)throw Error('No DOCX input retained in this sample');
- const bytes=await assets.preparedSource(source.job,source.reference,grant);current(ticket,editor,revision);
- retainedInput=bytes.slice();recovery=editor.owner.engine.checkpoint();$('docx-original').disabled=false;$('docx-recovery').disabled=false;
- message('Stored original DOCX recovered from the selected sample. Download input or checkpoint explicitly.');
+ const kind=format(),editor=window.playground.editor,revision=editor.read().revision,assets=await editor.owner.enableAssets();
+ const journal=await assets.inspect(),source=journal.prepared.findLast(p=>p.job.startsWith(kind+'_')&&p.reference.endsWith('_source'));
+ if(!source)throw Error(`No ${kind.toUpperCase()} input retained in this sample`);
+ const bytes=await assets.preparedSource(source.job,source.reference,sourceGrant(kind));current(ticket,editor,revision);
+ retainedInput={bytes:bytes.slice(),kind};recovery=editor.owner.engine.checkpoint();$('docx-original').disabled=false;$('docx-recovery').disabled=false;
+ message(`Stored original ${kind.toUpperCase()} recovered from the selected sample. Download input or checkpoint explicitly.`);
 });
+$('package-format').addEventListener('change',()=>{cancelDocx();updateFormat();});
 for(const id of ['docx-fixture','docx-loss'])$(id).addEventListener('change',cancelDocx);
-$('docx-download').onclick=()=>download(output,'playground.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-$('docx-original').onclick=()=>download(retainedInput,'retained-input.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+$('docx-download').onclick=()=>download(output.bytes,'playground.'+output.kind,mime[output.kind]);
+$('docx-original').onclick=()=>download(retainedInput.bytes,'retained-input.'+retainedInput.kind,mime[retainedInput.kind]);
 $('docx-recovery').onclick=()=>download(JSON.stringify(recovery,(_k,v)=>v instanceof Uint8Array?Array.from(v):v,2),'docx-recovery.json','application/json');
 $('formats-toggle').addEventListener('click',()=>{if(!enabled)cancelDocx();});
 $('readonly').addEventListener('click',cancelDocx);$('editor').addEventListener('compositionstart',cancelDocx);

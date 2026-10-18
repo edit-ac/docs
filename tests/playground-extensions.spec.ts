@@ -34,7 +34,7 @@ async function text(page){return page.evaluate(()=>window.playground.editor.read
 async function edit(page,suffix){await page.locator('[contenteditable="true"]').getByText('Owner: Alex',{exact:true}).click();await page.keyboard.press('End');await page.keyboard.type(suffix);}
 async function click(page,id){await page.click('#'+id);await page.waitForFunction(()=>!window.playground.busy);}
 test('immutable optional package family, fixture and public API provenance',async()=>{
- assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,8);
+ assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,10);
  const manifest=JSON.parse(await readFile(join(temp,'scenarios/extensions-formats/formats/capabilities.json')));
  assert.equal(manifest.directions.filter(d=>d.target==='browser-worker-wasm32').length,13);
  for(const p of profile.packages)assert.equal(p.version,'0.0.0');
@@ -118,4 +118,50 @@ test('DOCX loss rejection, malformed input and canceled preview preserve documen
 test('DOCX independent ZIP XML PNG and downloaded output match actual playground observations',()=>{
  const result=spawnSync('python3',['tests/inspect-playground-docx.py',output,resolve('../architecture/evidence/document-conversion/consumers-epub-import-20261018/canonical2/docx-import-fixtures')],{encoding:'utf8'});
  assert.equal(result.status,0,result.stderr||result.stdout);
+});
+
+for(const kind of ['odt','epub']){
+ test(`${kind.toUpperCase()} fixture preview, atomic media history, retained originals, export and reopen`,()=>browserCase(kind+'-atomic-roundtrip',async page=>{
+  await visit(page,'document');await enable(page);await page.selectOption('#package-format',kind);
+  const manifest=JSON.parse(await readFile(join(temp,'scenarios/extensions-formats/formats/capabilities.json')));
+  for(const direction of ['import','export']){const d=manifest.directions.find(d=>d.target==='browser-worker-wasm32'&&d.format===kind&&d.direction===direction);assert.ok(d);assert.ok((await page.locator('#direction-profile').innerText()).includes(`${direction}: ${d.profile} / ${d.fidelity}`));}
+  const before=await projection(page),priorHistory=await page.evaluate(()=>window.playground.editor.owner.engine.history({type:'state'}));
+  await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);assert.equal(await projection(page),before);
+  const preview=await page.evaluate(()=>window.playgroundFormats.report);assert.equal(preview.profile,`edit-ac-${kind}-v1`);
+  await retainedDownload(page,'original',kind+'-retained-before.'+kind);
+  await page.evaluate(()=>{window.formatUpdates=0;window.formatSubscription=window.playground.editor.owner.engine.subscribe({type:'updates'},()=>window.formatUpdates++);});
+  await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/localCommitted/);
+  const observed=await page.evaluate(async kind=>{
+   const editor=window.playground.editor,assets=await editor.owner.enableAssets(),journal=await assets.inspect(),asset=editor.read().visible.find(n=>n.blockAttributes?.[0]==='module:editac.asset'),source=journal.prepared.find(p=>p.reference.endsWith('_source'));
+   const original=Array.from(await assets.retainedSource(asset.id,{identity:asset.blockAttributes[2].identity,actions:['read']}));
+   const retainedPackage=Array.from(await assets.preparedSource(source.job,source.reference,{identity:{host:'local-recovery',key:`complete-${kind}-package`},actions:['read']}));
+   window.formatSubscription.dispose();return {visible:editor.read().visible,history:editor.owner.engine.history({type:'state'}),updates:window.formatUpdates,original,retainedPackage};
+  },kind);
+  assert.equal(observed.updates,1);assert.equal(observed.history.undoGroups,priorHistory.undoGroups+1);
+  await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+  await click(page,'redo');assert.deepEqual(JSON.parse(await projection(page)).visible,observed.visible);
+  await click(page,'save');await page.reload();await ready(page);await page.selectOption('#preset','document');await ready(page);await enable(page);await page.selectOption('#package-format',kind);await docxAction(page,'stored');
+  assert.match(await page.locator('#docx-status').innerText(),new RegExp('Stored original '+kind.toUpperCase()));await retainedDownload(page,'original',kind+'-retained-after-reload.'+kind);
+  const reopened=await page.evaluate(async()=>{const e=window.playground.editor,a=await e.owner.enableAssets(),asset=e.read().visible.find(n=>n.blockAttributes?.[0]==='module:editac.asset');return {visible:e.read().visible,original:Array.from(await a.retainedSource(asset.id,{identity:asset.blockAttributes[2].identity,actions:['read']}))};});assert.deepEqual(reopened.visible,observed.visible);assert.deepEqual(reopened.original,observed.original);
+  const beforeExport=await projection(page);await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/ConversionRejected/);assert.equal((await page.evaluate(()=>window.playgroundFormats.report)).reason,'loss-approval-required');assert.match(await page.locator('#docx-report').innerText(),/"lossy": true/);assert.equal(await projection(page),beforeExport);await retainedDownload(page,'recovery',kind+'-export-loss-recovery.json');
+  await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+  const exportReport=await page.evaluate(()=>window.playgroundFormats.report);assert.equal(exportReport.profile,`edit-ac-${kind}-v1`);assert.equal(await page.locator('#docx-download').innerText(),'Download prepared '+kind.toUpperCase());
+  // Output and original keep their captured extension even after selecting another format.
+  await page.selectOption('#package-format','docx');
+  const event=page.waitForEvent('download');await page.click('#docx-download');const download=await event;assert.equal(download.suggestedFilename(),'playground.'+kind);assert.equal(await download.failure(),null);await download.saveAs(join(output,kind+'-export.'+kind));
+  await retainedDownload(page,'recovery',kind+'-recovery.json');assert.deepEqual(JSON.parse(await projection(page)).visible,observed.visible);
+  await writeFile(join(output,kind+'-observations.json'),JSON.stringify({before:JSON.parse(before),...observed,reopened,preview,exportReport},null,2));
+ },kind==='epub'?{width:390,height:844}:undefined));
+ test(`${kind.toUpperCase()} loss, malformed input and canceled preparation preserve document and originals`,()=>browserCase(kind+'-rejections',async page=>{
+  await visit(page,'document');await enable(page);await page.selectOption('#package-format',kind);const before=await projection(page);
+  await page.selectOption('#docx-fixture','media-loss');await docxAction(page,'prepare');assert.match(await page.locator('#docx-report').innerText(),/"lossy": true/);assert.equal(await projection(page),before);
+  await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/LossApprovalRequired/);assert.equal(await projection(page),before);
+  await retainedDownload(page,'original',kind+'-loss-retained.'+kind);await retainedDownload(page,'recovery',kind+'-loss-recovery.json');
+  await page.check('#docx-loss');await docxAction(page,'prepare');await docxAction(page,'cancel');assert.equal(await page.locator('#docx-confirm').isDisabled(),true);assert.equal(await projection(page),before);
+  await page.selectOption('#docx-fixture','corrupt');await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/rejected/);assert.equal(await projection(page),before);await retainedDownload(page,'original',kind+'-corrupt-retained.'+kind);
+  await page.selectOption('#docx-fixture','media-loss');await docxAction(page,'prepare');await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/localCommitted/);assert.notDeepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+ }));
+}
+test('ODT EPUB independent ZIP XML PNG output and original observations',()=>{
+ const result=spawnSync('python3',['tests/inspect-playground-odt-epub.py',output,resolve('../architecture/evidence/document-conversion/consumers-epub-import-20261018/canonical2')],{encoding:'utf8'});assert.equal(result.status,0,result.stderr||result.stdout);
 });
