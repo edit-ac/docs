@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {mkdirSync,writeFileSync,existsSync,readFileSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+const args=process.argv.slice(2);
+assert.deepEqual(args,['--suite','local-editor'],'Use --suite local-editor; unknown and empty suites fail closed');
+assert.equal(process.version,'v24.19.0');
+const output=resolve(process.env.DOCS_PLAYGROUND_OUTPUT||'evidence/playground-local-20261018/local-editor');
+assert.ok(!existsSync(join(output,'tests.log')),'Use a fresh output directory; preserve failed logs');mkdirSync(output,{recursive:true});
+const selectedCase=process.env.DOCS_PLAYGROUND_CASE;
+const testArgs=['--test','--test-reporter=tap'];if(selectedCase)testArgs.push('--test-name-pattern=^'+selectedCase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$');testArgs.push('tests/playground-local.spec.ts');
+const r=spawnSync(process.execPath,testArgs,{env:{...process.env,DOCS_PLAYGROUND_OUTPUT:output},encoding:'utf8',timeout:240000,maxBuffer:8*1024*1024});
+const log=(r.stdout||'')+'\n'+(r.stderr||'');writeFileSync(join(output,'tests.log'),log);
+const counts=Object.fromEntries(['tests','pass','fail','skipped','cancelled','todo'].map(k=>[k,Number(log.match(new RegExp(`# ${k} (\\d+)`))?.[1]||0)]));
+const summary={suite:'local-editor',partial:!!selectedCase,selectedCase,exit:r.status,error:r.error?.message,counts};writeFileSync(join(output,'summary.json'),JSON.stringify(summary,null,2)+'\n');console.log(JSON.stringify(summary));
+assert.equal(r.status,0,'See retained playground tests.log');assert.ok(counts.tests>=(selectedCase?1:11)&&counts.tests===counts.pass&&['fail','skipped','cancelled','todo'].every(k=>counts[k]===0),'Incomplete browser proof');
+const proof=JSON.parse(readFileSync(join(output,'browser.json')));assert.ok(proof.cases.length>=(selectedCase?1:10)&&proof.cases.every(c=>c.passed));assert.ok(proof.teardown.every(c=>c.closed));

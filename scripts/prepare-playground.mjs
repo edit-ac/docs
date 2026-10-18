@@ -1,0 +1,12 @@
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const sources=['playground/README.md','playground/index.html','playground/app.mjs','playground/kickoff.mjs','playground/recovery.mjs','scripts/build-playground.mjs'];
+const files=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(readFileSync(resolve(root,p))).digest('hex')]));
+const manifest={parent:'DWF-1.9',candidate:'sdk-framework-v1',version:'0.0.0',scope:'unpublished local build only',fixture:'project-kickoff/1',license:'Apache-2.0',files};
+const outputs=new Map(sources.map(p=>['static/reference-inputs/playground-v1/'+p.split('/').pop(),readFileSync(resolve(root,p))]));
+outputs.set('playground/manifest.json',Buffer.from(JSON.stringify(manifest,null,2)+'\n'));
+outputs.set('static/reference-inputs/playground-v1/manifest.json',Buffer.from(JSON.stringify(manifest,null,2)+'\n'));
+let stale=0;for(const [path,bytes] of outputs){const target=resolve(root,path);if(!existsSync(target)||!readFileSync(target).equals(bytes)){if(process.argv.includes('--check')){console.error('Stale playground output: '+path);stale++;}else{mkdirSync(dirname(target),{recursive:true});writeFileSync(target,bytes);}}}if(stale)process.exitCode=1;

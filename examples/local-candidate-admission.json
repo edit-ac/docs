@@ -200,13 +200,13 @@
   "reviewedCompatibility": {
     "package.json": {
       "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
-      "afterSha256": "1ba50335be4879430f1c914e36f30352b56cc1e0ba12d4c61fb353f168d0412a",
-      "reason": "DWF-1.6 public extension/resolver consumer and policy recipes, source-derived downloads and exact qualification binding. Prior DLA/quickstart semantics and all original deferred release/platform/service gates preserved."
+      "afterSha256": "a5d254d9da9dd2844abdf875ad385a26b506e9de8dfd2fdac3e5bbecf4e76228",
+      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
     },
     "content/docs/examples/_index.md": {
       "beforeSha256": "49c2d01be067914dc41f67309e70f8e0ed659905b24422c846457277acdffaa5",
-      "afterSha256": "fd2856e7d13111e2bdd0d1facf3d56d5de7284ff87672c15df33147f256ef1ae",
-      "reason": "DWF-1.6 public extension/resolver consumer and policy recipes, source-derived downloads and exact qualification binding. Prior DLA/quickstart semantics and all original deferred release/platform/service gates preserved."
+      "afterSha256": "72343b6dfee3017ea3ad9e352e95d04625305d41405b15742fc3189412273655",
+      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
     },
     "content/docs/getting-started/_index.md": {
       "beforeSha256": "647bb60a5c616bccd9eba4abd21985dcd0338bff6feeefee4cc34acb78e92527",
@@ -255,8 +255,13 @@
     },
     "navigation.json": {
       "beforeSha256": "2c763a982a260c6227c6f87342d613bfe29488a8ab1d2e07da23a575e3608da5",
-      "afterSha256": "ad47f7adb500dc2e75ff8905ef2bda61d94411f447db07b7621bb71135c60f08",
-      "reason": "DWF-1.6 public extension/resolver consumer and policy recipes, source-derived downloads and exact qualification binding. Prior DLA/quickstart semantics and all original deferred release/platform/service gates preserved."
+      "afterSha256": "3b136131d196b1cd252ee934293547c1504bc6e998215acc726160365b88eb29",
+      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
+    },
+    ".gitignore": {
+      "beforeSha256": "f2547eddff1829210654559ccf2fbd35fc4acff831d889359a31915aa2f07244",
+      "afterSha256": "a58ab59c3fe76252dee377431eea36072c2c59f34c227bbfa287949f7e1f4b84",
+      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
     }
   }
 }

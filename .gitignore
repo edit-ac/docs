@@ -9,3 +9,6 @@ public/
 # Immutable documentation declarations are source/download inputs, not build output.
 !static/reference-inputs/local-pin-1.3/core/dist/
 !static/reference-inputs/local-pin-1.3/web/dist/
+
+.playground-build-*/
+.playground-test-*/

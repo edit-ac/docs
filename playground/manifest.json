@@ -1,0 +1,16 @@
+{
+  "parent": "DWF-1.9",
+  "candidate": "sdk-framework-v1",
+  "version": "0.0.0",
+  "scope": "unpublished local build only",
+  "fixture": "project-kickoff/1",
+  "license": "Apache-2.0",
+  "files": {
+    "playground/README.md": "73f420d363cf79feb57da9a1e253a4e7a5053eb61485390b7d377169f9f9b099",
+    "playground/index.html": "e223f4e5e0de5b85821df41f517a3d541cd04fdddc504ea7b12895680173b588",
+    "playground/app.mjs": "be23068c71d2410a0b0332db9f4c7e6e6451ddf1546ff4c6862d71b0bebc24dd",
+    "playground/kickoff.mjs": "e1c9aa4b55e45dfecbfd552a917ab31caf1961f02909817da776277e162bcf01",
+    "playground/recovery.mjs": "269a6ff0e25e6b501a6513798a3cb54fe646be69a60750ec3080d18c1af2cf5d",
+    "scripts/build-playground.mjs": "73c9bd7cb62e0d3c9920ef1f4ac39bd2ced61028c25598caea1ef843f06b7492"
+  }
+}
