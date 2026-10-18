@@ -1,0 +1,260 @@
+{
+  "parent": "DWF-1.35",
+  "scope": "local-only installed production consumers; prepared host fixtures",
+  "published": false,
+  "releaseQualified": false,
+  "counts": {
+    "distinct": 40,
+    "qualified": 40,
+    "runtimeBrowser": 38,
+    "failedFinal": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "runs": [
+    {
+      "log": "evidence/custom-extensions-20261018/run-1.tap",
+      "executed": 40,
+      "passed": 39,
+      "failed": 1,
+      "skipped": 0,
+      "partial": false
+    },
+    {
+      "log": "evidence/custom-extensions-20261018/repair-1.tap",
+      "executed": 3,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 0,
+      "partial": true,
+      "invalidRepair": "Wrong command working directory prevented the intended source edit; unchanged failed case accidentally repeated. Retained, not new progress."
+    },
+    {
+      "log": "evidence/custom-extensions-20261018/repair-2.tap",
+      "executed": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "partial": true,
+      "repair": "Compose Spelling.configure as an editor configuration fragment; preserve its platform fields while changing independent autocorrection. Recheck changed case and invalidated source/reader integrity."
+    }
+  ],
+  "reconciliation": "37 unchanged owning cases passed run-1; exact owner source/case pins remain unchanged. The only new failing case is repaired and passes repair-2 with six platform/off/autocorrection cells. Current integrity/reader content checks pass repair-2. This is reconciled 40-distinct qualification, not a new full40/40 invocation. No skipped or omitted required local case.",
+  "families": [
+    {
+      "id": "structural-callout-v2",
+      "sourceCommit": "7ba6a59998ffc9e2cae840e553e43c3f86a3aa5e",
+      "packages": [
+        {
+          "path": "structural-callout-v2/packages/edit-ac-core-0.0.0.tgz",
+          "sha256": "090e2ea3a94bb976e5e841147b6e18e96e8a0dea396367e24fb981647f74b430",
+          "name": "@edit-ac/core",
+          "version": "0.0.0"
+        },
+        {
+          "path": "structural-callout-v2/packages/edit-ac-web-0.0.0.tgz",
+          "sha256": "f7864327ef0faac2f1186dcccfa831ccc985672f05e81adda03d244477841fae",
+          "name": "@edit-ac/web",
+          "version": "0.0.0"
+        },
+        {
+          "path": "structural-callout-v2/packages/edit-ac-markdown-0.0.0.tgz",
+          "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+          "name": "@edit-ac/markdown",
+          "version": "0.0.0"
+        }
+      ]
+    },
+    {
+      "id": "extension-authoring-v1",
+      "sourceCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "packages": [
+        {
+          "name": "@edit-ac/core",
+          "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/core/edit-ac-core-0.0.0.tgz",
+          "sha256": "8dd850aef6ecd31a3eb79bbeb0f84581b34a41815d0054c84448e95656bcd843",
+          "version": "0.0.0",
+          "bytes": 1094920
+        },
+        {
+          "name": "@edit-ac/web",
+          "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/documentation-20261018/checks/documentation-final/browser/tested-packages/web/edit-ac-web-0.0.0.tgz",
+          "sha256": "0ab4e7e3e424a9f7a62e1a0019a1f05757d939c5f3d090fafce0ed3e21b2585e",
+          "version": "0.0.0",
+          "bytes": 1861552
+        },
+        {
+          "name": "@edit-ac/markdown",
+          "path": "/Users/bpstr/Github/edit-ac-parallel-clients/architecture/evidence/extension-dx/loading-20261018/checks/attempt-3/loading/chromium/bundler/browser/tested-packages/markdown/edit-ac-markdown-0.0.0.tgz",
+          "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+          "version": "0.0.0",
+          "bytes": 292169
+        }
+      ]
+    }
+  ],
+  "sourceFiles": {
+    "content/docs/examples/custom-extensions.md": "bd9afb71f6de7d0ec7ba7a472850b53248c702b18616e8b45e466a470ea8dcc6",
+    "content/docs/extensions/custom.md": "3c784fc3ddc4e1ad96a099ff112f4c8bf96fa28171a6c5e61760816db7ffdacb",
+    "examples/custom-extensions/README.md": "6bffc39ba474d0f976db114961ae0e287c0cb53aa6bec764b4bcda9ce69d45c9",
+    "examples/custom-extensions/manifest.json": "127397ba0a1aa9414ccb82009b21228456b24f490ffaaefee014f49a0dcbfdb6",
+    "examples/custom-extensions/runtime/README.md": "161547a05ca6b816e71ebd426ef08890c9be7a3b01d80a542225d54e93e9cc19",
+    "examples/custom-extensions/runtime/callout-cases.mjs": "2353759d172f2b50adee2114e543737ee52632038b52c01c46949fffb6053ecb",
+    "examples/custom-extensions/runtime/documentation-cases.mjs": "d991e3dd317be020cae02ddb7a9c8e6dc747d77f50c36ec7681f1f758a9b104d",
+    "examples/custom-extensions/runtime/documentation.test.mjs.txt": "fdb242beeee3926f82d688fe15cc0fa888c7b756e8a8ae493e11f73a07852cdc",
+    "examples/custom-extensions/runtime/profile.json": "c2b6103a1138516fccbae86b113be29366f7731874672693c341d6f4656c86ed",
+    "examples/custom-extensions/transcript.json": "d11956a1c15eca8199e7f277720d9e92361ab0036b272d9c006f70230ae48ad1",
+    "examples/custom-extensions/upstream/definitions.json.txt": "424029c7cf1e143637c45a0302d0e000aa518f08d9c1d33a9b31e107364e910f",
+    "examples/custom-extensions/upstream/tutorial.mjs.txt": "4a15f48431f69864885611639539cd4ff2156cae48947cd320c4b73e21a0f629",
+    "examples/extension-configurations/README.md": "f2df36e92105a163270d4b56f8a11c11fa139532bf10c2d5a0b79dbc1db06016",
+    "examples/extension-configurations/admission.json": "01c6edfcfd0409ff0dfa762d1f5572d08e9146aae02c141be44f65d4c894858f",
+    "examples/extension-configurations/behavior.ts": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae",
+    "examples/extension-configurations/catalog.json": "d6f6e56ddcb9e0d55b83073eb9ecbdbc3ed44d25e202e866f20b87cd90a6f746",
+    "examples/extension-configurations/catalog.ts": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f",
+    "examples/extension-configurations/data.ts": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077",
+    "examples/extension-configurations/getting-started.ts": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f",
+    "examples/extension-configurations/harness.mjs": "c043ae2ae7e7a6cb37f9cebfa1e1999ab335b3e047318086e6a9a79b36c0c5fc",
+    "examples/extension-configurations/lifecycle.ts": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c",
+    "examples/extension-configurations/owner-recipes.json": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+    "examples/extension-configurations/parsing.ts": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978",
+    "examples/extension-configurations/spellcheck.ts": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7",
+    "examples/extension-configurations/task-links.ts": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55",
+    "examples/extension-configurations/upstream/configuration-receipt.json": "a85403a1f6dfadebfd3669e87c8e098d8c96f194a415ae20224906d45513bf9d",
+    "examples/extension-configurations/upstream/docs/extensions/api-v1.md.txt": "dd35080079e4e5810f9bdbcc79f8c3cf3265d9475ec518e37169d67b6e67b41a",
+    "examples/extension-configurations/upstream/docs/extensions/configuration-v1.md.txt": "d1d906e1b6349db24add2dc18332818efddf0c92135c5f9c61d0c817e4f9cb2b",
+    "examples/extension-configurations/upstream/docs/extensions/getting-started-v1.md.txt": "6a0a3ce4db41f00853567072f7b72875cfc416ac3c871f76d859225f7184588a",
+    "examples/extension-configurations/upstream/docs/extensions/hosting-v1.md.txt": "61c09d237ba56d29d02f003d229df88694f4db5a5ed9cafd31ffe962d1ed22ba",
+    "examples/extension-configurations/upstream/docs/extensions/loading-v1.md.txt": "51be4a57c61c88dce206129e73b14738ff92e4664c4fc37a5627cd21900d0a4d",
+    "examples/extension-configurations/upstream/docs/extensions/migration-v1.md.txt": "6c638ba943e63019a1efd367bc40d6ca733db07affbac7c9d6c1c5a3286cd3cf",
+    "examples/extension-configurations/upstream/docs/extensions/packaging-v1.md.txt": "b5727c8b7523e7770d3c48407fda661f08a0a5e760b3ea7eb50ea0fe54c3d1bf",
+    "examples/extension-configurations/upstream/docs/extensions/recipe-manifest.json.txt": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+    "examples/extension-configurations/upstream/docs/extensions/recipes-v1.md.txt": "0631a852edb22a74e41baad41fb40c7c0472ba552b07f1b744ede949c94265a2",
+    "examples/extension-configurations/upstream/documentation-receipt.json": "f2cab41d7a56c1a86e2e2c9d2d6ab45d1048e52f9963a406cd38f520574aae9a",
+    "examples/extension-configurations/upstream/examples/extensions/documentation/behavior.ts.txt": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae",
+    "examples/extension-configurations/upstream/examples/extensions/documentation/data.ts.txt": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077",
+    "examples/extension-configurations/upstream/examples/extensions/documentation/getting-started.ts.txt": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f",
+    "examples/extension-configurations/upstream/examples/extensions/documentation/lifecycle.ts.txt": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c",
+    "examples/extension-configurations/upstream/examples/extensions/parsing/parsing.ts.txt": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978",
+    "examples/extension-configurations/upstream/examples/extensions/spellcheck/spellcheck.ts.txt": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7",
+    "examples/extension-configurations/upstream/examples/extensions/task-links/catalog.ts.txt": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f",
+    "examples/extension-configurations/upstream/examples/extensions/task-links/task-links.ts.txt": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55",
+    "examples/extension-configurations/upstream/examples/extensions/url-insert/url-insert.ts.txt": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7",
+    "examples/extension-configurations/upstream/loading-receipt.json": "b993a30f7bec6204698bbf352521dfeaafa274e01768f1a79a7e7daad5281f6d",
+    "examples/extension-configurations/upstream/packages/core/src/extensions/profiles.ts.txt": "365dceadef6e6aba9536c7b5beb5d8fb650eebf68d2107c16868194a489f02e8",
+    "examples/extension-configurations/upstream/packages/web/src/extensions/configuration.ts.txt": "a113f5cbbf89eb8aa5a8b07e546c0cdb5d9dd7b3d5c50c997453e7b1683bfaf1",
+    "examples/extension-configurations/upstream/packages/web/src/extensions/contract.ts.txt": "b282b43a41da9bae99af631f00566caa8c33ff1eb2cf80d3759c3d0f6e87c9e1",
+    "examples/extension-configurations/upstream/packages/web/src/extensions/spelling.ts.txt": "90ca003ff62847491215ae130c99b0ffb6992d4481803aeb44e4232cea4a0d38",
+    "examples/extension-configurations/upstream/packages/web/src/modules/reorder.ts.txt": "dc4e25666ca98d8379834cc1a841a1e5d6eb4530e5819bcc145cf9fbafd33264",
+    "examples/extension-configurations/upstream/packages/web/src/modules/search.ts.txt": "5a5f420ac5b6266d0a09b008e5dcb376c6dfa51b7b56812fb997628e4f698c19",
+    "examples/extension-configurations/upstream/tests/extension-dx/documentation-consumer/session.mjs.txt": "f0eae3ba134dffa99b38a0d495a62a74feab99412f8b70f57a79f79530081674",
+    "examples/extension-configurations/url-insert.ts": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7",
+    "examples/troubleshooting/callout-harness.mjs": "10d55891cd1a06d8a713f6e1e16a0736ef6954d3f490ba3b39149b1133a429ac",
+    "examples/troubleshooting/profile.json": "e5fe4f935a017170853b814f1fdc43ac8d2ff99c3081607a4d46044912467bd8",
+    "examples/troubleshooting/upstream/recipe.mjs": "4ab61363ccef4c4b3e0d0b42daccf1bfc96e3cca01260126a569958d168bd3a0",
+    "examples/troubleshooting/upstream/session.mjs": "e21a4cecc3c811a7e35b2eec483373399c6522cf714e3a3a998603cbaca3290b",
+    "package.json": "5f6b7da4411de4d9e7592e3fbfa575ca9c8b574429656cbda3228bbd910c2342",
+    "scripts/prepare-custom-extensions.mjs": "5aae135d49b41c0b9621fe4337c4808a94c8f0352923de74206f5ad1b5baab67",
+    "scripts/prepare-custom-runtime.py": "aa8b05d0f0119186b359f3fc0e0aec9eee6642bb42d4ffa03c9e0ac4d36b7d7a",
+    "scripts/prepare-extension-catalog.mjs": "2f05e84ebdd5a0590a63f7ec71c18cdf4221ce2afb8432dea6e3c214d07d9ba9",
+    "static/reference-inputs/custom-authoring-v1/README.md": "6bffc39ba474d0f976db114961ae0e287c0cb53aa6bec764b4bcda9ce69d45c9",
+    "static/reference-inputs/custom-authoring-v1/manifest.json": "127397ba0a1aa9414ccb82009b21228456b24f490ffaaefee014f49a0dcbfdb6",
+    "static/reference-inputs/custom-authoring-v1/transcript.json": "d11956a1c15eca8199e7f277720d9e92361ab0036b272d9c006f70230ae48ad1",
+    "static/reference-inputs/custom-authoring-v1/upstream/definitions.json.txt": "424029c7cf1e143637c45a0302d0e000aa518f08d9c1d33a9b31e107364e910f",
+    "static/reference-inputs/custom-authoring-v1/upstream/tutorial.mjs.txt": "4a15f48431f69864885611639539cd4ff2156cae48947cd320c4b73e21a0f629",
+    "static/reference-inputs/extension-configurations-v1/README.md": "f2df36e92105a163270d4b56f8a11c11fa139532bf10c2d5a0b79dbc1db06016",
+    "static/reference-inputs/extension-configurations-v1/admission.json": "01c6edfcfd0409ff0dfa762d1f5572d08e9146aae02c141be44f65d4c894858f",
+    "static/reference-inputs/extension-configurations-v1/behavior.ts": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae",
+    "static/reference-inputs/extension-configurations-v1/catalog.json": "d6f6e56ddcb9e0d55b83073eb9ecbdbc3ed44d25e202e866f20b87cd90a6f746",
+    "static/reference-inputs/extension-configurations-v1/catalog.test.mjs": "92e7d2275f86a62cce788d3982931c9092872131dc19b05cd1dce891b11cf181",
+    "static/reference-inputs/extension-configurations-v1/catalog.ts": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f",
+    "static/reference-inputs/extension-configurations-v1/data.ts": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077",
+    "static/reference-inputs/extension-configurations-v1/getting-started.ts": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f",
+    "static/reference-inputs/extension-configurations-v1/harness.mjs": "c043ae2ae7e7a6cb37f9cebfa1e1999ab335b3e047318086e6a9a79b36c0c5fc",
+    "static/reference-inputs/extension-configurations-v1/lifecycle.ts": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c",
+    "static/reference-inputs/extension-configurations-v1/owner-recipes.json": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+    "static/reference-inputs/extension-configurations-v1/parsing.ts": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978",
+    "static/reference-inputs/extension-configurations-v1/prepare-extension-catalog.mjs": "2f05e84ebdd5a0590a63f7ec71c18cdf4221ce2afb8432dea6e3c214d07d9ba9",
+    "static/reference-inputs/extension-configurations-v1/spellcheck.ts": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7",
+    "static/reference-inputs/extension-configurations-v1/task-links.ts": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55",
+    "static/reference-inputs/extension-configurations-v1/upstream/configuration-receipt.json": "a85403a1f6dfadebfd3669e87c8e098d8c96f194a415ae20224906d45513bf9d",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/api-v1.md.txt": "dd35080079e4e5810f9bdbcc79f8c3cf3265d9475ec518e37169d67b6e67b41a",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/configuration-v1.md.txt": "d1d906e1b6349db24add2dc18332818efddf0c92135c5f9c61d0c817e4f9cb2b",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/getting-started-v1.md.txt": "6a0a3ce4db41f00853567072f7b72875cfc416ac3c871f76d859225f7184588a",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/hosting-v1.md.txt": "61c09d237ba56d29d02f003d229df88694f4db5a5ed9cafd31ffe962d1ed22ba",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/loading-v1.md.txt": "51be4a57c61c88dce206129e73b14738ff92e4664c4fc37a5627cd21900d0a4d",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/migration-v1.md.txt": "6c638ba943e63019a1efd367bc40d6ca733db07affbac7c9d6c1c5a3286cd3cf",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/packaging-v1.md.txt": "b5727c8b7523e7770d3c48407fda661f08a0a5e760b3ea7eb50ea0fe54c3d1bf",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/recipe-manifest.json.txt": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+    "static/reference-inputs/extension-configurations-v1/upstream/docs/extensions/recipes-v1.md.txt": "0631a852edb22a74e41baad41fb40c7c0472ba552b07f1b744ede949c94265a2",
+    "static/reference-inputs/extension-configurations-v1/upstream/documentation-receipt.json": "f2cab41d7a56c1a86e2e2c9d2d6ab45d1048e52f9963a406cd38f520574aae9a",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/documentation/behavior.ts.txt": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/documentation/data.ts.txt": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/documentation/getting-started.ts.txt": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/documentation/lifecycle.ts.txt": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/parsing/parsing.ts.txt": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/spellcheck/spellcheck.ts.txt": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/task-links/catalog.ts.txt": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/task-links/task-links.ts.txt": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55",
+    "static/reference-inputs/extension-configurations-v1/upstream/examples/extensions/url-insert/url-insert.ts.txt": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7",
+    "static/reference-inputs/extension-configurations-v1/upstream/loading-receipt.json": "b993a30f7bec6204698bbf352521dfeaafa274e01768f1a79a7e7daad5281f6d",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/core/src/extensions/profiles.ts.txt": "365dceadef6e6aba9536c7b5beb5d8fb650eebf68d2107c16868194a489f02e8",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/web/src/extensions/configuration.ts.txt": "a113f5cbbf89eb8aa5a8b07e546c0cdb5d9dd7b3d5c50c997453e7b1683bfaf1",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/web/src/extensions/contract.ts.txt": "b282b43a41da9bae99af631f00566caa8c33ff1eb2cf80d3759c3d0f6e87c9e1",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/web/src/extensions/spelling.ts.txt": "90ca003ff62847491215ae130c99b0ffb6992d4481803aeb44e4232cea4a0d38",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/web/src/modules/reorder.ts.txt": "dc4e25666ca98d8379834cc1a841a1e5d6eb4530e5819bcc145cf9fbafd33264",
+    "static/reference-inputs/extension-configurations-v1/upstream/packages/web/src/modules/search.ts.txt": "5a5f420ac5b6266d0a09b008e5dcb376c6dfa51b7b56812fb997628e4f698c19",
+    "static/reference-inputs/extension-configurations-v1/upstream/tests/extension-dx/documentation-consumer/session.mjs.txt": "f0eae3ba134dffa99b38a0d495a62a74feab99412f8b70f57a79f79530081674",
+    "static/reference-inputs/extension-configurations-v1/url-insert.ts": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7",
+    "tests/docs-custom-extensions.test.mjs": "06cdd62445de5fa3421d01286f0f6fb3dd01a68339796c5e56f3b55454100dc4"
+  },
+  "canonicalHarnesses": [
+    "examples/troubleshooting/callout-harness.mjs",
+    "examples/extension-configurations/harness.mjs"
+  ],
+  "unqualified": [
+    "registry/release",
+    "native/terminal",
+    "OS/IME/AT/device spelling",
+    "performance/budget",
+    "Tiptap runtime/plugin compatibility"
+  ],
+  "reader": {
+    "log": "evidence/custom-extensions-20261018/reader-final.tap",
+    "executed": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "browserProfiles": [
+      "desktop1440",
+      "mobile390"
+    ],
+    "covered": [
+      "rendered local limits",
+      "subpath source download",
+      "search",
+      "keyboard menu dismissal",
+      "overflow",
+      "no owned link errors"
+    ]
+  },
+  "readerFailures": [
+    "reader.tap: 0/4 hook failures from removed existing examples-index anchor, repaired by restoring untouched index tail",
+    "reader-repair.tap: 2/4 with unscoped absolute download links; repaired with Zola get_url"
+  ],
+  "sourceInventoryRecheck": {
+    "log": "evidence/custom-extensions-20261018/source-final-2.tap",
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "runtimeCases": 0,
+    "reason": "Expanded download to include reader pages and retained fixture inputs; source integrity rechecked after expansion."
+  },
+  "setupFailure": {
+    "log": "evidence/custom-extensions-20261018/source-final.tap",
+    "fileLevelFailures": 1,
+    "runtimeCases": 0,
+    "reason": "Invoked docs-relative test from workspace root; corrected working directory for source-final-2. No source implementation change required for invocation error."
+  }
+}

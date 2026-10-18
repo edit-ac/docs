@@ -1,31 +1,31 @@
 +++
-title = "Custom-authoring source study"
-description = "Complete conceptual Project kickoff states and immutable owner sources; executable tutorial pending."
+title = "Custom extension consumers"
+description = "Complete local callout, highlight, command and typed public authoring recipes."
 weight = 12
 +++
 
-**Status: conceptual source prerequisite; runtime cases: 0.** This is a source study, not an install-ready enhanced example. EQL-1.9 immutable candidate admission and the original custom callout/highlight/command consumer remain pending.
+**Status: executable local candidates, unpublished.** Follow [Build a callout, highlight and local command](@/docs/extensions/custom.md). Start with Project kickoff, Owner: Alex and Due Friday; compare exact semantic outputs, history, preservation and cleanup through the real engine/Session/WASM/editor. EQL-1.9 and roadmap10 registry/release remain open.
 
 ## Before you start
 
-**Prerequisites:** Follow [Design a callout, highlight and local command](@/docs/extensions/custom.md), [structure](@/docs/concepts/structure.md) and [compatibility](@/docs/reference/compatibility.md).
+**Tested version:** separate 0.0.0 unpublished `structural-callout-v2` and `extension-authoring-v1` package families. The <a href="{{ get_url(path="reference-inputs/custom-authoring-v2/manifest.json") }}">source/profile manifest</a> pins their archives, commits, fixtures and source ranges independently. Never combine same-version archives across families. The [configuration example](@/docs/examples/extension-configurations.md) provides the nine typed EXT-1.20 recipes and original owner receipts. Native/terminal, OS/device/IME/AT, Tiptap and performance/budget qualification remain unavailable.
 
-**Tested version:** Zola 0.23.6 reader checks. Owner recipes are API version 1, v5 schema, core `16a0a28048fd10e45284dce4b07331e3d0a15e6a`; local 0.0.0 unpublished packs have separate qualification in the [configuration example](@/docs/examples/extension-configurations.md). This page makes no SDK runtime claim.
+## Complete source and outcomes
 
-## Complete source and expected outcome
+Download the <a href="{{ get_url(path="reference-inputs/custom-authoring-v2/source.zip") }}">complete runnable sources</a>, <a href="{{ get_url(path="reference-inputs/custom-authoring-v2/manifest.json") }}">immutable manifest</a> and <a href="{{ get_url(path="reference-inputs/custom-authoring-v2/qualification.json") }}">qualification record</a>. The archive preserves docs-relative paths, both owning fixtures/harnesses, typed recipes and the named test; obtain only the matching admitted local tarballs from the manifest. These unpublished archives are local provenance, not registry identities. Restore this docs checkout's installed dependencies first; no workspace alias or foreign mutable build is used by the editor consumers.
 
-Download the <a href="{{ get_url(path="reference-inputs/custom-authoring-v1/README.md") }}">README</a>, <a href="{{ get_url(path="reference-inputs/custom-authoring-v1/transcript.json") }}">independent reader transcript</a> and <a href="{{ get_url(path="reference-inputs/custom-authoring-v1/manifest.json") }}">immutable manifest</a>. The manifest includes both historical source files and nine exact public authoring recipe ranges; no workspace aliases, provider, credentials or new service are required to read them.
+| Task | Independently checked result |
+| --- | --- |
+| Structural callout | Version-1 NOTE content tuple; bounded TIP source edit preserves identity; invalid/read-only edits leave it unchanged |
+| Friday highlight and menu | Versioned mark retained; one local emphasis intent has shared undo/redo |
+| Interchange and recovery | Exact checkpoint/IndexedDB reopen, unknown payload retention, callout Markdown roundtrip and explicit highlight loss/recovery |
+| Typed authoring | Behavior/mark/atom, validation, lifecycle, ASD-123 lookup/missing/stale, custom spelling, note parser and safe URL insertion through unchanged owning sources |
+| Cleanup | Cancel/stale results cannot commit; detached menu cannot write; presenters/listeners and SDK resources dispose |
 
-The Project kickoff corpus traces a callout design, Friday highlight, local emphasis action with undo/redo, rejected validation, unknown version preservation, task lookup/missing/stale results, explicit custom spelling, note parsing, unsafe URL rejection and disposal. Its JSON notation is a reader model, not the engine's serialization format. “Expected” means an independently authored requirement, not observed runtime output. A structural callout is still pending; the available note codec uses existing heading/bold semantics.
+The earlier <a href="{{ get_url(path="reference-inputs/custom-authoring-v1/transcript.json") }}">v1 transcript</a> remains a conceptual reader study. It has zero runtime cases and does not override this consumer's observed qualification. The bounded callout uses the kickoff title/owner/due subset; separate authoring cases retain their own explicitly pinned input fixtures.
 
-## Failure and recovery
+## Reproduce and recover
 
-Preserve the original checkpoint and unknown payload when a version, presenter or export format is unsupported. Markdown fallback can be lossy; never present it as a lossless backup. Not-found keeps literal text, stale callbacks must not edit newer content, and disposal must remove owned listeners and cancel pending work. The transcript records these expectations without simulating an editor.
+From this docs checkout with Node24.19.0/npm11.17.0 and an installed Playwright1.64.0 module, set `DOCS_PLAYWRIGHT_MODULE` and a fresh `DOCS_CUSTOM_OUTPUT`, then run `node --test tests/docs-custom-extensions.test.mjs`. The suite installs only exact local production tarballs, compiles the nine public TypeScript recipes, and rejects invalid typed options. Required tests have nonzero counts and no skip-as-pass behavior. Follow with `npm run check`, `zola check --skip-external-links` and `zola build`.
 
-## Verify the source study
-
-From this docs checkout, run `node --test tests/docs-custom-extensions.test.mjs`, then `npm run check`, `zola check --skip-external-links` and `zola build`. The named source checks authenticate downloads and conceptual states only; no runtime case is counted or skipped into a pass. Exact candidate consumers and original runtime criteria remain pending. The future consumer must use the real production engine, Session, WASM, BrowserEditor, storage, anchors and history.
-
-## Migration and compatibility
-
-Use [release status](@/docs/reference/status.md) and [compatibility](@/docs/reference/compatibility.md) to assess actual artifacts. Native/terminal presenters, OS spelling, Tiptap plugins and arbitrary structural extension editing are not qualified here. See [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for the separately labeled adoption boundaries.
+Keep the original checkpoint on invalid schema, unsupported data or failed export; a lossy Markdown fallback is not a backup. Missing tasks stay literal, unsafe links do not apply and newer content is never a target for stale work. All host replies are hand-authored fixtures. No provider/service, credentials or paid inference is used. Browser contexts, ephemeral databases, consumers and loopback servers are disposed; keep durable failure logs and qualification evidence.

@@ -1,0 +1,65 @@
+{
+  "parent": "DWF-1.35",
+  "published": false,
+  "releaseQualified": false,
+  "sourceCommit": "7ba6a59998ffc9e2cae840e553e43c3f86a3aa5e",
+  "candidate": "structural-callout-v2",
+  "manifest": "../architecture/evidence/local-consumer-return/20261018/local-candidates-v5.json",
+  "manifestSha256": "27fb6a35786c50d2faa9a3a4d7c90340da6d7c667caf48060c54ae270c055729",
+  "packages": [
+    {
+      "path": "structural-callout-v2/packages/edit-ac-core-0.0.0.tgz",
+      "sha256": "090e2ea3a94bb976e5e841147b6e18e96e8a0dea396367e24fb981647f74b430",
+      "name": "@edit-ac/core",
+      "version": "0.0.0"
+    },
+    {
+      "path": "structural-callout-v2/packages/edit-ac-web-0.0.0.tgz",
+      "sha256": "f7864327ef0faac2f1186dcccfa831ccc985672f05e81adda03d244477841fae",
+      "name": "@edit-ac/web",
+      "version": "0.0.0"
+    },
+    {
+      "path": "structural-callout-v2/packages/edit-ac-markdown-0.0.0.tgz",
+      "sha256": "68b224dbade1ab9c2c0d4fafa1be31f00a7d63141aff2fc5be8082e173211200",
+      "name": "@edit-ac/markdown",
+      "version": "0.0.0"
+    }
+  ],
+  "files": {
+    "examples/troubleshooting/upstream/session.mjs": {
+      "source": "tests/extension-dx/structural-callout-consumer/session.mjs",
+      "sha256": "e21a4cecc3c811a7e35b2eec483373399c6522cf714e3a3a998603cbaca3290b"
+    },
+    "examples/troubleshooting/upstream/recipe.mjs": {
+      "source": "examples/extensions/structural-callout/recipe.mjs",
+      "sha256": "4ab61363ccef4c4b3e0d0b42daccf1bfc96e3cca01260126a569958d168bd3a0"
+    }
+  },
+  "authoring": {
+    "candidate": "extension-authoring-v1",
+    "sourceCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+    "admission": "examples/extension-configurations/admission.json",
+    "sha256": "01c6edfcfd0409ff0dfa762d1f5572d08e9146aae02c141be44f65d4c894858f"
+  },
+  "casePins": [
+    {
+      "file": "runtime/callout-cases.mjs",
+      "source": "tests/extension-dx/structural-callout-cases.mjs",
+      "commit": "7ba6a59998ffc9e2cae840e553e43c3f86a3aa5e",
+      "sha256": "2353759d172f2b50adee2114e543737ee52632038b52c01c46949fffb6053ecb"
+    },
+    {
+      "file": "runtime/documentation.test.mjs.txt",
+      "source": "tests/extension-dx/documentation.test.mjs",
+      "commit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+      "sha256": "fdb242beeee3926f82d688fe15cc0fa888c7b756e8a8ae493e11f73a07852cdc"
+    }
+  ],
+  "documentationRange": {
+    "file": "runtime/documentation-cases.mjs",
+    "from": 39,
+    "to": 91,
+    "sha256": "d991e3dd317be020cae02ddb7a9c8e6dc747d77f50c36ec7681f1f758a9b104d"
+  }
+}

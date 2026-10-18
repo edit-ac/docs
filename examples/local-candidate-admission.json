@@ -200,13 +200,13 @@
   "reviewedCompatibility": {
     "package.json": {
       "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
-      "afterSha256": "f6e9a8fc95ac27b2d0ff7acfb530fdce6ad8ce2539edeed665e39aca5dce8eff",
-      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
+      "afterSha256": "5f6b7da4411de4d9e7592e3fbfa575ca9c8b574429656cbda3228bbd910c2342",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
     },
     "content/docs/examples/_index.md": {
       "beforeSha256": "49c2d01be067914dc41f67309e70f8e0ed659905b24422c846457277acdffaa5",
-      "afterSha256": "c34f5ee55b6ba3ccb9101442ba5c362410a6604cd48080ce7f37ab328a2724a6",
-      "reason": "DWF-1.36 curates existing source/profile downloads and adds gallery filter/copy/navigation. Prior consumer records and runtime packages remain identical; disabled gallery script is inert without its data-gallery element. Original external gates stay deferred."
+      "afterSha256": "e42ca64412909c29ab1ceec30ea06714289c6b8f544c104dcf6dadde6fe9435b",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
     },
     "content/docs/getting-started/_index.md": {
       "beforeSha256": "647bb60a5c616bccd9eba4abd21985dcd0338bff6feeefee4cc34acb78e92527",
@@ -230,8 +230,8 @@
     },
     "examples/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "f3fe774c5133097051770d49bb38ef8b122b87b093d319d4ec4ac6f5a9f7f0f6",
-      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
+      "afterSha256": "3286d66da570f06822bfbde27b671c9e32d065e678fd688e340d5d22fd3af781",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
     },
     "scripts/check-examples.mjs": {
       "beforeSha256": "b9213846202ea03b53935c7836dcf02add2b1ef8f631e5e34a63891da3a7fa39",
@@ -240,8 +240,8 @@
     },
     "static/concepts/project-kickoff-v1/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "f3fe774c5133097051770d49bb38ef8b122b87b093d319d4ec4ac6f5a9f7f0f6",
-      "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
+      "afterSha256": "3286d66da570f06822bfbde27b671c9e32d065e678fd688e340d5d22fd3af781",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
     },
     "content/docs/guides/_index.md": {
       "beforeSha256": "ca44e8f11a6f6898eab69d533f88dae92c8d3bdf3c22764cc67bede803eba40f",
@@ -277,6 +277,31 @@
       "beforeSha256": "07830beea389658256ec634ecfbf8c178192785fb83050d69677f0c072261d36",
       "afterSha256": "e8f559062d5b41a9f73839d2ca6767569de8c6f5d7bc30dac849db7e7fd53d91",
       "reason": "DWF-1.38 adds checked troubleshooting pages, source/profile downloads, prepared failure consumers and their navigation/generation entry. Reuses unchanged independently admitted lifecycle/command packages and exact structural-callout-v2 tarballs; prior consumer records/owners and original external release/native/cloud gates remain unchanged."
+    },
+    "content/docs/examples/custom-extensions.md": {
+      "beforeSha256": "61ab26fe8fcef21b92ae5fda0878814890a8ac7cde0c7ab399dfe8800d1a346a",
+      "afterSha256": "bd9afb71f6de7d0ec7ba7a472850b53248c702b18616e8b45e466a470ea8dcc6",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
+    },
+    "content/docs/extensions/_index.md": {
+      "beforeSha256": "9750d079e7427794fb2696489b5b9516163e78713e65198f491f44df9240d1d0",
+      "afterSha256": "c2fbf402ef7a80eb02789da191c7435cd73a9dd8beeb6e47ecc923bf0e4c54a7",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
+    },
+    "content/docs/extensions/custom.md": {
+      "beforeSha256": "e32af14052e51349ed5f46e64fc2f8d5664d4c2f64c0bef8e187df8b7fad9e3b",
+      "afterSha256": "3c784fc3ddc4e1ad96a099ff112f4c8bf96fa28171a6c5e61760816db7ffdacb",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
+    },
+    "tests/docs-custom-extensions-reader.test.mjs": {
+      "beforeSha256": "5203993909c2a7bed938166784a7358e34158bb19f3a735f98b66249a9142ca1",
+      "afterSha256": "4d643ee4df17d4f0e55569310311fc5b32b5063dba01e35752baef18f9eeffd8",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
+    },
+    "tests/docs-custom-extensions.test.mjs": {
+      "beforeSha256": "0c66bb4e5b0b0a6ce15de433b5fd4a0a3d9b1b68ae83085721be427a6e27f27e",
+      "afterSha256": "06cdd62445de5fa3421d01286f0f6fb3dd01a68339796c5e56f3b55454100dc4",
+      "reason": "DWF-1.35 replaces the conceptual-only authoring reader with separate exact admitted structural-callout-v2 and extension-authoring-v1 installed consumers, complete source download and independently expected preservation/history/cancellation/cleanup checks. Prior source study remains intact; no production owners, package families, other consumers or original external gates changed."
     }
   }
 }

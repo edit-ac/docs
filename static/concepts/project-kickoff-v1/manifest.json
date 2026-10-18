@@ -133,18 +133,20 @@
     {
       "id": "custom-authoring/1",
       "parent": "DWF-1.35",
-      "maturity": "conceptual-source-prerequisite",
-      "runtimeQualified": false,
-      "testedSdkVersion": null,
-      "profile": null,
-      "source": "examples/custom-extensions/README.md",
-      "manifest": "examples/custom-extensions/manifest.json",
+      "maturity": "local-installed-authoring",
+      "runtimeQualified": true,
+      "testedSdkVersion": "0.0.0 (unpublished; separate exact families)",
+      "profile": "examples/custom-extensions/runtime/profile.json",
+      "source": "examples/custom-extensions/runtime/README.md",
+      "manifest": "static/reference-inputs/custom-authoring-v2/manifest.json",
       "transcript": "examples/custom-extensions/transcript.json",
-      "downloadBase": "/reference-inputs/custom-authoring-v1/",
+      "downloadBase": "/reference-inputs/custom-authoring-v2/",
       "pages": [
         "content/docs/extensions/custom.md",
         "content/docs/examples/custom-extensions.md"
-      ]
+      ],
+      "qualification": "examples/custom-extensions/runtime/qualification.json",
+      "scope": "Installed real production consumers; prepared hosts; no registry/release/OS claim"
     },
     {
       "id": "quickstarts/1",

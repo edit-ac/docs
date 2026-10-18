@@ -67,7 +67,7 @@ Continue with [core concepts](@/docs/concepts/_index.md), [API reference](@/docs
 
 [Project kickoff saving consumer](@/docs/examples/lifecycle.md) pairs complete unpublished local packed source with actual local receipts, prepared save failure recovery, cancellation and cleanup. Remote save remains not configured; React/SSR sources explain existing boundaries only.
 
-[Custom-authoring source study](@/docs/examples/custom-extensions.md) explains the callout/highlight/command design with immutable recipe links and independent conceptual states. Runtime cases: 0; candidate admission and the complete executable tutorial remain pending.
+[Custom extension consumers](@/docs/examples/custom-extensions.md) run the admitted Project kickoff callout, Friday highlight and local command plus typed public behavior/lookup/spelling/parsing/URL recipes. Complete source, separate unpublished package families, independent outcomes and cleanup are linked beside the guide. Registry/release, native/terminal and OS spelling remain unqualified.
 
 ## Project kickoff local package consumers
 

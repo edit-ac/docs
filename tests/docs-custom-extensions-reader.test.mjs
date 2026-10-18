@@ -34,12 +34,12 @@ after(async()=>{
   catch(error){metadata.artifactError=error.message;}
   finally {try{await context?.close();}finally{try{await browser?.close();}finally{if(server?.listening)await new Promise(ok=>server.close(ok));if(temporary)rmSync(temporary,{recursive:true,force:true});metadata.cleaned=true;if(artifacts){mkdirSync(artifacts,{recursive:true});writeFileSync(join(artifacts,'reader.json'),JSON.stringify(metadata,null,2)+'\n');}}}}
 });
-test('homepage and custom tutorial expose conceptual status and a complete source study',async()=>{
+test('homepage and custom tutorial expose local limits and complete runnable sources',async()=>{
  await page.goto(base);assert.ok((await page.locator('main').innerText()).length>100);
- await page.goto(base+'docs/extensions/custom/');const text=await page.locator('main').innerText();assert.match(text,/zero runtime cases/);assert.match(text,/structural callout remains pending/);assert.match(text,/128-unit highlight/);
- await page.getByRole('link',{name:'complete source study',exact:true}).click();assert.equal(await page.locator('h1').textContent(),'Custom-authoring source study');
- const href=await page.getByRole('link',{name:'independent reader transcript',exact:true}).getAttribute('href');assert.equal(href,base+'reference-inputs/custom-authoring-v1/transcript.json');const response=await page.request.get(href);assert.equal(response.status(),200);assert.equal(digest(await response.body()),digest(readFileSync(join(siteRoot,'examples/custom-extensions/transcript.json'))));
- if(artifacts)await page.screenshot({path:join(artifacts,'desktop.png'),fullPage:true});observations.push({id:'desktop',download:true,runtimeCases:0});
+ await page.goto(base+'docs/extensions/custom/');const text=await page.locator('main').innerText();assert.match(text,/executable local candidate/);assert.match(text,/EQL-1.9/);assert.match(text,/unknown/);
+ await page.getByRole('link',{name:'complete custom-authoring example',exact:true}).click();assert.equal(await page.locator('h1').textContent(),'Custom extension consumers');
+ const href=await page.getByRole('link',{name:'complete runnable sources',exact:true}).getAttribute('href');assert.equal(href,base+'reference-inputs/custom-authoring-v2/source.zip');const response=await page.request.get(href);assert.equal(response.status(),200);assert.equal(digest(await response.body()),digest(readFileSync(join(siteRoot,'static/reference-inputs/custom-authoring-v2/source.zip'))));
+ if(artifacts)await page.screenshot({path:join(artifacts,'desktop.png'),fullPage:true});observations.push({id:'desktop',download:true,readerOnly:true});
 });
 test('search discovers the source tutorial without changing its qualification status',async()=>{
  await page.goto(base+'docs/extensions/custom/');await page.locator('[data-search-input]').fill('callout');await page.locator('[data-search-list] a').first().waitFor();
