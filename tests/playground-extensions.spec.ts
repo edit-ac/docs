@@ -225,3 +225,99 @@ for(const kind of ['csv','tsv'])test(`${kind.toUpperCase()} no-header import and
  await click(page,'redo');await page.click('#table-refresh');await page.selectOption('#table-selected',table.id);assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
  await writeFile(join(output,kind+'-selection-observations.json'),JSON.stringify({table,imported,report:await page.evaluate(()=>window.playgroundFormats.report)},null,2));
 }));
+
+// Hold only delivery of the real worker's result. Conversion still executes the
+// immutable installed package; cancellation/termination remain real client calls.
+async function holdWorker(page){await page.evaluate(()=>{
+ const Native=window.Worker;window.formatWorker={arrived:false,live:0,terminated:0,release:()=>{}};
+ window.Worker=class extends Native{
+  constructor(...args){super(...args);window.formatWorker.live++;this.stopped=false;}
+  set onmessage(listener){super.onmessage=event=>{window.formatWorker.arrived=true;window.formatWorker.release=()=>listener(event);};}
+  terminate(){if(!this.stopped){this.stopped=true;window.formatWorker.live--;window.formatWorker.terminated++;}return super.terminate();}
+ };
+});}
+async function workerArrived(page){await page.waitForFunction(()=>window.formatWorker.arrived);}
+async function releaseWorker(page){await page.evaluate(()=>window.formatWorker.release());await page.waitForFunction(()=>!window.playgroundFormats.working);assert.equal(await page.evaluate(()=>window.formatWorker.live),0);}
+async function history(page){return page.evaluate(()=>window.playground.editor.owner.engine.history({type:'state'}));}
+async function holdIngest(page){await page.evaluate(async()=>{
+ const assets=await window.playground.editor.owner.enableAssets(),run=assets.runOne.bind(assets);
+ window.ingestBarrier={arrived:false};let release;const held=new Promise(r=>release=r);window.ingestBarrier.release=release;
+ assets.runOne=async(...args)=>{window.ingestBarrier.arrived=true;await held;return run(...args);};
+});}
+for(const mode of ['cancel','revision','target','close'])test(`format recovery import ${mode} fences real worker preparation`,()=>browserCase('race-import-'+mode,async page=>{
+ await visit(page);const siblingBefore=await projection(page),siblingHistory=await history(page);await page.selectOption('#preset','document');await ready(page);await enable(page);const before=await projection(page),priorHistory=await history(page);
+ await holdWorker(page);await page.click('#docx-prepare');await workerArrived(page);
+ if(mode==='revision')await edit(page,' newer revision');
+ else if(mode==='target'){await page.selectOption('#preset','task');await ready(page);}
+ else if(mode==='close'){await page.evaluate(()=>window.playground.close());assert.equal(await page.evaluate(()=>window.playgroundFormats.ready),false);}
+ else await page.click('#docx-cancel');
+ const currentState=mode==='close'?null:await projection(page),currentHistory=mode==='close'?null:await history(page);
+ await releaseWorker(page);assert.equal(await page.locator('#docx-confirm').isDisabled(),true);
+ if(mode!=='close'){assert.equal(await projection(page),currentState);assert.deepEqual(await history(page),currentHistory);}
+ if(mode==='target'){assert.equal(await projection(page),siblingBefore);assert.deepEqual(await history(page),siblingHistory);await page.selectOption('#preset','document');await ready(page);}
+ if(mode==='close'){await click(page,'retry');await ready(page);await enable(page);}
+ if(mode!=='revision'){assert.equal(await projection(page),before);assert.deepEqual(await history(page),priorHistory);}
+ await retainedDownload(page,'original','race-import-'+mode+'.docx');await retainedDownload(page,'recovery','race-import-'+mode+'-recovery.json');
+ assert.equal(await page.evaluate(()=>window.formatWorker.terminated),1);
+}));
+
+test('format recovery stale preview rejects confirmation after a local revision',()=>browserCase('race-stale-preview',async page=>{
+ await visit(page,'document');await enable(page);await docxAction(page,'prepare');await edit(page,' retained newer edit');const before=await projection(page),h=await history(page);
+ await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/Stale target/);assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);
+ await docxAction(page,'prepare');await docxAction(page,'cancel');assert.equal(await page.locator('#docx-confirm').isDisabled(),true);assert.equal(await projection(page),before);
+}));
+
+for(const mode of ['cancel','revision','target','close'])test(`format recovery import ${mode} fences asynchronous original ingest`,()=>browserCase('race-ingest-'+mode,async page=>{
+ await visit(page);const siblingBefore=await projection(page),siblingHistory=await history(page);await page.selectOption('#preset','document');await ready(page);await enable(page);await docxAction(page,'prepare');const before=await projection(page),h=await history(page);await holdIngest(page);
+ await page.click('#docx-confirm');await page.waitForFunction(()=>window.ingestBarrier.arrived);
+ if(mode==='revision')await edit(page,' during ingest');
+ else if(mode==='target'){await page.selectOption('#preset','task');await ready(page);}
+ else if(mode==='close')await page.evaluate(()=>window.playground.close());
+ else await page.click('#docx-cancel');
+ const currentState=mode==='close'?null:await projection(page),currentHistory=mode==='close'?null:await history(page);
+ if(mode==='revision')await page.evaluate(()=>window.ingestBarrier.release());
+ await page.waitForFunction(()=>!window.playgroundFormats.working);
+ await page.evaluate(()=>window.ingestBarrier.release());
+ if(mode!=='close'){assert.equal(await projection(page),currentState);assert.deepEqual(await history(page),currentHistory);}
+ if(mode==='target'){assert.equal(await projection(page),siblingBefore);assert.deepEqual(await history(page),siblingHistory);await page.selectOption('#preset','document');await ready(page);}
+ if(mode==='close'){await click(page,'retry');await ready(page);await enable(page);}
+ if(mode!=='revision'){assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);}
+ await retainedDownload(page,'original','race-ingest-'+mode+'.docx');await retainedDownload(page,'recovery','race-ingest-'+mode+'-recovery.json');
+ const journal=await page.evaluate(async()=>await (await window.playground.editor.owner.enableAssets()).inspect());
+ assert.ok(journal.prepared.length>0,'exact staged originals remain recoverable');
+ assert.ok(journal.prepared.every(p=>!p.active&&p.adoptedReference===null),'rejected commit leaves fenced unadopted originals');
+ const retained=await page.evaluate(async()=>{const a=await window.playground.editor.owner.enableAssets(),j=await a.inspect(),p=j.prepared.find(p=>p.reference.endsWith('_source'));return Array.from(await a.preparedSource(p.job,p.reference,{identity:{host:'local-recovery',key:'complete-docx-package'},actions:['read']}));});
+ assert.deepEqual(Buffer.from(retained),await readFile(join(temp,'scenarios/extensions-formats/fixtures/media.docx')));
+ await writeFile(join(output,'race-ingest-'+mode+'-journal.json'),JSON.stringify(journal,null,2));
+}));
+
+for(const mode of ['cancel','close','revision','target'])test(`format recovery export ${mode} retains captured recovery and fences completion`,()=>browserCase('race-export-'+mode,async page=>{
+ await visit(page);const siblingBefore=await projection(page),siblingHistory=await history(page);await page.selectOption('#preset','document');await ready(page);await enable(page);await page.check('#docx-loss');const before=await projection(page),h=await history(page);
+ const captured=await page.evaluate(()=>JSON.stringify(window.playground.editor.owner.engine.checkpoint(),(_k,v)=>v instanceof Uint8Array?Array.from(v):v));
+ await holdWorker(page);await page.click('#docx-export');await workerArrived(page);
+ if(mode==='revision')await edit(page,' after export capture');else if(mode==='target'){await page.selectOption('#preset','task');await ready(page);}else if(mode==='close')await page.evaluate(()=>window.playground.close());else await page.click('#docx-cancel');
+ const currentState=mode==='close'?null:await projection(page),currentHistory=mode==='close'?null:await history(page);
+ await releaseWorker(page);
+ if(mode!=='close'){assert.equal(await projection(page),currentState);assert.deepEqual(await history(page),currentHistory);}
+ if(mode==='revision'){
+  assert.match(await page.locator('#docx-status').innerText(),/Stale target/);await retainedDownload(page,'download','race-export-stale.docx');
+ }else assert.equal(await page.locator('#docx-download').isDisabled(),true);
+ if(mode==='close'){await click(page,'retry');await ready(page);await enable(page);assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);}
+ if(mode==='target'){assert.equal(await projection(page),siblingBefore);assert.deepEqual(await history(page),siblingHistory);await page.selectOption('#preset','document');await ready(page);assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);}
+ await retainedDownload(page,'recovery','race-export-'+mode+'-recovery.json');assert.deepEqual(JSON.parse(await readFile(join(output,'race-export-'+mode+'-recovery.json'))),JSON.parse(captured));
+}));
+
+test('format recovery denied save failed write and rejected share retain exact output for retry',()=>browserCase('race-delivery-failures',async page=>{
+ await visit(page,'document');await enable(page);await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+ const before=await projection(page),h=await history(page),captured=await page.evaluate(()=>JSON.stringify(window.playground.editor.owner.engine.checkpoint(),(_k,v)=>v instanceof Uint8Array?Array.from(v):v));await retainedDownload(page,'download','delivery-before.docx');
+ await page.evaluate(()=>{window.showSaveFilePicker=async()=>{throw new DOMException('Fixture permission denied','NotAllowedError');};});
+ await page.click('#docx-save-output');await page.waitForFunction(()=>document.getElementById('docx-status').textContent.includes('NotAllowedError'));
+ await page.evaluate(()=>{window.deliveryAbort=0;window.showSaveFilePicker=async()=>({createWritable:async()=>({write:async()=>{throw new DOMException('Fixture write failure','NotWritableError');},close:async()=>{},abort:async()=>window.deliveryAbort++})});});
+ await page.click('#docx-save-output');await page.waitForFunction(()=>document.getElementById('docx-status').textContent.includes('NotWritableError'));assert.equal(await page.evaluate(()=>window.deliveryAbort),1);
+ await page.evaluate(()=>{Object.defineProperty(navigator,'canShare',{configurable:true,value:()=>true});Object.defineProperty(navigator,'share',{configurable:true,value:async({files})=>{window.sharedName=files[0].name;window.sharedBytes=Array.from(new Uint8Array(await files[0].arrayBuffer()));throw new DOMException('Fixture canceled share','AbortError');}});});
+ await page.click('#docx-share-output');await page.waitForFunction(()=>document.getElementById('docx-status').textContent.includes('AbortError'));
+ assert.equal(await page.evaluate(()=>window.sharedName),'playground.docx');assert.deepEqual(Buffer.from(await page.evaluate(()=>window.sharedBytes)),await readFile(join(output,'delivery-before.docx')));
+ await page.selectOption('#preset','task');await ready(page);const sibling=await projection(page),sh=await history(page);await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);await page.selectOption('#package-format','pdf');
+ await retainedDownload(page,'download','delivery-after.docx');await retainedDownload(page,'recovery','delivery-recovery.json');assert.deepEqual(JSON.parse(await readFile(join(output,'delivery-recovery.json'))),JSON.parse(captured));assert.deepEqual(await readFile(join(output,'delivery-before.docx')),await readFile(join(output,'delivery-after.docx')));assert.equal(await projection(page),sibling);assert.deepEqual(await history(page),sh);
+ await page.selectOption('#preset','document');await ready(page);assert.equal(await projection(page),before);assert.deepEqual(await history(page),h);
+}));

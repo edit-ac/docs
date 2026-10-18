@@ -28,6 +28,8 @@ async function identityFor(preset){
  });
 }
 async function dispose(){
+ // Cancel and drain public-format cleanup before releasing its storage owner.
+ await window.playgroundFormats?.cancelAndWait();
  unsubscribe?.();unsubscribe=undefined;if(!editor)return;
  const old=editor;if(old.state.ready)old.setReadOnly(true);
  try{await old.destroy({policy:'flush'});}catch(error){const result=await old.destroy({policy:'report'});retainRecovery({...result,preset:selected});$('reports').textContent=JSON.stringify(recoveryReports,(_k,v)=>v instanceof Uint8Array?Array.from(v):v,2);throw error;}finally{editor=undefined;$('readonly').setAttribute('aria-pressed','false');}
@@ -81,5 +83,5 @@ $('cancel-reset').onclick=()=>{$('confirmation').hidden=true;$('reset').focus();
 $('confirm-reset').onclick=()=>void action(reset);
 window.addEventListener('beforeunload',event=>{if(editor?.state.error||recoveryReports.some(r=>!r.recovered)){event.preventDefault();event.returnValue='';}});
 // The host must await close before client navigation; abrupt tab shutdown cannot promise a flush.
-window.playground={open:()=>action(()=>open()),close:()=>action(dispose),get editor(){return editor;},get reports(){return recoveryReports;},get busy(){return busy;}};
+window.playground={open:()=>action(()=>open()),close:()=>{window.dispatchEvent(new Event('playground-close'));return action(dispose);},get editor(){return editor;},get reports(){return recoveryReports;},get busy(){return busy;}};
 void action(()=>open());

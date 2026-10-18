@@ -4,7 +4,7 @@ import {createEditor} from './document.mjs';
 import {createKickoff} from './kickoff.mjs';
 import {downloadRecovery,recoveryReports,retainRecovery} from './recovery.mjs';
 const $=id=>document.getElementById(id), assetUrl=new URL('./core/wasm/editac_wasm_bg.wasm',import.meta.url).href;
-const prefix='editac-playground-docx-v1-', presets=new Set(['task','document']);
+const prefix='editac-playground-docx-v1-', presets=new Set(['task','document','publication']);
 let editor,unsubscribe,busy=false,selected='task';
 const buttons=['save','undo','redo','readonly','close'];
 function controls(){for(const id of buttons)$(id).disabled=busy||!editor?.state.ready;for(const id of ['undo','redo'])$(id).disabled||=!!editor?.state.readOnly;$('preset').disabled=busy;$('retry').disabled=busy;$('confirm-reset').disabled=busy;$('reset').disabled=busy;$('export').disabled=busy;$('recover').disabled=busy||(!editor?.state.ready&&!recoveryReports.some(r=>r.preset===selected&&!r.recovered));}
@@ -15,7 +15,9 @@ async function identityFor(preset){
  const key=prefix+preset, databaseName=key;
  return navigator.locks.request(key+'-creation',async()=>{
   const saved=localStorage.getItem(key);if(saved)return JSON.parse(saved);
-  const runtime=await init(assetUrl),engine=createKickoff(runtime,{documentId:crypto.randomUUID(),epoch:crypto.randomUUID()});let storage;
+  const runtime=await init(assetUrl),identity={documentId:crypto.randomUUID(),epoch:crypto.randomUUID()};
+  // A separately named approved authoring sample, never a flattening fallback.
+  const engine=preset==='publication'?runtime.createEngine({profile:'v5',...identity,nodes:['Project kickoff','Owner: Alex','Due Friday','Draft agenda','Confirm attendees','Reference'].map(text=>({text}))}):createKickoff(runtime,identity);let storage;
   try{
    const identity=engine.read().identity;
    // Save creation intent before publication. Failed/missing checkpoints are never silently replaced.
@@ -26,6 +28,8 @@ async function identityFor(preset){
  });
 }
 async function dispose(){
+ // Cancel and drain public-format cleanup before releasing its storage owner.
+ await window.playgroundFormats?.cancelAndWait();
  unsubscribe?.();unsubscribe=undefined;if(!editor)return;
  const old=editor;if(old.state.ready)old.setReadOnly(true);
  try{await old.destroy({policy:'flush'});}catch(error){const result=await old.destroy({policy:'report'});retainRecovery({...result,preset:selected});$('reports').textContent=JSON.stringify(recoveryReports,(_k,v)=>v instanceof Uint8Array?Array.from(v):v,2);throw error;}finally{editor=undefined;$('readonly').setAttribute('aria-pressed','false');}
@@ -34,12 +38,12 @@ async function open(preset=selected){
  if(!presets.has(preset))throw Error('Unknown preset');
  await dispose();selected=preset;$('preset').value=preset;status('Loading local editor…');
  const options=await identityFor(preset);
- editor=createEditor($('editor'),{...options,assetUrl,indexedDB,locks:navigator.locks,preset,label:'Project kickoff document'});
+ editor=createEditor($('editor'),{...options,assetUrl,indexedDB,locks:navigator.locks,preset:preset==='publication'?'document':preset,label:'Project kickoff document'});
  const offState=editor.subscribe(state=>{if(state.error)report(state.error);});
  unsubscribe=offState;await editor.ready;
  const offUpdates=editor.subscribe({type:'updates'},()=>status('Local edits pending. Save locally before reload.'));
  unsubscribe=()=>{offState();offUpdates();};
- status(`${preset==='task'?'PM ticket':'Document'} ready. Saved in this browser only.`);
+ status(`${preset==='task'?'PM ticket':preset==='publication'?'PDF publication sample':'Document'} ready. Saved in this browser only.`);
 }
 function exportRecovery(){const reports=[...recoveryReports];if(editor?.state.ready)reports.push(editor.recoveryExport());if(reports.length)downloadRecovery(reports);else throw Error('No open document or retained recovery report to export');}
 async function reset(){
@@ -79,5 +83,5 @@ $('cancel-reset').onclick=()=>{$('confirmation').hidden=true;$('reset').focus();
 $('confirm-reset').onclick=()=>void action(reset);
 window.addEventListener('beforeunload',event=>{if(editor?.state.error||recoveryReports.some(r=>!r.recovered)){event.preventDefault();event.returnValue='';}});
 // The host must await close before client navigation; abrupt tab shutdown cannot promise a flush.
-window.playground={open:()=>action(()=>open()),close:()=>action(dispose),get editor(){return editor;},get reports(){return recoveryReports;},get busy(){return busy;}};
+window.playground={open:()=>action(()=>open()),close:()=>{window.dispatchEvent(new Event('playground-close'));return action(dispose);},get editor(){return editor;},get reports(){return recoveryReports;},get busy(){return busy;}};
 void action(()=>open());

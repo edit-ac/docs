@@ -6,7 +6,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 const sources=['index.html','formats.mjs','README.md','app.mjs','document.mjs'].map(p=>'playground/scenarios/extensions-formats/'+p);
 sources.push('scripts/build-playground-formats.mjs','scripts/build-playground.mjs','playground/app.mjs','playground/kickoff.mjs','playground/recovery.mjs','playground/index.html','playground/README.md','scripts/check-playground.mjs','tests/playground-extensions.spec.ts','tests/inspect-playground-docx.py');
 const files=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(readFileSync(resolve(root,p))).digest('hex')]));
-const manifest={parent:'DPG-1.2',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',scope:'unpublished local browser capability and DOCX subset; full DWF-1.10 remains open',fixture:'project-kickoff/1',license:'Apache-2.0',files};
+const manifest={parent:'DPG-1.5',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',scope:'unpublished local browser format actions and cancellation/recovery; full DWF-1.10 remains open',fixture:'project-kickoff/1',license:'Apache-2.0',files};
 const prefix='static/reference-inputs/playground-formats-v1/';
 const outputs=new Map(sources.map(p=>[prefix+p,readFileSync(resolve(root,p))]));
 outputs.set(prefix+'manifest.json',Buffer.from(JSON.stringify(manifest,null,2)+'\n'));
