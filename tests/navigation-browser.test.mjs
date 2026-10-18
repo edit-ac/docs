@@ -144,3 +144,25 @@ test('concept walkthrough links all lessons and serves versioned transcript with
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
   observe('concept walkthrough', 'Desktop lesson opens; sixteen-row conceptual transcript downloads; 390px lesson has no horizontal overflow; persistence labels remain distinct');
 });
+
+test('command walkthrough exposes real packed snippets and a complete consumer on desktop and mobile', async () => {
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto(base+'docs/reference/commands/');
+  assert.equal(await page.locator('h1').textContent(),'Commands and selection');
+  assert.match(await page.locator('main').innerText(),/local packed browser consumer/);
+  assert.match(await page.locator('main pre').first().innerText(),/captureCommand\(name\)/);
+  await page.locator('main a').filter({hasText:'complete example'}).first().click();
+  await page.waitForURL(base+'docs/examples/commands/');
+  const link=page.locator('main a').filter({hasText:'Complete browser consumer'});
+  const href=new URL(await link.getAttribute('href'),base).href;assert.equal(href,base+'reference-inputs/commands-v1/consumer.mjs');
+  const response=await context.request.get(href);assert.equal(response.status(),200);
+  assert.match(await response.text(),/await editor\.ready/);
+  if(artifacts) await page.screenshot({path:join(artifacts,'commands-desktop.png'),fullPage:true});
+  await page.setViewportSize({width:390,height:844});await page.goto(base+'docs/reference/selection/');
+  assert.match(await page.locator('main').innerText(),/anchor 10 and focus 4/);
+  const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+  assert.ok(widths.scroll<=widths.viewport,JSON.stringify(widths));
+  if(artifacts) await page.screenshot({path:join(artifacts,'selection-mobile.png'),fullPage:true});
+  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
+  observe('commands consumer','Versioned snippet and source download; selection guide readable at 390px; no external requests');
+});

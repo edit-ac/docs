@@ -57,12 +57,15 @@ test('Web React Astro native and CLI entry paths disclose status and link to the
   assert.match(entry, /@\/docs\/guides\/getting-started.md/);
   assert.match(read('content/docs/getting-started/astro.md'), /without React/);
 });
-test('all eight content families remain discoverable with accurate conceptual or planned maturity', () => {
+test('all eight content families retain accurate planned, conceptual or pinned local-packed maturity', () => {
   assert.deepEqual(Object.keys(map.reservations), ['DWF-1.31','DWF-1.32','DWF-1.33','DWF-1.34','DWF-1.35','DWF-1.36','DWF-1.37','DWF-1.38']);
   for (const [id, { page, status, runtimeQualified }] of Object.entries(map.reservations)) {
-    assert.equal(status, id === 'DWF-1.31' ? 'conceptual' : 'planned'); assert.equal(runtimeQualified, false);
+    assert.equal(status, id === 'DWF-1.31' ? 'conceptual' : id === 'DWF-1.32' ? 'local-packed' : 'planned'); assert.equal(runtimeQualified, id === 'DWF-1.32');
     assert.ok(nav.includes(page)); assert.match(read(page), /planned/i); assert.ok(html(page));
-    assert.doesNotMatch(read(page), /```(?:js|ts|javascript|typescript)\n|npm (?:install|add)/);
+    if (id === 'DWF-1.32') {
+      const example=JSON.parse(read('examples/manifest.json')).examples.find(e=>e.id==='project-kickoff-commands/1');
+      assert.equal(example.runtimeQualified,true);assert.equal(example.parent,id);assert.match(read(page),/unpublished/);assert.equal(example.qualification.counts.failed,0);
+    } else assert.doesNotMatch(read(page), /```(?:js|ts|javascript|typescript)\n|npm (?:install|add)/);
   }
 });
 test('landing getting-started import-export and compatibility all link migration and comparison', () => {

@@ -47,6 +47,8 @@
     "content/docs/concepts/editing.md",
     "content/docs/concepts/persistence.md",
     "content/docs/guides/host-operations.md",
-    "content/docs/examples/host-services.md"
+    "content/docs/examples/host-services.md",
+    "content/docs/reference/selection.md",
+    "content/docs/examples/commands.md"
   ]
 }

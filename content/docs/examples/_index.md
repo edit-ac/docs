@@ -60,3 +60,5 @@ Continue with [core concepts](@/docs/concepts/_index.md), [API reference](@/docs
 ## Qualified local source
 
 [Inspect the PIN-1.3 packed consumer](@/docs/examples/qualified-local.md) for exact source, artifact hashes, independent expected states and teardown. This reused local scope is distinct from the pending docs quickstarts and gallery families.
+
+[Project kickoff command consumer](@/docs/examples/commands.md) pairs complete local packed source with commands, selection, ordinary history and preservation outcomes. Its unpublished artifact scope is separate from registry/framework/native qualification.

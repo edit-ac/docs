@@ -77,8 +77,9 @@
     },
     "DWF-1.32": {
       "page": "content/docs/reference/commands.md",
-      "status": "planned",
-      "runtimeQualified": false
+      "status": "local-packed",
+      "runtimeQualified": true,
+      "example": "examples/commands/manifest.json"
     },
     "DWF-1.33": {
       "page": "content/docs/reference/lifecycle.md",

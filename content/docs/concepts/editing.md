@@ -47,3 +47,5 @@ A rejected operation must not be described as a successful edit. Preserve the la
 ## Migration and compatibility
 
 Check [versions and capabilities](@/docs/reference/compatibility.md), [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md). A Markdown teaching snapshot is not a schema migration or lossless import guarantee.
+
+The separate [Project kickoff command consumer](@/docs/examples/commands.md) now exercises actual packed browser commands with this corpus; its runtime results are distinct from this conceptual transcript.
