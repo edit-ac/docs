@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Local formats capability playground</title>
+<script type="importmap">{"imports":{"@edit-ac/core":"./core/index.js","@edit-ac/core/extensions":"./core/extensions/index.js","@edit-ac/core/links":"./core/links/index.js","@edit-ac/web":"./web/index.js"}}</script>
+<style>body{max-width:56rem;margin:2rem auto;padding:0 1rem;font:18px/1.5 system-ui;color:#18252f;background:#faf9f5}button,select{font:inherit;min-height:44px;margin:.25rem;padding:.35rem .6rem}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #165db6;outline-offset:3px}#editor{background:white;border:1px solid #566;padding:1rem;min-height:14rem}nav{display:flex;flex-wrap:wrap;gap:.25rem}#error{color:#8c1c13}table{width:100%;table-layout:fixed;font-size:.8rem}td,th{overflow-wrap:anywhere;text-align:left;padding:.25rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<header><a href="./README.md">Source, setup and limits</a><h1>Local format capabilities</h1></header>
+<p>Unpublished local core/web/formats <strong>0.0.0</strong>, qualified CNV-1.18-C2-EI canonical2 package family. Local browser development only; no registry, native or release qualification.</p>
+<p><a href="../../index.html">Basic editor playground</a> · <a href="../collaboration/index.html">Collaboration scenario</a> · <a href="./profile.json">Exact package and source hashes</a></p>
+<section aria-labelledby="formats-heading"><h2 id="formats-heading">Optional formats</h2>
+<p>Disabled by default. Enabling loads the public client and capability manifest; conversion workers, converter WASM and fonts load only for an explicit conversion. Existing editor actions remain available below.</p>
+<button id="formats-toggle" aria-pressed="false">Enable format capabilities</button>
+<p id="formats-status" role="status">Formats disabled. No optional payload requested.</p>
+<div id="formats-panel" hidden><p>Local profile limits: 1 MiB input/checkpoint and aggregate original media, 8 MiB output, 16 MiB converter module, 10 second job timeout, 64 MiB converter linear memory. No whole-process memory bound or universal fidelity claim.</p>
+<p id="pdf-policy">PDF input: export-only. Preserve the original authoring document.</p>
+<table><caption>Installed browser directions and fidelity boundaries</caption><thead><tr><th>Format</th><th>Direction</th><th>Profile</th><th>Fidelity</th></tr></thead><tbody id="formats-capabilities"></tbody></table>
+<p id="formats-unavailable"></p><p>Import/export actions, loss preview and original-media recovery are pending their scenario gates. This panel exposes installed capabilities only.</p></div></section>
+<label for="preset">Document configuration</label><select id="preset"><option value="task">PM ticket</option><option value="document">Document</option></select>
+<nav aria-label="Editor actions"><button id="save">Save locally</button><button id="undo">Undo</button><button id="redo">Redo</button><button id="readonly" aria-pressed="false">Read-only</button><button id="export">Export recovery JSON</button><button id="recover">Restore recovery copy</button><button id="close">Close editor</button><button id="retry">Open / retry</button></nav>
+<div id="editor" aria-label="Project kickoff document"></div>
+<p id="status" role="status">Loading local editor…</p><p id="error" role="alert"></p>
+<button id="reset">Reset selected sample…</button><section id="confirmation" hidden><p>Reset discards only the selected sample after exporting a backup. Other configuration data stays intact.</p><button id="confirm-reset">Export backup and reset</button><button id="cancel-reset">Keep document</button></section>
+<details><summary>Recovery reports retained in this tab</summary><pre id="reports"></pre></details>
+<script type="module" src="./app.mjs"></script>
+<script type="module" src="./formats.mjs"></script>
+</html>

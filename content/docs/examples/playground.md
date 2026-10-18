@@ -42,3 +42,11 @@ The bounded runner builds the same consumer, exercises actual WASM editing/stora
 Restore recovery copy validates and publishes the current or retained SDK checkpoint into a new isolated browser database. The old database remains intact; explicit reset removes the selected configuration’s current and recorded backup databases. This is a separate recovered copy, not a merge with edits in other tabs.
 
 Find the [ticket description](@/docs/examples/gallery.md#ticket) in the examples gallery, with its checked source, downloads, fixture and capability limits.
+
+## Optional format capability scenario
+
+The separate local scenario consumes the authenticated CNV-1.18-C2-EI canonical2 core/web/formats **0.0.0** family. It shows installed browser directions, profiles and fidelity boundaries, including PDF export-only. Formats start disabled; enabling loads the public client and manifest without starting a conversion worker. Disabling or closing disposes the client. A failed load preserves the editor and offers an explicit retry.
+
+With Node 24.19.0 and the admitted local architecture artifacts, run `node scripts/build-playground-formats.mjs`, then serve `dist/playground` on loopback and open `/scenarios/extensions-formats/`. Stop the server after use. The basic editor remains available at `/`; build collaboration separately with its owning command. This is an unpublished local capability scenario. Import/export actions, loss preview and original-media recovery are pending; full DWF-1.10, native, hosted and release qualification remain open.
+
+[Scenario source and exact input manifest](/reference-inputs/playground-formats-v1/manifest.json) · [Scenario setup and limits](/reference-inputs/playground-formats-v1/playground/scenarios/extensions-formats/README.md). Run `npm run check:playground -- --suite extensions-formats` for its DPG-1.1 capability subset, with no paid providers or remote requests.
