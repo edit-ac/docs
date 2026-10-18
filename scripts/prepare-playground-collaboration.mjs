@@ -1,0 +1,11 @@
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+const root=fileURLToPath(new URL('../',import.meta.url)),prefix='playground/scenarios/collaboration/';
+const sources=['index.html','app.mjs','channel.mjs','README.md'].map(p=>prefix+p);
+const files=Object.fromEntries([...sources,'scripts/build-playground-collaboration.mjs','playground/kickoff.mjs'].map(p=>[p,createHash('sha256').update(readFileSync(resolve(root,p))).digest('hex')]));
+const manifest={parent:'DWF-1.11',candidate:'sdk-framework-v1',sourceCommit:'aa5b7d21064bd6d694ba243ffe528f58288b8a92',version:'0.0.0',profile:'v5',scope:'unpublished local two-view production consumer; no remote durability',fixture:'project-kickoff/1',license:'Apache-2.0',files,prerequisite:'evidence/playground-collaboration-20261018/prerequisite-receipt.json'};
+const outputs=new Map(Object.keys(files).map(p=>['static/reference-inputs/collaboration-v1/'+p.split('/').pop(),readFileSync(resolve(root,p))]));
+outputs.set(prefix+'manifest.json',Buffer.from(JSON.stringify(manifest,null,2)+'\n'));outputs.set('static/reference-inputs/collaboration-v1/manifest.json',Buffer.from(JSON.stringify(manifest,null,2)+'\n'));
+let stale=0;for(const [path,bytes] of outputs){const target=resolve(root,path);if(!existsSync(target)||!readFileSync(target).equals(bytes)){if(process.argv.includes('--check')){console.error('Stale collaboration output: '+path);stale++;}else{mkdirSync(dirname(target),{recursive:true});writeFileSync(target,bytes);}}}if(stale)process.exitCode=1;

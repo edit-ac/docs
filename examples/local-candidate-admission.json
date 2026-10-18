@@ -200,13 +200,13 @@
   "reviewedCompatibility": {
     "package.json": {
       "beforeSha256": "1abf87987db22e74f15c93e09f407b69b568860186093e09b6cf5aa1dda715fc",
-      "afterSha256": "a5d254d9da9dd2844abdf875ad385a26b506e9de8dfd2fdac3e5bbecf4e76228",
-      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
+      "afterSha256": "86ab58c29ac817a84550b6ace8cc2ab0d722112b8c6f03e26042236c8eb71a59",
+      "reason": "Add the independent local collaboration build and source-integrity check; existing admitted candidate families and prior checks remain intact."
     },
     "content/docs/examples/_index.md": {
       "beforeSha256": "49c2d01be067914dc41f67309e70f8e0ed659905b24422c846457277acdffaa5",
-      "afterSha256": "72343b6dfee3017ea3ad9e352e95d04625305d41405b15742fc3189412273655",
-      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
+      "afterSha256": "e7a4fd66c60181d73025b2cfa2013d315bd82dbd8734f862cae7a18a4a8c3c25",
+      "reason": "Link the separate locally scoped collaboration consumer; retain prior source/runtime capability labels."
     },
     "content/docs/getting-started/_index.md": {
       "beforeSha256": "647bb60a5c616bccd9eba4abd21985dcd0338bff6feeefee4cc34acb78e92527",
@@ -230,8 +230,8 @@
     },
     "examples/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "f0928f12f11f6e9fae07412aa1e396016b0f75739b5de8808c702bf02c84f2b9",
-      "reason": "DWF-1.6 public extension/resolver consumer and policy recipes, source-derived downloads and exact qualification binding. Prior DLA/quickstart semantics and all original deferred release/platform/service gates preserved."
+      "afterSha256": "25a0c48512b800674674c557a55fdf54548bea1fdd948489aa3fae21ac6cd145",
+      "reason": "Register the independently qualified DWF-1.11 consumer without altering earlier example records; exact candidate identity and local-only scope remain explicit."
     },
     "scripts/check-examples.mjs": {
       "beforeSha256": "b9213846202ea03b53935c7836dcf02add2b1ef8f631e5e34a63891da3a7fa39",
@@ -240,8 +240,8 @@
     },
     "static/concepts/project-kickoff-v1/manifest.json": {
       "beforeSha256": "ad976491a93baf7b4be731c7db5ecc36bc5992bd878b96715e2bacff0c01575a",
-      "afterSha256": "f0928f12f11f6e9fae07412aa1e396016b0f75739b5de8808c702bf02c84f2b9",
-      "reason": "DWF-1.6 public extension/resolver consumer and policy recipes, source-derived downloads and exact qualification binding. Prior DLA/quickstart semantics and all original deferred release/platform/service gates preserved."
+      "afterSha256": "25a0c48512b800674674c557a55fdf54548bea1fdd948489aa3fae21ac6cd145",
+      "reason": "Regenerate the concept download copy of the central examples manifest after adding the separate local collaboration entry; existing concept fixture and transcript hashes remain unchanged."
     },
     "content/docs/guides/_index.md": {
       "beforeSha256": "ca44e8f11a6f6898eab69d533f88dae92c8d3bdf3c22764cc67bede803eba40f",
@@ -255,8 +255,8 @@
     },
     "navigation.json": {
       "beforeSha256": "2c763a982a260c6227c6f87342d613bfe29488a8ab1d2e07da23a575e3608da5",
-      "afterSha256": "3b136131d196b1cd252ee934293547c1504bc6e998215acc726160365b88eb29",
-      "reason": "DWF-1.9 adds local-only playground scripts, source-download/navigation links and task-owned temporary-output ignores. Existing authenticated quickstart/extension semantics, candidate families and all deferred external gates remain unchanged."
+      "afterSha256": "491ad9a63fdc0c7658eccfc9c52642a3ac153ca3e863c97a236d6e22e4b355de",
+      "reason": "Discover the new locally scoped collaboration guide without changing prior consumer packages or profiles."
     },
     ".gitignore": {
       "beforeSha256": "f2547eddff1829210654559ccf2fbd35fc4acff831d889359a31915aa2f07244",

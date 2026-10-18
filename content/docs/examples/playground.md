@@ -29,7 +29,7 @@ Open localhost:8087. Stop the server with Ctrl-C when finished. Web Locks and br
 
 Saving confirms browser-local storage only. It does not confirm remote durability, and browser data may be evicted. If saving fails, keep the tab open, export the recovery checkpoint and pending updates, and choose Restore recovery copy after resolving storage access. It validates the checkpoint with the engine, exports another backup and opens a separate local database; the original remains preserved until explicit reset. Failed journal promises cannot be retried by Save locally. A retained report remains exportable after explicit disposal. The JSON preserves SDK byte arrays; it is not a portable Markdown export. See [saving and recovery](@/docs/guides/local-first.md).
 
-The toolbar wraps on narrow screens. Use Tab and Space/Enter for labeled actions. The PM and document modes share a compatible immutable runtime while keeping separate handles, history and storage. Optional code, table, assets, collaboration, conversion and diff scenarios remain unavailable here until independently qualified. This local playground does not imply cloud, physical-device, native input or performance support.
+The toolbar wraps on narrow screens. Use Tab and Space/Enter for labeled actions. The PM and document modes share a compatible immutable runtime while keeping separate handles, history and storage. For a separate local two-view consumer, see [collaboration](@/docs/examples/collaboration.md). Optional code, table, assets, conversion and diff scenarios remain unavailable here until independently qualified. This local playground does not imply cloud, physical-device, native input or performance support.
 
 ## Reproduce the checks
 

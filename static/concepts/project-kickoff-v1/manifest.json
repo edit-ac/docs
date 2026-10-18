@@ -210,6 +210,25 @@
         "harness.test.mjs": "063ba0723cdff2ebd658f40c805500a44b3e2f4231593d3185a6e70f838a640c",
         "README.md": "530bb0278e081f15fc33f31e39f570f4e980f435d01a553a7f7a43bd80cf9474"
       }
+    },
+    {
+      "id": "project-kickoff-collaboration/1",
+      "parent": "DWF-1.11",
+      "maturity": "local-candidate",
+      "runtimeQualified": true,
+      "testedSdkVersion": "0.0.0",
+      "candidate": "sdk-framework-v1",
+      "profile": "v5",
+      "source": "playground/scenarios/collaboration/README.md",
+      "manifest": "playground/scenarios/collaboration/manifest.json",
+      "license": "Apache-2.0",
+      "downloadBase": "/reference-inputs/collaboration-v1/",
+      "pages": [
+        "content/docs/examples/collaboration.md"
+      ],
+      "qualification": "playground/scenarios/collaboration/qualification.json",
+      "scope": "local two-view consumer; unpublished; remote durability not configured",
+      "runtimeBoundary": "9 actual Chromium cases through real public production tarballs; 11 total canonical checks; no remote service"
     }
   ]
 }

@@ -76,3 +76,5 @@ The complete [browser](@/docs/getting-started/web.md), [React](@/docs/getting-st
 ## Run the local package playground
 
 The [Project kickoff playground](@/docs/examples/playground.md) builds the authenticated unpublished editor locally. Try PM/document configurations, persistence, undo/redo, read-only, backup/reset and recovery. This is a reproducible local consumer; hosted and registry versions remain pending.
+
+[Two local collaborative views](@/docs/examples/collaboration.md) share real production updates through a page-local channel, with separate stores and explicit durability limits.
