@@ -14,7 +14,7 @@ export async function buildFormatsPlayground(destination){
  assert.equal(receipt.coreCommit,'c15ac91d47f2ddf51bf20056686bc912f5c76a36');
  assert.equal(spawnSync('git',['merge-base','--is-ancestor',receipt.coreCommit,'HEAD'],{cwd:resolve(root,'../core')}).status,0,'Qualified return must be adopted first');
  const temp=await mkdtemp(join(root,'.formats-build-'));
- const facts={parent:'DPG-1.1',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
+ const facts={parent:'DPG-1.2',candidate:'CNV-1.18-C2-EI-canonical2',version:'0.0.0',published:false,releaseQualified:false,receipt:'consumers-epub-import-20261018/delivery.json',receiptSha256:sha(await readFile(join(producer,'delivery.json'))),packages:[],sources:{},members:{},fixture:'project-kickoff/1'};
  try{
   await mkdir(destination,{recursive:true});
   for(const [name,hash] of Object.entries(pins)){
@@ -26,8 +26,14 @@ export async function buildFormatsPlayground(destination){
    async function inventory(path,relative=''){for(const entry of await readdir(path,{withFileTypes:true})){const key=relative+entry.name;if(entry.isDirectory())await inventory(join(path,entry.name),key+'/');else{const b=await readFile(join(path,entry.name));facts.members[name+'/'+key]={bytes:b.length,sha256:sha(b)};}}}
    await inventory(join(dir,'package'));facts.packages.push({name:pkg.name,version:pkg.version,sha256:hash,bytes:bytes.length});
   }
-  for(const name of ['app.mjs','kickoff.mjs','recovery.mjs']){const b=await readFile(join(root,'playground',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
-  for(const name of ['index.html','formats.mjs','README.md']){const b=await readFile(join(root,'playground/scenarios/extensions-formats',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
+  for(const name of ['kickoff.mjs','recovery.mjs']){const b=await readFile(join(root,'playground',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
+  for(const name of ['index.html','formats.mjs','README.md','app.mjs','document.mjs']){const b=await readFile(join(root,'playground/scenarios/extensions-formats',name));await writeFile(join(destination,name),b);facts.sources[name]=sha(b);}
+  const fixtureManifest=JSON.parse(await readFile(join(producer,'canonical2/docx-import-fixtures/manifest.json')));
+  await mkdir(join(destination,'fixtures'),{recursive:true});facts.fixtures={};
+  for(const name of ['media','media-loss','corrupt']){const bytes=await readFile(join(producer,'canonical2/docx-import-fixtures',name+'.docx'));assert.equal(sha(bytes),fixtureManifest[name].sha256);assert.equal(bytes.length,fixtureManifest[name].bytes);await writeFile(join(destination,'fixtures',name+'.docx'),bytes);facts.fixtures[name]={sha256:sha(bytes),bytes:bytes.length};}
+  const pixel=await readFile(resolve(root,'../core/fixtures/formats/docx/probe/pixel.png'));
+  const grant={identity:{host:'fixture-host',key:'docx-original-png'},actions:['ingest','read','cancel','release-reference'],sha256:Array.from(createHash('sha256').update(pixel).digest())};
+  await writeFile(join(destination,'fixtures/docx.json'),JSON.stringify({fixtures:facts.fixtures,grant},null,2));facts.sources['fixtures/docx.json']=sha(await readFile(join(destination,'fixtures/docx.json')));
   await writeFile(join(destination,'profile.json'),JSON.stringify(facts,null,2)+'\n');return facts;
  }finally{await rm(temp,{recursive:true,force:true});}
 }

@@ -1,22 +1,25 @@
 {
-  "parent": "DPG-1.1",
+  "parent": "DPG-1.2",
   "candidate": "CNV-1.18-C2-EI-canonical2",
   "version": "0.0.0",
-  "scope": "unpublished local browser capability subset; full DWF-1.10 remains open",
+  "scope": "unpublished local browser capability and DOCX subset; full DWF-1.10 remains open",
   "fixture": "project-kickoff/1",
   "license": "Apache-2.0",
   "files": {
-    "playground/scenarios/extensions-formats/index.html": "c0cf16adcefd146b20f7c023efd9677803fc338223c9f4f3e7e71628167aebce",
-    "playground/scenarios/extensions-formats/formats.mjs": "29bd733370968fbe52f8da978395388d7fa8b7c8064ff7f21388c40a8268962c",
-    "playground/scenarios/extensions-formats/README.md": "586698986f79a175e3ac9120974224e5fc6de9b9991ceb90f9e006c975453b50",
-    "scripts/build-playground-formats.mjs": "bffacac184dbf7cfa32640c8d61756f58a4bc3d8c2c1f63a7a4b7104500ab29d",
+    "playground/scenarios/extensions-formats/index.html": "21436df438641802b5ce9ac65a24fdffda5ef93e5debe3c029b01de116213f3c",
+    "playground/scenarios/extensions-formats/formats.mjs": "5bf9d5b7cbec22b639574c5ccdc8a7d6f8608cdbeb5ab46a8f3a0f46fbadc025",
+    "playground/scenarios/extensions-formats/README.md": "64e2a2a61d6580dd3293c92abde4afba919166e1fd1445dd5030276069585422",
+    "playground/scenarios/extensions-formats/app.mjs": "0c0414c6e3eccee2eed3575fb1722e96d3988b4322e2e761100a202f1e9998da",
+    "playground/scenarios/extensions-formats/document.mjs": "1c81bc666b2ad3186ea4b2fe5f07b128d75afc0a87057845a57f4feab0d6a1fd",
+    "scripts/build-playground-formats.mjs": "11652fb73caae64432787399121c332ad9940f98aea8cc34a216df8ec1cedacd",
     "scripts/build-playground.mjs": "73c9bd7cb62e0d3c9920ef1f4ac39bd2ced61028c25598caea1ef843f06b7492",
     "playground/app.mjs": "be23068c71d2410a0b0332db9f4c7e6e6451ddf1546ff4c6862d71b0bebc24dd",
     "playground/kickoff.mjs": "e1c9aa4b55e45dfecbfd552a917ab31caf1961f02909817da776277e162bcf01",
     "playground/recovery.mjs": "269a6ff0e25e6b501a6513798a3cb54fe646be69a60750ec3080d18c1af2cf5d",
     "playground/index.html": "e223f4e5e0de5b85821df41f517a3d541cd04fdddc504ea7b12895680173b588",
     "playground/README.md": "73f420d363cf79feb57da9a1e253a4e7a5053eb61485390b7d377169f9f9b099",
-    "scripts/check-playground.mjs": "e606e78926e5ee2744bfa369d3dfa9d32c051e8c49a16e1f79b700d249d3ce2c",
-    "tests/playground-extensions.spec.ts": "ffba3f9213f62ac993ad46b256428ccfbd16faecd96f6cf9aa16848b046e1aed"
+    "scripts/check-playground.mjs": "887f78d0900b95683d1822196e395f32e642e6ae149c466db774c15883a70e16",
+    "tests/playground-extensions.spec.ts": "14c409422254d8b5e9af7318fc30e4b370467decad497c40243591380e67aff9",
+    "tests/inspect-playground-docx.py": "5f5ae051c1d49225e96805a89645893bc1cc2a6e791c76d52f4ce2683f3add5f"
   }
 }

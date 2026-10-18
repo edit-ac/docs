@@ -4,6 +4,7 @@ import {readFile,writeFile,mkdtemp,rm} from 'node:fs/promises';
 import {createServer} from 'node:http';
 import {resolve,join,sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {spawnSync} from 'node:child_process';
 import {buildPlayground} from '../scripts/build-playground.mjs';
 import {buildFormatsPlayground} from '../scripts/build-playground-formats.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.DOCS_PLAYWRIGHT_MODULE||'../core/node_modules/playwright/index.mjs')));
@@ -33,7 +34,7 @@ async function text(page){return page.evaluate(()=>window.playground.editor.read
 async function edit(page,suffix){await page.locator('[contenteditable="true"]').getByText('Owner: Alex',{exact:true}).click();await page.keyboard.press('End');await page.keyboard.type(suffix);}
 async function click(page,id){await page.click('#'+id);await page.waitForFunction(()=>!window.playground.busy);}
 test('immutable optional package family, fixture and public API provenance',async()=>{
- assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,6);
+ assert.equal(profile.candidate,'CNV-1.18-C2-EI-canonical2');assert.equal(profile.packages.length,3);assert.equal(profile.published,false);assert.equal(profile.fixture,'project-kickoff/1');assert.equal(Object.keys(profile.sources).length,8);
  const manifest=JSON.parse(await readFile(join(temp,'scenarios/extensions-formats/formats/capabilities.json')));
  assert.equal(manifest.directions.filter(d=>d.target==='browser-worker-wasm32').length,13);
  for(const p of profile.packages)assert.equal(p.version,'0.0.0');
@@ -71,3 +72,50 @@ test('optional module failure is visible and explicit retry recovers without res
  await visit(page);const before=await projection(page);await page.route('**/formats/index.js?*',r=>r.abort());await page.click('#formats-toggle');await page.waitForFunction(()=>document.getElementById('formats-status').textContent.includes('unavailable:'));
  assert.equal(await projection(page),before);await page.unroute('**/formats/index.js?*');await enable(page);assert.equal(await projection(page),before);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
 },{width:390,height:844}));
+
+async function docxAction(page,id){await page.click('#docx-'+id);await page.waitForFunction(()=>!window.playgroundFormats.working);}
+async function retainedDownload(page,id,path){const event=page.waitForEvent('download');await page.click('#docx-'+id);const download=await event;assert.equal(await download.failure(),null);await download.saveAs(join(output,path));}
+test('DOCX fixture preview, atomic media import, history, exact originals, export and durable reopen',()=>browserCase('docx-atomic-roundtrip',async page=>{
+ await visit(page,'document');await enable(page);const before=await projection(page);
+ await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);assert.equal(await projection(page),before);
+ assert.match(await page.locator('#docx-report').innerText(),/EXTERNAL_RELATIONSHIP_INERT/);
+ await retainedDownload(page,'original','docx-retained-before.docx');
+ const priorHistory=await page.evaluate(()=>window.playground.editor.owner.engine.history({type:'state'}));
+ await page.evaluate(()=>{window.docxUpdates=0;window.docxSubscription=window.playground.editor.owner.engine.subscribe({type:'updates'},()=>window.docxUpdates++);});
+ await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/localCommitted/);
+ const imported=await projection(page),observed=await page.evaluate(async()=>{
+  const editor=window.playground.editor,assets=await editor.owner.enableAssets(),journal=await assets.inspect();
+  const asset=editor.read().visible.find(n=>n.blockAttributes?.[0]==='module:editac.asset');
+  const original=await assets.retainedSource(asset.id,{identity:asset.blockAttributes[2].identity,actions:['read']});
+  const source=journal.prepared.find(p=>p.reference.endsWith('_source'));
+  const retainedPackage=await assets.preparedSource(source.job,source.reference,{identity:{host:'local-recovery',key:'complete-docx-package'},actions:['read']});
+  window.docxSubscription.dispose();return {visible:editor.read().visible,history:editor.owner.engine.history({type:'state'}),updates:window.docxUpdates,original:Array.from(original),retainedPackage:Array.from(retainedPackage)};
+ });
+ assert.equal(observed.updates,1);assert.equal(observed.history.undoGroups,priorHistory.undoGroups+1);
+ await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+ await click(page,'redo');assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(imported).visible);
+ await click(page,'save');await click(page,'close');await click(page,'retry');await ready(page);await enable(page);
+ await page.reload();await ready(page);await page.selectOption('#preset','document');await ready(page);await enable(page);await docxAction(page,'stored');await retainedDownload(page,'original','docx-retained-after-reload.docx');
+ const reopened=await page.evaluate(async()=>{const e=window.playground.editor,a=await e.owner.enableAssets(),j=await a.inspect(),asset=e.read().visible.find(n=>n.blockAttributes?.[0]==='module:editac.asset'),s=j.prepared.find(p=>p.reference.endsWith('_source'));return {visible:e.read().visible,original:Array.from(await a.retainedSource(asset.id,{identity:asset.blockAttributes[2].identity,actions:['read']})),retainedPackage:Array.from(await a.preparedSource(s.job,s.reference,{identity:{host:'local-recovery',key:'complete-docx-package'},actions:['read']}))};});
+ assert.deepEqual(reopened.visible,observed.visible);assert.deepEqual(reopened.original,observed.original);assert.deepEqual(reopened.retainedPackage,observed.retainedPackage);
+ await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+ await retainedDownload(page,'download','docx-export.docx');await retainedDownload(page,'recovery','docx-recovery.json');
+ assert.deepEqual(JSON.parse(await projection(page)).visible,observed.visible);
+ await writeFile(join(output,'docx-observations.json'),JSON.stringify({before:JSON.parse(before),...observed,reopened,report:await page.evaluate(()=>window.playgroundFormats.report)},null,2));
+}));
+test('DOCX loss rejection, malformed input and canceled preview preserve document and recoverable bytes',()=>browserCase('docx-rejections',async page=>{
+ await visit(page,'document');await enable(page);const before=await projection(page);
+ await page.selectOption('#docx-fixture','media-loss');await docxAction(page,'prepare');assert.match(await page.locator('#docx-report').innerText(),/"lossy": true/);assert.equal(await projection(page),before);
+ await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/LossApprovalRequired/);assert.equal(await projection(page),before);
+ await retainedDownload(page,'original','docx-loss-retained.docx');await retainedDownload(page,'recovery','docx-loss-recovery.json');
+ await page.check('#docx-loss');await docxAction(page,'prepare');await docxAction(page,'cancel');assert.equal(await page.locator('#docx-confirm').isDisabled(),true);assert.equal(await projection(page),before);
+ await page.selectOption('#docx-fixture','corrupt');await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/rejected/);assert.equal(await projection(page),before);
+ await retainedDownload(page,'original','docx-corrupt-retained.docx');
+ await page.selectOption('#docx-fixture','media-loss');await docxAction(page,'prepare');await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/localCommitted/);
+ assert.notDeepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+},{width:390,height:844}));
+
+test('DOCX independent ZIP XML PNG and downloaded output match actual playground observations',()=>{
+ const result=spawnSync('python3',['tests/inspect-playground-docx.py',output,resolve('../architecture/evidence/document-conversion/consumers-epub-import-20261018/canonical2/docx-import-fixtures')],{encoding:'utf8'});
+ assert.equal(result.status,0,result.stderr||result.stdout);
+});
