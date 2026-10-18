@@ -165,3 +165,63 @@ for(const kind of ['odt','epub']){
 test('ODT EPUB independent ZIP XML PNG output and original observations',()=>{
  const result=spawnSync('python3',['tests/inspect-playground-odt-epub.py',output,resolve('../architecture/evidence/document-conversion/consumers-epub-import-20261018/canonical2')],{encoding:'utf8'});assert.equal(result.status,0,result.stderr||result.stdout);
 });
+
+for(const kind of ['csv','tsv'])test(`${kind.toUpperCase()} playground explicit dialect selected table exact safe and recovery`,()=>browserCase(kind+'-table-roundtrip',async page=>{
+ await visit(page,'document');await enable(page);await page.selectOption('#package-format',kind);await page.check('#table-header');
+ const before=await projection(page),history=await page.evaluate(()=>window.playground.editor.owner.engine.history({type:'state'}));
+ // No selected table must be rejected by the installed service, with recovery.
+ await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/rejected/);assert.equal(await projection(page),before);
+ await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);assert.equal(await projection(page),before);
+ await retainedDownload(page,'original',kind+'-retained.'+kind);
+ await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/imported: committed/);
+ const imported=JSON.parse(await projection(page));const table=imported.visible.find(n=>n.blockAttributes?.[0]==='module:editac.table');assert.ok(table);
+ assert.equal((await page.evaluate(()=>window.playground.editor.owner.engine.history({type:'state'}))).undoGroups,history.undoGroups+1);
+ await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);await click(page,'redo');assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ await page.selectOption('#table-selected',table.id);
+ await docxAction(page,'export');assert.match(await page.locator('#docx-report').innerText(),/HEADER_FLAG_LOST_ROW_RETAINED/);assert.match(await page.locator('#docx-status').innerText(),/rejected/);
+ await page.check('#docx-loss');
+ for(const newline of ['lf','crlf']){
+  await page.selectOption('#table-newline',newline);
+  for(const safe of [false,true]){
+   await page.locator('#table-safe').setChecked(safe);await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+   const report=await page.evaluate(()=>window.playgroundFormats.report);assert.equal(report.profile,`edit-ac-${kind}-${safe?'spreadsheet-safe-':''}v1`);
+   if(safe)assert.ok(report.diagnostics.some(d=>d.code==='SPREADSHEET_SAFE_PREFIX'));
+   await retainedDownload(page,'download',`${kind}-${newline}-${safe?'safe':'exact'}.${kind}`);
+  }
+ }
+ await retainedDownload(page,'recovery',kind+'-table-recovery.json');assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ await writeFile(join(output,kind+'-table-observations.json'),JSON.stringify({before:JSON.parse(before),imported,table},null,2));
+ // Explicit wrong dialect is a visible rejection, preserving original bytes/state.
+ await page.selectOption('#table-newline',kind==='csv'?'crlf':'lf');await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/rejected/);assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ // The output stays captured after changing formats and after close/reopen.
+ await page.selectOption('#package-format','pdf');await retainedDownload(page,'download',kind+'-captured.'+kind);
+ await click(page,'save');await click(page,'close');await click(page,'retry');await ready(page);assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+},kind==='tsv'?{width:390,height:844}:undefined));
+
+test('PDF playground captured export recoverable download and visible export-only input rejection',()=>browserCase('pdf-export-only',async page=>{
+ await visit(page,'document');await enable(page);await page.selectOption('#package-format','pdf');const before=await projection(page);
+ await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/FORMAT_EXPORT_ONLY/);assert.equal(await projection(page),before);assert.equal(await page.locator('#docx-confirm').isDisabled(),true);
+ await retainedDownload(page,'original','pdf-rejected-input.pdf');await retainedDownload(page,'recovery','pdf-input-recovery.json');
+ await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-report').innerText(),/SEMANTIC_RENDERING_UNIMPLEMENTED/);assert.equal(await projection(page),before);
+ await page.selectOption('#preset','publication');await ready(page);const publication=await projection(page);await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);assert.equal(await projection(page),publication);
+ const report=await page.evaluate(()=>window.playgroundFormats.report);assert.equal(report.profile,'edit-ac-pdf-publication-v1');
+ await page.selectOption('#package-format','csv');const event=page.waitForEvent('download');await page.click('#docx-download');const download=await event;assert.equal(download.suggestedFilename(),'playground.pdf');assert.equal(await download.failure(),null);await download.saveAs(join(output,'playground.pdf'));
+ await retainedDownload(page,'recovery','pdf-export-recovery.json');await writeFile(join(output,'pdf-observations.json'),JSON.stringify({before:JSON.parse(before),publication:JSON.parse(publication),report},null,2));
+}));
+test('table text and PDF independent output readers',()=>{
+ const result=spawnSync('python3',['tests/inspect-playground-table-pdf.py',output,resolve('../core/fixtures/formats/table-text')],{encoding:'utf8'});assert.equal(result.status,0,result.stderr||result.stdout);
+});
+
+for(const kind of ['csv','tsv'])test(`${kind.toUpperCase()} no-header import and selected stale table rejection`,()=>browserCase(kind+'-table-selection',async page=>{
+ await visit(page,'document');await enable(page);await page.selectOption('#package-format',kind);assert.equal(await page.locator('#table-header').isChecked(),false);
+ const before=await projection(page);await docxAction(page,'prepare');assert.match(await page.locator('#docx-status').innerText(),/Preview ready/);await docxAction(page,'confirm');assert.match(await page.locator('#docx-status').innerText(),/imported: committed/);
+ const imported=JSON.parse(await projection(page)),table=imported.visible.find(n=>n.blockAttributes?.[0]==='module:editac.table');assert.ok(table);assert.ok(table.blockAttributes[2].rows.flat().every(cell=>cell.header===false));
+ await page.selectOption('#table-selected',table.id);await page.check('#docx-loss');await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/output retained/);
+ await click(page,'undo');assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+ // The explicit captured selection is now absent; do not guess another table.
+ await docxAction(page,'export');assert.match(await page.locator('#docx-status').innerText(),/rejected/);assert.deepEqual(JSON.parse(await projection(page)).visible,JSON.parse(before).visible);
+ await retainedDownload(page,'download',kind+'-stale-retained.'+kind);await retainedDownload(page,'recovery',kind+'-stale-recovery.json');
+ await click(page,'redo');await page.click('#table-refresh');await page.selectOption('#table-selected',table.id);assert.deepEqual(JSON.parse(await projection(page)).visible,imported.visible);
+ await writeFile(join(output,kind+'-selection-observations.json'),JSON.stringify({table,imported,report:await page.evaluate(()=>window.playgroundFormats.report)},null,2));
+}));

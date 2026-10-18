@@ -34,15 +34,30 @@ window.playgroundFormats={get enabled(){return enabled;},get ready(){return !!cl
 let pending,working=false,actionGeneration=0,output,retainedInput,recovery,lastReport;
 const format=()=>$('package-format').value;
 const sourceGrant=kind=>({identity:{host:'local-recovery',key:`complete-${kind}-package`},actions:['ingest','read','cancel','release-reference']});
-const mime={docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',epub:'application/epub+zip'};
+const tableKind=kind=>kind==='csv'||kind==='tsv';
+const dialect=()=>({newline:$('table-newline').value,header:$('table-header').checked});
+const mime={csv:'text/csv;charset=utf-8',tsv:'text/tab-separated-values;charset=utf-8',pdf:'application/pdf',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',epub:'application/epub+zip'};
 function updateFormat(){
  const kind=format(),label=kind.toUpperCase();
  for(const [id,prefix] of [['prepare','Preview'],['confirm','Confirm'],['cancel','Cancel'],['export','Prepare'],['stored','Retrieve stored']])$('docx-'+id).textContent=`${prefix} ${label} ${id==='export'?'export':id==='cancel'?'preparation':'import'}`;
  $('docx-heading').textContent=label+' fixture workflow';
+ $('table-controls').hidden=!tableKind(kind);
+ if(tableKind(kind))$('table-newline').value=kind==='tsv'?'crlf':'lf';
+ for(const option of $('docx-fixture').options)option.disabled=(tableKind(kind)||kind==='pdf')&&option.value!=='media';
+ if($('docx-fixture').selectedOptions[0].disabled)$('docx-fixture').value='media';
+ $('docx-stored').disabled=tableKind(kind)||kind==='pdf';
+ $('format-rule').textContent=kind==='pdf'?'PDF input is export-only: preview demonstrates the installed rejection and retains the input. Export captures the whole document.':tableKind(kind)?'Import replaces the first text block with one shared table as one history group. Original input remains downloadable in this tab. Select one table explicitly before export.':'Package import replaces the first text block; original package and admitted media remain in the local asset journal.';
+ refreshTables();
  $('direction-profile').textContent=directions.filter(d=>d.format===kind).map(d=>`${d.direction}: ${d.profile} / ${d.fidelity}`).join('; ');
 }
 
 const message=text=>$('docx-status').textContent=text;
+function refreshTables(){
+ const select=$('table-selected'),prior=select.value;select.replaceChildren(new Option('Choose a table explicitly',''));
+ for(const node of window.playground.editor?.read().visible||[])if(node.blockAttributes?.[0]==='module:editac.table')select.add(new Option('Table '+node.id,node.id));
+ if([...select.options].some(o=>o.value===prior))select.value=prior;
+}
+$('table-refresh').onclick=refreshTables;
 function report(result){
  lastReport={profile:result.profile,diagnostics:result.diagnostics||result.report?.diagnostics||[],code:result.code,reason:result.report?.reason||result.code,action:result.report?.action,bytes:result.bytes?.length,originalBytes:result.original?.length};
  $('docx-report').textContent=JSON.stringify(lastReport,null,2);
@@ -53,7 +68,7 @@ function cancelDocx(){actionGeneration++;client?.cancel();clearPending();$('docx
 async function action(fn){
  if(working)return;working=true;const ticket=++actionGeneration;
  try{if(!client||!window.playground.editor?.state.ready||window.playground.busy)throw Error('Enable formats and open the editor first');await fn(ticket);}
- catch(error){report(error);message(`${format().toUpperCase()} action rejected: ${error.code||error.message}. Retain input/recovery; approve losses and prepare again if required.`);}
+ catch(error){report(error);message(`${format().toUpperCase()} action rejected: ${error.code||error.message}. ${error.report?.reason||'Retain input/recovery'}. ${error.report?.action||'Review diagnostics and prepare again.'}`);}
  finally{working=false;}
 }
 function current(ticket,editor,revision,write=false){
@@ -65,7 +80,7 @@ async function prepareDocx(ticket){
  const editor=window.playground.editor,revision=editor.read().revision;
  current(ticket,editor,revision,true);
  const kind=format(),fixture=$('docx-fixture').value,approveLoss=$('docx-loss').checked;
- if(!directions.some(d=>d.format===kind&&d.direction==='import'))throw Error('Import unavailable in installed profile');
+ if(kind!=='pdf'&&!directions.some(d=>d.format===kind&&d.direction==='import'))throw Error('Import unavailable in installed profile');
  const [response,policyResponse]=await Promise.all([fetch(`./fixtures/${kind==='docx'?'':kind+'/'}${fixture}.${kind}`),fetch(`./fixtures/${kind}.json`)]);
  if(!response.ok||!policyResponse.ok)throw Error('Approved fixture unavailable');
  const source=new Uint8Array(await response.arrayBuffer()),policy=await policyResponse.json();
@@ -78,7 +93,7 @@ async function prepareDocx(ticket){
  const anchor=engine.anchor(node.id,0,'right'),focus=engine.anchor(node.id,node.runs.reduce((n,r)=>n+Array.from(r.text).length,0),'left');
  message(`Preparing approved ${kind.toUpperCase()} in the local worker; live content is unchanged…`);
  try{
-  const prepared=await client.prepareImport(engine,{format:kind,source,filename:fixture+'.'+kind,range:{anchor,focus},importGrants:[policy.grant],approveLoss});
+  const prepared=await client.prepareImport(engine,{format:kind,source,filename:fixture+'.'+kind,range:{anchor,focus},...(tableKind(kind)?dialect():{}),importGrants:policy.grant?[policy.grant]:[],approveLoss});
   current(ticket,editor,revision,true);report(prepared);
   pending={prepared,editor,revision,ticket,approveLoss,kind,release:()=>{engine.releaseAnchor(anchor);engine.releaseAnchor(focus);}};$('docx-confirm').disabled=false;
   message('Preview ready. Review diagnostics and confirm one atomic replacement. No live content has changed.');
@@ -90,21 +105,22 @@ const fixtureHost={authorize:async r=>({identity:r.identity,actions:['ingest','r
 async function confirmDocx(){
  const p=pending;if(!p)throw Error('Prepare an import first');pending=undefined;$('docx-confirm').disabled=true;
  try{current(p.ticket,p.editor,p.revision,true);
- const result=await p.prepared.commitAssets(p.editor.owner,p.kind+'_'+crypto.randomUUID(),fixtureHost,sourceGrant(p.kind));
- await p.editor.flush({target:'local'});message(`${p.kind.toUpperCase()} imported: ${result.localCommit.state}. One history group; package and PNG retained locally.`);
+ const result=tableKind(p.kind)?p.prepared.commit():await p.prepared.commitAssets(p.editor.owner,p.kind+'_'+crypto.randomUUID(),fixtureHost,sourceGrant(p.kind));
+ await p.editor.flush({target:'local'});refreshTables();message(`${p.kind.toUpperCase()} imported: ${tableKind(p.kind)?'committed':result.localCommit.state}. One history group; ${tableKind(p.kind)?'original input remains downloadable in this tab':'package and PNG retained locally'}.`);
  }finally{p.release();}
 }
 async function exportDocx(ticket){
  clearPending();$('docx-confirm').disabled=true;
  const kind=format(),editor=window.playground.editor,revision=editor.read().revision;
  if(!directions.some(d=>d.format===kind&&d.direction==='export'))throw Error('Export unavailable in installed profile');
- current(ticket,editor,revision);const assets=await editor.owner.enableAssets(),originalAssets=[];
+ current(ticket,editor,revision);const originalAssets=[];
+ if(!tableKind(kind)){const assets=await editor.owner.enableAssets();
  for(const node of editor.read().visible){if(node.blockAttributes?.[0]!=='module:editac.asset')continue;
   const identity=node.blockAttributes[2].identity,grant={identity,actions:['read']};
   const bytes=await assets.retainedSource(node.id,grant);if(!bytes)throw Error('Missing approved original media');originalAssets.push({...grant,bytes});
- }
+ }}
  current(ticket,editor,revision);message(`Preparing ${kind.toUpperCase()} export from a captured checkpoint…`);
- const result=await client.export(editor.owner.engine,{format:kind,originalAssets,approveLoss:$('docx-loss').checked});
+ const result=await client.export(editor.owner.engine,{format:kind,originalAssets,...(tableKind(kind)?{...dialect(),selected:$('table-selected').value||undefined,safe:$('table-safe').checked}:{}),approveLoss:$('docx-loss').checked});
  current(ticket,editor,revision);output={bytes:result.bytes.slice(),kind};report(result);$('docx-download').disabled=false;$('docx-download').textContent='Download prepared '+kind.toUpperCase();
  message(`${kind.toUpperCase()} output retained in this tab. Download explicitly; captured recovery remains available if delivery fails.`);
 }
@@ -123,7 +139,7 @@ $('docx-stored').onclick=()=>void action(async ticket=>{
  message(`Stored original ${kind.toUpperCase()} recovered from the selected sample. Download input or checkpoint explicitly.`);
 });
 $('package-format').addEventListener('change',()=>{cancelDocx();updateFormat();});
-for(const id of ['docx-fixture','docx-loss'])$(id).addEventListener('change',cancelDocx);
+for(const id of ['docx-fixture','docx-loss','table-newline','table-header','table-selected','table-safe'])$(id).addEventListener('change',cancelDocx);
 $('docx-download').onclick=()=>download(output.bytes,'playground.'+output.kind,mime[output.kind]);
 $('docx-original').onclick=()=>download(retainedInput.bytes,'retained-input.'+retainedInput.kind,mime[retainedInput.kind]);
 $('docx-recovery').onclick=()=>download(JSON.stringify(recovery,(_k,v)=>v instanceof Uint8Array?Array.from(v):v,2),'docx-recovery.json','application/json');

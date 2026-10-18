@@ -208,7 +208,7 @@
       "guide": "/docs/examples/playground/",
       "outcome": "PM ticket edits persist after Save locally/reload; reset exports a backup before deleting only the selected identity.",
       "download": "/reference-inputs/gallery-v1/ticket/source.zip",
-      "downloadSha256": "762f3cfbfcd3ed2c783bc93fe980309b0703140b8ac8508e788160bcadda544b",
+      "downloadSha256": "958340ec37e7df30c70a7c93ed9c2a6b23f7c589a85559836002695d10d06c82",
       "files": {
         "playground/README.md": "73f420d363cf79feb57da9a1e253a4e7a5053eb61485390b7d377169f9f9b099",
         "playground/index.html": "e223f4e5e0de5b85821df41f517a3d541cd04fdddc504ea7b12895680173b588",
@@ -219,7 +219,7 @@
         "playground/manifest.json": "ebff65fb1787d585c1045b423824f0df95c25e85103c5524380912dad09c56b6",
         "playground/qualification.json": "b7790abea8d77b4cc66f6768d5ae7f5a8336360f71911b3b030c5d8569f057f0",
         "examples/concepts/kickoff-v1.md": "58967b5a999def076718ad96f38ff2d0ac3e55ab78b86dd82357a2caaa8ea704",
-        "scripts/check-playground.mjs": "1704514bcd92bbee2157ca5f42a4389d45e9d1ab7f794d0ad87093f3f1b23852",
+        "scripts/check-playground.mjs": "d026ad6cf17d69c4be8acec67c200ca623cfedcc06340f21f1af05da446c67fb",
         "tests/playground-local.spec.ts": "7e8473c050bf2a6624671a853fcb52e62b10022b044b3b3be2b62545fbc25070",
         "SOURCE-README.md": "624460a41f9329b02df0d3a0bb66b3ba7ba1a4a0511356df243c142485f34042",
         "local-candidates-v5.json": "27fb6a35786c50d2faa9a3a4d7c90340da6d7c667caf48060c54ae270c055729"
@@ -258,7 +258,7 @@
       "guide": "/docs/examples/collaboration/",
       "outcome": "Offline A and B edits survive reconnect exactly once; Undo A preserves B. Peer equality is not a remote save.",
       "download": "/reference-inputs/gallery-v1/collaborative-note/source.zip",
-      "downloadSha256": "edeb3bd5e38436b9e0721c08dac551394315c4a5a60448b882fd610d5dfec18b",
+      "downloadSha256": "95984e50308374717a0fa94d76e0b1d4dd8abb6945aebba1597ae551b316a3a8",
       "files": {
         "playground/scenarios/collaboration/index.html": "0422cfb966641bccb2f55e37238cac5e80993f3e484dd209ead36412b4d80d99",
         "playground/scenarios/collaboration/app.mjs": "7f4601f9a29c483dc28be6e08a0bde4069f273d8868351512ee1387f215a4245",
@@ -274,7 +274,7 @@
         "playground/app.mjs": "be23068c71d2410a0b0332db9f4c7e6e6451ddf1546ff4c6862d71b0bebc24dd",
         "playground/recovery.mjs": "269a6ff0e25e6b501a6513798a3cb54fe646be69a60750ec3080d18c1af2cf5d",
         "scripts/build-playground.mjs": "73c9bd7cb62e0d3c9920ef1f4ac39bd2ced61028c25598caea1ef843f06b7492",
-        "scripts/check-playground.mjs": "1704514bcd92bbee2157ca5f42a4389d45e9d1ab7f794d0ad87093f3f1b23852",
+        "scripts/check-playground.mjs": "d026ad6cf17d69c4be8acec67c200ca623cfedcc06340f21f1af05da446c67fb",
         "tests/playground-collaboration.spec.ts": "d0b224318baab4d96fe97d49837d1e5a329a0a1019c80d407ba999eeff05ee04",
         "SOURCE-README.md": "9b1cb736a9e58b465e54d83cb414102a7ab8518f4e52c0cab98e685035fbf0c7",
         "local-candidates-v5.json": "27fb6a35786c50d2faa9a3a4d7c90340da6d7c667caf48060c54ae270c055729"
