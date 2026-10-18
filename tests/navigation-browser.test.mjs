@@ -123,3 +123,24 @@ test('versioned API entry renders signatures and local source downloads on deskt
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
   observe('API reference', 'Desktop navigation opens exact packed declaration; declaration/manifest downloads return200; mobile-width page has no horizontal overflow');
 });
+
+test('concept walkthrough links all lessons and serves versioned transcript with honest maturity at mobile width', async () => {
+  await page.setViewportSize({width:1440,height:1000}); await page.goto(base+'docs/concepts/');
+  assert.match(await page.locator('main').innerText(), /conceptual walkthroughs delivered/);
+  await page.locator('main a').filter({hasText:/^Selection, commands and history$/}).click();
+  await page.waitForURL(base+'docs/concepts/editing/');
+  const content = await page.locator('main').innerText();
+  for (const id of ['PK-02','PK-03','PK-04','PK-05','PK-06','PK-07','PK-08','PK-14','PK-15']) assert.ok(content.includes(id));
+  const response = await page.request.get(base+'concepts/project-kickoff-v1/transcript.json');
+  assert.equal(response.status(), 200); const transcript = await response.json();
+  assert.equal(transcript.runtimeQualified, false); assert.equal(transcript.steps.length, 16);
+  await page.setViewportSize({width:390,height:844});
+  const widths = await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+  assert.ok(widths.scroll <= widths.viewport, JSON.stringify(widths));
+  if (artifacts) await page.screenshot({path:join(artifacts,'concepts-mobile.png'),fullPage:true});
+  await page.goto(base+'docs/concepts/persistence/');
+  assert.match(await page.locator('main').innerText(), /localCommitted/);
+  assert.match(await page.locator('main').innerText(), /remoteCommitted/);
+  assert.deepEqual(errors, []); assert.deepEqual(external, []);
+  observe('concept walkthrough', 'Desktop lesson opens; sixteen-row conceptual transcript downloads; 390px lesson has no horizontal overflow; persistence labels remain distinct');
+});

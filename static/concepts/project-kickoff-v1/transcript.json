@@ -1,0 +1,185 @@
+{
+  "format": "edit-ac-docs-concept-transcript/1",
+  "fixtureId": "project-kickoff/1",
+  "maturity": "conceptual",
+  "runtimeQualified": false,
+  "notation": "Human-authored teaching snapshots in Markdown; not an edit.ac schema, API, converter output or runnable editor. Receipt labels describe independent conceptual milestones, not produced receipts.",
+  "steps": [
+    {
+      "id": "PK-01",
+      "state": "initial",
+      "action": "open",
+      "before": "kickoff-v1",
+      "after": "kickoff-v1",
+      "selection": "none",
+      "history": "ready",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-02",
+      "state": "selected",
+      "action": "select Friday",
+      "before": "kickoff-v1",
+      "after": "kickoff-v1",
+      "selection": "Friday in due paragraph",
+      "history": "selection only",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-03",
+      "state": "unbold",
+      "action": "remove bold",
+      "before": "kickoff-v1",
+      "after": "friday-plain-v1",
+      "selection": "Friday in due paragraph",
+      "history": "one local history entry",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-04",
+      "state": "bold",
+      "action": "apply bold",
+      "before": "friday-plain-v1",
+      "after": "kickoff-v1",
+      "selection": "Friday in due paragraph",
+      "history": "second local history entry",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-05",
+      "state": "split",
+      "action": "split immediately before Friday",
+      "before": "kickoff-v1",
+      "after": "paragraph-split-v1",
+      "selection": "start of Friday paragraph",
+      "history": "third local history entry",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-06",
+      "state": "joined",
+      "action": "join Friday with previous paragraph",
+      "before": "paragraph-split-v1",
+      "after": "kickoff-v1",
+      "selection": "boundary before Friday",
+      "history": "fourth local history entry",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-07",
+      "state": "undo",
+      "action": "undo join",
+      "before": "kickoff-v1",
+      "after": "paragraph-split-v1",
+      "selection": "boundary between Due and Friday",
+      "history": "join undone",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-08",
+      "state": "redo",
+      "action": "redo join",
+      "before": "paragraph-split-v1",
+      "after": "kickoff-v1",
+      "selection": "boundary before Friday",
+      "history": "join restored",
+      "local": "none",
+      "remote": "none"
+    },
+    {
+      "id": "PK-09",
+      "state": "saved",
+      "action": "local save succeeds",
+      "before": "kickoff-v1",
+      "after": "kickoff-v1",
+      "selection": "boundary before Friday",
+      "history": "unchanged",
+      "local": "localCommitted",
+      "remote": "pending"
+    },
+    {
+      "id": "PK-10",
+      "state": "reopened",
+      "action": "dispose and reopen from local store",
+      "before": "kickoff-v1",
+      "after": "kickoff-v1",
+      "selection": "host chooses restored selection",
+      "history": "new view; history restoration not claimed",
+      "local": "localCommitted",
+      "remote": "pending"
+    },
+    {
+      "id": "PK-11",
+      "state": "remote",
+      "action": "prepared peer inserts and Sam after Alex",
+      "before": "kickoff-v1",
+      "after": "remote-owner-v1",
+      "selection": "host resolves current anchor",
+      "history": "remote edit is not a local undo entry",
+      "local": "pending",
+      "remote": "pending"
+    },
+    {
+      "id": "PK-12",
+      "state": "converged",
+      "action": "local journal persists remote update",
+      "before": "remote-owner-v1",
+      "after": "remote-owner-v1",
+      "selection": "unchanged",
+      "history": "unchanged",
+      "local": "localCommitted",
+      "remote": "pending"
+    },
+    {
+      "id": "PK-13",
+      "state": "remote-receipt",
+      "action": "prepared durable host acknowledges covered update",
+      "before": "remote-owner-v1",
+      "after": "remote-owner-v1",
+      "selection": "unchanged",
+      "history": "unchanged",
+      "local": "localCommitted",
+      "remote": "remoteCommitted"
+    },
+    {
+      "id": "PK-14",
+      "state": "read-only",
+      "action": "reject format in read-only mode",
+      "before": "remote-owner-v1",
+      "after": "remote-owner-v1",
+      "selection": "unchanged",
+      "history": "no new entry",
+      "local": "localCommitted",
+      "remote": "remoteCommitted"
+    },
+    {
+      "id": "PK-15",
+      "state": "stale",
+      "action": "reject stale async target from earlier document lifetime",
+      "before": "remote-owner-v1",
+      "after": "remote-owner-v1",
+      "selection": "unchanged",
+      "history": "no new entry",
+      "local": "localCommitted",
+      "remote": "remoteCommitted"
+    },
+    {
+      "id": "PK-16",
+      "state": "save-failure",
+      "action": "prepared local quota failure after a separate in-memory edit",
+      "before": "remote-owner-v1",
+      "after": "remote-owner-v1",
+      "selection": "unchanged in durable snapshot",
+      "history": "preserve recovery data",
+      "local": "failed",
+      "remote": "pending"
+    }
+  ]
+}

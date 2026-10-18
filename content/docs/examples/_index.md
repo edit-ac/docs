@@ -25,6 +25,10 @@ Follow the [rendered web editor walkthrough](@/docs/examples/web.md) for editing
 
 These samples share one small browser integration. They demonstrate current source behavior, with edits cleared on reload or when switching samples. Plain-text export keeps words and paragraph breaks and omits rich formatting. The preview shows loading failures and text retained for recovery after an unsupported edit.
 
+## Read the versioned Project kickoff concepts
+
+The [concept walkthrough](@/docs/concepts/_index.md) follows original fixture `project-kickoff/1` through bold, paragraph structure, history, saving and a prepared peer insertion. [Download the transcript and source manifest](/concepts/project-kickoff-v1/manifest.json). These are checked, human-authored reading exercises, not an interactive consumer or new runtime qualification. The source preview above retains its distinct corpus and limits.
+
 ## Examples coming with the SDK
 
 | Example family | Concrete result | Related guide |

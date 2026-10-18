@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "examples": [
+    {
+      "id": "project-kickoff/1",
+      "parent": "DWF-1.31",
+      "maturity": "conceptual",
+      "runtimeQualified": false,
+      "testedSdkVersion": null,
+      "profile": null,
+      "source": "examples/concepts/README.md",
+      "transcript": "examples/concepts/transcript.json",
+      "license": "Apache-2.0",
+      "downloadBase": "/concepts/project-kickoff-v1/",
+      "files": {
+        "README.md": "b62b4fac696abf773cbc1d4395b0e48ade316ed57bd6d297b2701fbcdea69f14",
+        "friday-plain-v1.md": "03ba6d0bdcd307200f427689891b69614b24becf4cbd910ba847422adb7a3d65",
+        "kickoff-v1.md": "58967b5a999def076718ad96f38ff2d0ac3e55ab78b86dd82357a2caaa8ea704",
+        "paragraph-split-v1.md": "e0eb2e0b876394e195f1706ea9935aa8561db678ea14473047d46c85b631e09a",
+        "remote-owner-v1.md": "e0bd8ac406c332b6a4ea111d216e598f2b45bcf06ae84d4855278c76e234123d",
+        "transcript.json": "1874052ce5f00cb165d915e22b132d455ca3cf3bd5cf918c3592f766e8c66f22"
+      },
+      "pages": [
+        "content/docs/concepts/structure.md",
+        "content/docs/concepts/editing.md",
+        "content/docs/concepts/persistence.md"
+      ],
+      "relatedEvidence": {
+        "page": "content/docs/examples/qualified-local.md",
+        "manifest": "static/reference-inputs/local-pin-1.3/manifest.json",
+        "scope": "Separate immutable consumer; different corpus, not Project kickoff runtime proof."
+      }
+    }
+  ]
+}

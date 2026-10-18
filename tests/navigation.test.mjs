@@ -57,10 +57,10 @@ test('Web React Astro native and CLI entry paths disclose status and link to the
   assert.match(entry, /@\/docs\/guides\/getting-started.md/);
   assert.match(read('content/docs/getting-started/astro.md'), /without React/);
 });
-test('all eight future content families are discoverable reservations without executable qualification', () => {
+test('all eight content families remain discoverable with accurate conceptual or planned maturity', () => {
   assert.deepEqual(Object.keys(map.reservations), ['DWF-1.31','DWF-1.32','DWF-1.33','DWF-1.34','DWF-1.35','DWF-1.36','DWF-1.37','DWF-1.38']);
-  for (const { page, status, runtimeQualified } of Object.values(map.reservations)) {
-    assert.equal(status, 'planned'); assert.equal(runtimeQualified, false);
+  for (const [id, { page, status, runtimeQualified }] of Object.entries(map.reservations)) {
+    assert.equal(status, id === 'DWF-1.31' ? 'conceptual' : 'planned'); assert.equal(runtimeQualified, false);
     assert.ok(nav.includes(page)); assert.match(read(page), /planned/i); assert.ok(html(page));
     assert.doesNotMatch(read(page), /```(?:js|ts|javascript|typescript)\n|npm (?:install|add)/);
   }

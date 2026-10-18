@@ -7,3 +7,7 @@ An early [rendered web preview](https://github.com/edit-ac/core/tree/main/exampl
 Reviewed local source: `a20a36c15119c661e47ec0ec7051aed8d94e7ed6`, `examples/web/`. This revision is unpublished. The upstream source link follows moving `main`; it is a discovery link, not the immutable evidence pin. Use the named local checkout for this baseline.
 
 Each example must identify the exact package versions and capability profile, run as a clean consumer without workspace aliases, and pass its declared checks. Examples use redistributable fixtures and no secrets or model-provider calls. The public playground ships only after the editor and example artifacts qualify.
+
+## Conceptual reading fixture
+
+[Project kickoff version 1](concepts/README.md) supplies static semantic snapshots and a prepared transcript. [manifest.json](manifest.json) records original file hashes, maturity, source links and the distinct immutable runtime evidence. `node scripts/prepare-concepts.mjs --check` verifies source/download identity; `node --test tests/docs-concepts.test.mjs` checks independent teaching expectations. Neither check executes an editor.
