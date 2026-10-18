@@ -58,6 +58,7 @@
     "content/docs/extensions/actions.md",
     "content/docs/extensions/loading.md",
     "content/docs/extensions/presets.md",
-    "content/docs/examples/extension-configurations.md"
+    "content/docs/examples/extension-configurations.md",
+    "content/docs/examples/custom-extensions.md"
   ]
 }

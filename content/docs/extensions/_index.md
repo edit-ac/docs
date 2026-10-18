@@ -18,7 +18,7 @@ Choose features individually; application labels never limit an extension set. S
 - [Markdown, math and highlighting assets](@/docs/extensions/loading.md)
 - [Compose features and inspect presets](@/docs/extensions/presets.md)
 
-Use the [complete installed configuration consumer](@/docs/examples/extension-configurations.md) for exact source/artifact identities and independently checked outcomes. New configuration examples consume SDK-1.11/1.12 and EXT-1.20's immutable candidate; this is not a registry install or a shared-main release. [Custom authoring](@/docs/extensions/custom.md) remains a separate delivery.
+Use the [complete installed configuration consumer](@/docs/examples/extension-configurations.md) for exact source/artifact identities and independently checked outcomes. New configuration examples consume SDK-1.11/1.12 and EXT-1.20's immutable candidate; this is not a registry install or a shared-main release. [Custom authoring](@/docs/extensions/custom.md) now has a source-backed conceptual walkthrough; its candidate admission and runtime proof remain pending.
 
 ## Before you start
 

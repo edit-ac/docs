@@ -129,6 +129,22 @@
         "reader": "tests/docs-extension-catalog-reader.test.mjs (4 distinct cases)",
         "limits": "Exact unpublished local packs; Chromium mechanics; no registry/shared-main/native/OS/IME/AT/performance/deployed qualification"
       }
+    },
+    {
+      "id": "custom-authoring/1",
+      "parent": "DWF-1.35",
+      "maturity": "conceptual-source-prerequisite",
+      "runtimeQualified": false,
+      "testedSdkVersion": null,
+      "profile": null,
+      "source": "examples/custom-extensions/README.md",
+      "manifest": "examples/custom-extensions/manifest.json",
+      "transcript": "examples/custom-extensions/transcript.json",
+      "downloadBase": "/reference-inputs/custom-authoring-v1/",
+      "pages": [
+        "content/docs/extensions/custom.md",
+        "content/docs/examples/custom-extensions.md"
+      ]
     }
   ]
 }

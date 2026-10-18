@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "id": "custom-authoring/1",
+  "parent": "DWF-1.35",
+  "maturity": "conceptual-source-prerequisite",
+  "runtimeQualified": false,
+  "runtimeCases": 0,
+  "testedSdkVersion": null,
+  "eqlCandidateIdentities": [],
+  "ownerSourceCommit": "16a0a28048fd10e45284dce4b07331e3d0a15e6a",
+  "ownerAdmissionSha256": "01c6edfcfd0409ff0dfa762d1f5572d08e9146aae02c141be44f65d4c894858f",
+  "ownerRecipesSha256": "373f09ee56bbb817fb74ebfa439a126c1bba7c7247ae89f7ef8904a640822f88",
+  "pins": [
+    {
+      "repository": "core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "examples/extensions/definitions.json",
+      "file": "upstream/definitions.json.txt",
+      "sha256": "424029c7cf1e143637c45a0302d0e000aa518f08d9c1d33a9b31e107364e910f"
+    },
+    {
+      "repository": "core",
+      "commit": "a20a36c15119c661e47ec0ec7051aed8d94e7ed6",
+      "path": "examples/extensions/tutorial.mjs",
+      "file": "upstream/tutorial.mjs.txt",
+      "sha256": "4a15f48431f69864885611639539cd4ff2156cae48947cd320c4b73e21a0f629"
+    }
+  ],
+  "recipeRefs": [
+    {
+      "id": "getting-started",
+      "source": "examples/extensions/documentation/getting-started.ts",
+      "startLine": 1,
+      "endLine": 13,
+      "sha256": "2bdd5cb6b0963680fa641f6b89dd55c301feaccb988446664ecd8d545806908f",
+      "download": "/reference-inputs/extension-configurations-v1/getting-started.ts"
+    },
+    {
+      "id": "behavior",
+      "source": "examples/extensions/documentation/behavior.ts",
+      "startLine": 1,
+      "endLine": 19,
+      "sha256": "9571a95637cbadb34c570ec84022f302e73eed3f87f95dee0787e98b5971c9ae",
+      "download": "/reference-inputs/extension-configurations-v1/behavior.ts"
+    },
+    {
+      "id": "data",
+      "source": "examples/extensions/documentation/data.ts",
+      "startLine": 1,
+      "endLine": 21,
+      "sha256": "dd1824c480fb85667995d31a983207c8f3b5864b384c49209cd8eb8561681077",
+      "download": "/reference-inputs/extension-configurations-v1/data.ts"
+    },
+    {
+      "id": "lifecycle",
+      "source": "examples/extensions/documentation/lifecycle.ts",
+      "startLine": 1,
+      "endLine": 24,
+      "sha256": "12be71878f95a81cba497f7390126f42a54bc9cf0486ef6d6c952f5ed422d06c",
+      "download": "/reference-inputs/extension-configurations-v1/lifecycle.ts"
+    },
+    {
+      "id": "task-links",
+      "source": "examples/extensions/task-links/task-links.ts",
+      "startLine": 1,
+      "endLine": 70,
+      "sha256": "9d7bd0fc22722a51cac2ed7db32b1f19d23337d6ff55ea606dd845cc8a308a55",
+      "download": "/reference-inputs/extension-configurations-v1/task-links.ts"
+    },
+    {
+      "id": "catalog",
+      "source": "examples/extensions/task-links/catalog.ts",
+      "startLine": 1,
+      "endLine": 10,
+      "sha256": "348a5d716f1efe26f800b2782fe25273cd952a2cb5c570143a0a446cec3f444f",
+      "download": "/reference-inputs/extension-configurations-v1/catalog.ts"
+    },
+    {
+      "id": "spellcheck",
+      "source": "examples/extensions/spellcheck/spellcheck.ts",
+      "startLine": 1,
+      "endLine": 24,
+      "sha256": "dca4b0afffa0abe3ded58fa59547f19f388d5b8976f9c0eb81c4e3e95005b4d7",
+      "download": "/reference-inputs/extension-configurations-v1/spellcheck.ts"
+    },
+    {
+      "id": "parsing",
+      "source": "examples/extensions/parsing/parsing.ts",
+      "startLine": 1,
+      "endLine": 35,
+      "sha256": "3556f7827d34f369fcea9cb9ae5c0e85c2a0163e201c35d6aea0953a4ebea978",
+      "download": "/reference-inputs/extension-configurations-v1/parsing.ts"
+    },
+    {
+      "id": "url-insert",
+      "source": "examples/extensions/url-insert/url-insert.ts",
+      "startLine": 1,
+      "endLine": 61,
+      "sha256": "7c3a3a26e84ee21160188cabefd52facba89ab5a683093b6022117dbcdd44cf7",
+      "download": "/reference-inputs/extension-configurations-v1/url-insert.ts"
+    }
+  ],
+  "pending": [
+    "EQL-1.9 candidate admission",
+    "Original callout/highlight/command packaged consumer",
+    "Independent runtime validation/serialization/history/unknown-data/cancellation/disposal proof"
+  ],
+  "files": {
+    "README.md": "6bffc39ba474d0f976db114961ae0e287c0cb53aa6bec764b4bcda9ce69d45c9",
+    "transcript.json": "d11956a1c15eca8199e7f277720d9e92361ab0036b272d9c006f70230ae48ad1",
+    "upstream/definitions.json.txt": "424029c7cf1e143637c45a0302d0e000aa518f08d9c1d33a9b31e107364e910f",
+    "upstream/tutorial.mjs.txt": "4a15f48431f69864885611639539cd4ff2156cae48947cd320c4b73e21a0f629"
+  }
+}
