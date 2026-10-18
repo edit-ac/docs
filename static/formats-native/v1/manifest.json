@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "id": "formats-native/1",
+  "parent": "DWF-1.7",
+  "state": "source-documentation-prerequisite",
+  "runtimeQualification": "pending-packaged-host-consumer",
+  "records": [
+    {
+      "id": "docx-import-structure",
+      "format": "DOCX",
+      "direction": "import",
+      "fidelity": "Direct lists, bounded simple tables, paragraph-isolated original PNGs. No Word layout, inherited numbering, merged cells or inline images.",
+      "gate": "CNV-1.6",
+      "coreCommit": "2dc7275a1b90bb9e9ee1894d37d83aada2cc77b1",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/docx-import-structure-20261017/receipt.json",
+        "sha256": "16bf17d0f7ff84d8656341785540f06bf2989cecba1987ca6100e0048b1a4bd5",
+        "state": "implemented-and-verified-optional-docx-structure-subset",
+        "counts": {
+          "executed": 143,
+          "passed": 143,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/docx/structure/profile.json",
+        "file": "docx-import-structure/profile.json",
+        "sha256": "ba66ae043b5754e85cad644dc5525986220d9a7013ba19ac99c59bdd2adb8216"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/docx_import_structure.rs",
+        "sha256": "d341519d60403b9df5c2d4f7c106358f8d3e9b5b8db74f94a19811e29cf2da1e",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "docx-export",
+      "format": "DOCX",
+      "direction": "export",
+      "fidelity": "Captured semantic paragraphs, marks, lists, simple tables and authorized original PNGs. No source package identity or pagination.",
+      "gate": "CNV-1.7",
+      "coreCommit": "313784b7391db87426601ad65d889d262fcf0b7f",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/docx-export-20261017/receipt.json",
+        "sha256": "b1c8f68541013e71e3402d97e7b54434520b0fdb82e103c70771397ce9f3c098",
+        "state": "implemented-verified-optional-export",
+        "counts": {
+          "executed": 167,
+          "passed": 167,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/docx/export/profile.json",
+        "file": "docx-export/profile.json",
+        "sha256": "f908de1470cdd1187426890c80b3a68f758521b677d551aa7b96dd792c46090a"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/docx_export.rs",
+        "sha256": "b3ef57c90e2b8549b7e15782f8e4196b0616ad1e5ad5b1515b663cbc78f693e7",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "pdf-isolated",
+      "format": "PDF",
+      "direction": "export",
+      "fidelity": "Bounded captured text, rich content, rectangular tables and authorized PNGs. Exact Arabic copy/search qualified only in MuPDF 1.26.5; no PDF/UA, archival or all-reader claim.",
+      "gate": "CNV-1.9",
+      "coreCommit": "7ea2207db5cf01900ad954e3fcdd44e1e8cdf9a5",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/pdf-isolated-20261017/receipt.json",
+        "sha256": "7a1a9a873574b3cd53e379f318fe9fa0e2ebbe4c79bf1fc74d90132fb70aee17",
+        "state": "implemented-and-verified-declared-local-publication-subset",
+        "counts": {
+          "executed": 92,
+          "passed": 92,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/pdf/export/profile.json",
+        "file": "pdf-isolated/profile.json",
+        "sha256": "b1cf69b065ae60cb35cd706da1cb661ac64d2455bf436a2eaf2d796967f866c1"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/pdf_export.rs",
+        "sha256": "ae37b1801703d021eca4d48c6d6490f6dcbcd70ea79777a20f236be56799ffcc",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "odt-import",
+      "format": "ODT 1.3",
+      "direction": "import",
+      "fidelity": "Guarded semantic text, marks, lists, tables and original PNGs. No arbitrary style/layout or encrypted package support.",
+      "gate": "CNV-1.10",
+      "coreCommit": "b82984976c203405c3c86932d3611aaaa316e41b",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/odt-import-20261017/receipt.json",
+        "sha256": "6e8c56e67e7f10840431da9127a5ebb0eab826c7af19a9ad432491764f6480aa",
+        "state": "implemented-verified-local-subset",
+        "counts": {
+          "executed": 187,
+          "passed": 187,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/odt/profile.json",
+        "file": "odt-import/profile.json",
+        "sha256": "cf8944a2bff11d96943df6c2bc50cfecc05a7b23249bea4dcc3c4a0ae20ab750"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/odt_import.rs",
+        "sha256": "e7da4b2e55fb0a75bed54efc5cad11198d445947eb90248b77243a46e34b5253",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "odt-export",
+      "format": "ODT 1.3",
+      "direction": "export",
+      "fidelity": "Captured semantic subset with deterministic package and original PNGs. No source-package or pagination fidelity.",
+      "gate": "CNV-1.11",
+      "coreCommit": "f8c467a602345cc48dd354b57cbeff64337fd3d5",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/odt-export-20261017/receipt.json",
+        "sha256": "8ba13bfb1f602f67c5a01ce688883b6901294124cfe7df6ac607c524e28e977c",
+        "state": "implemented-verified-local-subset",
+        "counts": {
+          "passed": 206,
+          "failed": 0,
+          "skipped": 0,
+          "executed": 206
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/odt/export/profile.json",
+        "file": "odt-export/profile.json",
+        "sha256": "b08c890268d4ae624bec3694edbb7b06ad2df6af4ad6bcfb5b9717dd82634be8"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/odt_export.rs",
+        "sha256": "bfadc26da0e87d34679748965bbfc50e0fa141cdf2685cede761df1549f5d246",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "rtf-import",
+      "format": "RTF 1.9.1",
+      "direction": "import",
+      "fidelity": "Bounded CP1252/Unicode text, direct marks, paragraphs and simple tables. No OLE, embedded activation or encoding guesses.",
+      "gate": "CNV-1.12",
+      "coreCommit": "02851c6baa05fc5730c67e10ce0e40d9b25ad430",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/rtf-import-20261017/receipt.json",
+        "sha256": "d6d654adc0f398fbc65e2585d52f5fc247e7783a4c8558fba482b466932e9a10",
+        "state": "implemented-verified-local-subset",
+        "counts": {
+          "executed": 85,
+          "passed": 85,
+          "failed": 0,
+          "skipped": 0,
+          "breakdown": "45 RTF Rust +32 job/profile Rust +8 Node"
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/rtf/profile.md",
+        "file": "rtf-import/profile.md",
+        "sha256": "86cc61c8ae5fbae8c4d1d9abaabc6c75c6de036e587b7379c1672453f961bde7"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/rtf_import.rs",
+        "sha256": "69cb6a54d71bbdcfb9c3129a7dc4779a2c658a2d0ab524dbf70cfebedd542034",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "rtf-export",
+      "format": "RTF 1.9.1",
+      "direction": "export",
+      "fidelity": "Captured text, direct marks, paragraphs and simple tables. No source font/layout identity; independent macOS textutil inspection is not host integration.",
+      "gate": "CNV-1.13",
+      "coreCommit": "8a8aad4019a49789a4844a703e7a916cd0bd331f",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/rtf-export-20261017/receipt.json",
+        "sha256": "bf043c3dca3ae3fe3d32835e2fc04579d8fb88b31dbc6dfb94781af51ba272bb",
+        "state": "implemented-and-verified-declared-local-profile",
+        "counts": {
+          "executed": 96,
+          "passed": 96,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/rtf/export/profile.md",
+        "file": "rtf-export/profile.md",
+        "sha256": "06e8c5c293e58236ca5fe89a127f78bcd41dc49478f72c8dd649d7d121642ffe"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/rtf_export.rs",
+        "sha256": "6c70cdc1a144ab2f8035ab4da1eda771122ac0034475ed6e217a2985cc8d4c8c",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "epub-import",
+      "format": "EPUB 3.3",
+      "direction": "import",
+      "fidelity": "Guarded reflowable chapter/spine/TOC semantics and original PNGs. No scripts, DRM, remote fetch or fixed-layout fidelity.",
+      "gate": "CNV-1.14",
+      "coreCommit": "7bd8cfe555ab573a43a40af8bb6c1987d7f2cbb0",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/epub-import-20261017/receipt.json",
+        "sha256": "5a2d77d51960287bfaaa3a0898ec74b1acd1753cbacc0b06271773024a789b12",
+        "state": "implemented-and-verified-declared-local-profile",
+        "counts": {
+          "executed": 95,
+          "passed": 95,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/epub/profile.md",
+        "file": "epub-import/profile.md",
+        "sha256": "983ec0c5b72ec86d2e0a722ae746968401f769766f608f136b095a89fa88581f"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/epub_import.rs",
+        "sha256": "1c15bbe59d030723b519f786a1dec84b6dc97b5f5798edce2076d417e1c83f45",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    },
+    {
+      "id": "epub-export",
+      "format": "EPUB 3.3",
+      "direction": "export",
+      "fidelity": "Captured safe XHTML, spine, flat TOC, metadata and authorized PNGs. Independent EbookLib reopening; no viewer-rendering or EPUB certification claim.",
+      "gate": "CNV-1.15",
+      "coreCommit": "a2a5c3dc242ea2989af854547f34a1dc61c37a74",
+      "architectureCommit": "59a732815fa26f1be40616eb8b528f8927ca0216",
+      "receipt": {
+        "path": "evidence/document-conversion/epub-export-20261017/receipt.json",
+        "sha256": "a8d0b70c03d3af5fd95bd688663a349bf60bd3ff5547cb6cce9958caecd7cc16",
+        "state": "implemented-and-verified",
+        "counts": {
+          "executed": 120,
+          "passed": 120,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "profile": {
+        "path": "fixtures/formats/epub/export/profile.json",
+        "file": "epub-export/profile.json",
+        "sha256": "f9cc4da747f74cbab9e56b41ba6a607fa719eef4d0a4a7392d28f691a15545a1"
+      },
+      "consumerSource": {
+        "path": "crates/editac-formats/tests/epub_export.rs",
+        "sha256": "43ac820ea37db0f96a35ae5d7772bbcf171ad5af2305d0e42b6bbc40e8a9ef86",
+        "boundary": "Owning Rust source test; not a packaged platform consumer"
+      },
+      "qualification": "local converter subset; host wiring and release pending"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS / Swift",
+      "ownerRoadmap": 31,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "Android / Kotlin",
+      "ownerRoadmap": 32,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "macOS",
+      "ownerRoadmap": 33,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "Windows",
+      "ownerRoadmap": 34,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "Linux",
+      "ownerRoadmap": 35,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "Terminal / CLI",
+      "ownerRoadmap": 36,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    },
+    {
+      "name": "Browser",
+      "ownerRoadmap": 27,
+      "status": "conceptual",
+      "packageConsumer": null,
+      "reason": "No applicable immutable packaged conversion-host receipt admitted to this guide."
+    }
+  ],
+  "admission": {
+    "claimedHosts": [],
+    "missing": [
+      "Immutable packaged host consumer demonstrating picker, preview, cancellation, import/export and restore with independently expected source/report/document outcomes.",
+      "Applicable platform31\u201335 receipt for each claimed native binding, including physical/virtual checks and any required hardware-only equivalents."
+    ]
+  }
+}
