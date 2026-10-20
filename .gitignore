@@ -12,3 +12,14 @@ public/
 
 .playground-build-*/
 .playground-test-*/
+
+# Generated development/test output stays local and temporary.
+/evidence/
+/.artifacts/
+/.roadmap-runner/
+/test-results/
+/playwright-report/
+/coverage/
+/benchmark-results/
+/regression-results/
+/architecture-results/

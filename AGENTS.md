@@ -15,3 +15,9 @@ This repository publishes the official website and developer documentation at ht
 - Update the pinned theme commit and Zola version deliberately. Verify the official release checksum when updating the CI installer.
 - Keep credentials and private documents outside the repository. Record only public DNS values and deployment evidence.
 - Write plain-English imperative commit subjects without type or scope prefixes. Report completed checks and any deployment or certificate state still pending.
+
+## Source-only Git policy — user decision, 2026-10-20
+
+Keep source code, authored documentation, configuration and deterministic input fixtures in Git. Never commit generated caches, qualification evidence, screenshots, recordings, test reports, benchmark results, compiled binaries, packed dependencies, runtime/source snapshots or test databases. Exclude these outputs with .gitignore.
+
+Run focused checks using ignored, task-owned temporary directories. Keep only the diagnostics needed for an active failure, then remove them after debugging; do not create gigabytes of evidence or routine artifact archives during development. Report concise pass/fail counts in the conversation or commit description. Release artifacts belong outside source repositories. This supersedes older blanket evidence-retention wording for generated development/test output; preserve source, real user data, credentials and active processes.
