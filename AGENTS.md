@@ -21,3 +21,7 @@ This repository publishes the official website and developer documentation at ht
 Keep source code, authored documentation, configuration and deterministic input fixtures in Git. Never commit generated caches, qualification evidence, screenshots, recordings, test reports, benchmark results, compiled binaries, packed dependencies, runtime/source snapshots or test databases. Exclude these outputs with .gitignore.
 
 Run focused checks using ignored, task-owned temporary directories. Keep only the diagnostics needed for an active failure, then remove them after debugging; do not create gigabytes of evidence or routine artifact archives during development. Report concise pass/fail counts in the conversation or commit description. Release artifacts belong outside source repositories. This supersedes older blanket evidence-retention wording for generated development/test output; preserve source, real user data, credentials and active processes.
+
+## Pre-publication format policy
+
+Use the one-current-format and durability rules in the sibling architecture repository: `decisions/006-single-format-before-publication.md` and `specs/document-durability.md`. Earlier experimental schemas and unpublished version combinations are fixture history, not production support obligations. Preserve regression behavior and real user data; no automatic conversion or profile relabel. Bounded size optimization cannot hold independent feature delivery; final hard caps still apply.
