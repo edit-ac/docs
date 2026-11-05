@@ -5,6 +5,22 @@ semantic model, synchronization or history implementation lives here. Exact SDK
 0.0.0 unpublished profiles differ: toolbar uses PIN-1.3; quickstarts and shared
 resources use sdk-framework-v1. Never mix same-version packages across families.
 
+The current `toolbar.mjs` source adopts the optional product styles and frozen
+part hooks under UIS-1.5. Load `@edit-ac/web/styles.css` and
+`@edit-ac/web/ui.css` in its host. Select text, press Escape, then Tab to Bold
+and press Enter; plain Tab inside the editor indents. Its focused command proof
+belongs to the current core selector `node scripts/ui-integration-delivery.mjs
+UIS-1.5`, not the historical PIN-1.3 receipt.
+
+Run `python3 scripts/prepare-recipes.py --toolbar-source-only` to derive the
+complete current source and its hash/import manifest in ignored
+`.artifacts/toolbar-source/`. This is source inspection with zero runtime cases.
+It leaves retained manifests, snippets, downloads and qualification bytes intact.
+Those historical outputs describe their pinned source, not this changed toolbar.
+Default historical regeneration rejects changed toolbar source until the docs
+owner explicitly requalifies that profile; do not copy current hashes into old
+receipts or combine its runtime members with the current engine.
+
 Use Node24.19.0/npm11.17.0 and installed Playwright1.64.0. Run from docs:
 
 ```sh

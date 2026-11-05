@@ -1,4 +1,5 @@
 node_modules/
+/static/demos/presets/
 dist/
 .astro/
 .DS_Store

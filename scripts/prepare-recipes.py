@@ -6,10 +6,29 @@ ROOT=Path(__file__).resolve().parents[1]
 def raw(p):return (ROOT/p).read_bytes()
 def sha(b):return hashlib.sha256(b).hexdigest()
 def obj(p):return json.loads(raw(p))
+# Current source inspection must never relabel the retained PIN-1.3 profile.
+# Keep this bounded derivation separate from the historical site/downloads.
+if '--toolbar-source-only' in sys.argv:
+ assert sys.argv[1:]==['--toolbar-source-only'], 'Expected only --toolbar-source-only'
+ source='examples/recipes/toolbar.mjs';body=raw(source)
+ directory=ROOT/'.artifacts/toolbar-source';directory.mkdir(parents=True,exist_ok=True)
+ (directory/'toolbar.mjs').write_bytes(body)
+ manifest=dict(schemaVersion=1,parent='UIS-1.5',scope='current-source-only',
+  published=False,releaseQualified=False,runtimeQualified=False,
+  source=source,sourceSha256=sha(body),start=1,end=len(body.decode().splitlines()),
+  styles=['@edit-ac/web/styles.css','@edit-ac/web/ui.css'],
+  runtimeEvidenceOwner='core: node scripts/ui-integration-delivery.mjs UIS-1.5',
+  historicalProfile='examples/commands/manifest.json',
+  limitation='Historical PIN-1.3 qualification does not cover this changed source. This derivation supplies no runtime or package qualification.')
+ (directory/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ print(json.dumps(dict(outputs=2,scope=manifest['scope'],runtimeCases=0,output=str(directory))))
+ sys.exit(0)
 outputs={}
 def output(p,b):outputs[p]=b.encode() if isinstance(b,str) else b
 quick='examples/quickstarts/manifest.json';shared='examples/recipes/shared-profile.json'
 qualification=ROOT/'examples/recipes/qualification.json'
+# Do not pair changed toolbar source with the old runtime receipt.
+assert sha(raw('examples/recipes/toolbar.mjs'))==json.loads(qualification.read_bytes())['sourceFiles']['examples/recipes/toolbar.mjs'], 'Historical toolbar source drift; use --toolbar-source-only for current source inspection. Requalify through the docs owner before regenerating the historical profile.'
 if '--check' in sys.argv:
  q=json.loads(qualification.read_bytes());assert q['parent']=='DWF-1.37' and q['published'] is False
  assert q['counts']==dict(tests=9,passed=9,failed=0,skipped=0,cancelled=0,todo=0)

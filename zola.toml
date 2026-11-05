@@ -48,6 +48,7 @@ navigation = [
   { section = "docs/getting-started/_index.md" },
   { section = "docs/concepts/_index.md" },
   { section = "docs/extensions/_index.md" },
+  { section = "docs/presets/_index.md" },
   { section = "docs/reference/_index.md" },
   { section = "docs/guides/_index.md" },
   { section = "docs/examples/_index.md" },

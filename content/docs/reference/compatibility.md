@@ -18,6 +18,8 @@ At the first publication, freeze and record the actual supported format and arti
 
 Performance claims name the document sizes, enabled features, hardware and OS/browser profile. Stress-fixture success does not automatically expand the supported envelope. Each platform and converter direction needs its own evidence.
 
+For browser prerequisites, optional API limits and Wasm hosting requirements, read [Browser and WebAssembly compatibility](@/docs/reference/browser-support.md). Feature availability and local loader checks do not establish a released browser support matrix.
+
 ## Plan adoption
 
 Read [Migrate to edit.ac](@/docs/migrate/_index.md) and [Compare editors](@/docs/compare/_index.md) for planned source-specific migration and evidence requirements. These entries do not qualify converters or benchmarks.

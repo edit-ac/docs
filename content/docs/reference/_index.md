@@ -24,6 +24,7 @@ Check release status and capability limits before choosing an integration.
 - [Lifecycle and events](@/docs/reference/lifecycle.md): planned saving, receipts and subscription cleanup example.
 - [Capability and release status](@/docs/reference/status.md): named source and packed evidence.
 - [Versions and capabilities](@/docs/reference/compatibility.md): schema, profile and platform limits.
+- [Browser and WebAssembly compatibility](@/docs/reference/browser-support.md): browser prerequisites, optional API limits and runtime hosting.
 - [Glossary](@/docs/reference/glossary.md): current contract vocabulary.
 
 These generated entries link the [qualified local consumer](@/docs/examples/qualified-local.md) and [core concepts](@/docs/concepts/_index.md). This index advertises no absent API.

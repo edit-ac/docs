@@ -1,6 +1,11 @@
 {
   "schemaVersion": 1,
   "pages": [
+    "content/docs/presets/_index.md",
+    "content/docs/presets/document-editor.md",
+    "content/docs/presets/block-editor.md",
+    "content/docs/presets/chat-message.md",
+    "content/docs/presets/assistant-chat.md",
     "content/_index.md",
     "content/docs/_index.md",
     "content/docs/examples/_index.md",
@@ -17,6 +22,7 @@
     "content/docs/reference/_index.md",
     "content/docs/reference/status.md",
     "content/docs/reference/compatibility.md",
+    "content/docs/reference/browser-support.md",
     "content/docs/reference/glossary.md",
     "content/docs/getting-started/_index.md",
     "content/docs/getting-started/web.md",

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { buildPresets } from './build-preset-demos.mjs';
 
 export const siteRoot = fileURLToPath(new URL('../', import.meta.url));
 export function verifyToolchain(root = siteRoot) {
@@ -27,5 +28,6 @@ export function buildSite({ root = siteRoot, outputDir, baseUrl } = {}) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   if (process.argv.length > 2) throw new Error('Use zola build directly for explicit output/base-url overrides');
+  await buildPresets();
   process.stdout.write(buildSite());
 }
